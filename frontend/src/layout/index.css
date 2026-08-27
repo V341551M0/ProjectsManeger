@@ -1,0 +1,10 @@
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexa-light.otf");
+    font-size: 300px;
+    
+}
+
+:root {
+    background-color: #4fc3f7;
+}
