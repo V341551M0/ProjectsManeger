@@ -14,36 +14,58 @@
     </header> 
     <div class="container-inicial">
         <section class="container-dashboards">
-            <article class="card-list">
-                    <!-- Lista de Projetos / Resumo -->
-                <h2>Seus Projetos</h2>
-                <div id="activity-list-projects">
-                    <!-- Conteúdo preenchido dinamicamente via JS -->
-                </div>
-            </article>
+                    <!-- Lista de Projetos + Status / Resumo -->
+            <div class="container-list-projects">
+                <article class="list-projects">
+                    <h2>Seus Projetos</h2>
+                    <div class="activity-list-projects">
+                        <!-- Conteúdo preenchido dianamicamente via JS-->
+                    </div>
+                </article>
+            </div>
                 
-                <!-- Commits do Usuario / Grafico linha -->
-            <article class="card-listCommits">
-                <h2>Seus Commits</h2>
-                <div id="activity-list-commit">
-                    <!-- Conteúdo preenchido dinamicamente via JS-->
-                </div>
-            </article>
+                <!-- status de tarefas / Grafico linha -->
+            <div class="container-cars-graphics">
+                <article class="card-statusTask">
+                    <h2>Status por Tarefas</h2>
+                    <div id="activity-graphicStatus">
+                        <!-- Conteúdo preenchido dinamicamente via JS-->
+                    </div>
+                </article>
 
-                <!-- -->
-            <article class="card-evolutionCommits">
-                <h2>Commits Diarios</h2>
-                <div id="activity-grafic-commit">
-                    <!-- Conteudo preenchido dinamicamente via JS--->
-                </div>
-            </article>
+                <article class="card-person">
+                    <h2>Tarefa por Responsavel</h2>
+                    <div id="activity-graphicPerson">
+                        <!-- Conteúdo preenchido dinamicamente via JS-->
+                    </div>
+                </article>
+
+                <article>
+                    <h2>Tarefas Atrasadas</h2>
+                    <div id="acitivty-graphicsTask">
+                        <!-- Conteúdo preenchido dinamicamente via JS-->
+                    </div>
+                </article>
+            </div>
+
+                <!-- Grafico em Linha -->
+            <div>
+                <article class="card-evolutionCommits">
+                    <h2>Commits Diarios</h2>
+                    <div id="activity-grafic-commit">
+                        <!-- Conteudo preenchido dinamicamente via JS--->
+                    </div>
+                </article>
+            </div>
 
                 <!-- Calendario de Atividades-->
-            <article class="cad-calendar">
+            <div class="calendar-graphics">
+                <article class="card-calendar">
                 <h2>Calendario</h2>
                 <div id="activity-calendar"></div>
                     <!-- Conteudo preenchido dinamicamente via JS-->
-            </article>  
+            </article>
+            </div>
         </section>
     </div>
 </body>

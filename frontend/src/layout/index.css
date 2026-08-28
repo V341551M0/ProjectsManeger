@@ -1,10 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nexa";
+    font-weight: 700;
+}
+
 @font-face{
     font-family: "Nexa";
     src: url("../assets/fonts/nexa-light.otf");
-    font-size: 300px;
-    
+    font-weight: 300px;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/Nexa\ Bold.otf");
+    font-weight: 400px;
+    font-size: normal;
+}
+
+@font-face {
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexaregular.otf");
+    font-weight: 700px;
+    font-size: normal;
 }
 
 :root {
-    background-color: #4fc3f7;
+    background: linear-gradient( #2844cc, #95a0db, #eee, #fefefe);
+    
+}    
+
+.container-inicial{
+   
+}
+
+.header{
+
 }
