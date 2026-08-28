@@ -3,39 +3,115 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Nexa";
-    font-weight: 700;
+    font-weight: 300px;
 }
 
 @font-face{
     font-family: "Nexa";
     src: url("../assets/fonts/nexa-light.otf");
-    font-weight: 300px;
+    font-weight: 300;
     font-style: normal;
+    background-color: white;
 }
 
 @font-face{
     font-family: "Nexa";
     src: url("../assets/fonts/Nexa\ Bold.otf");
-    font-weight: 400px;
+    font-weight: 400;
     font-size: normal;
+    background-color: white;
 }
 
 @font-face {
     font-family: "Nexa";
     src: url("../assets/fonts/nexaregular.otf");
-    font-weight: 700px;
+    font-weight: 700;
     font-size: normal;
+    background-color: white;
 }
 
 :root {
-    background: linear-gradient( #2844cc, #95a0db, #eee, #fefefe);
-    
+    background-color: white;
 }    
 
-.container-inicial{
-   
+
+.container-cards-graphics {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.container-cards-graphics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+
+
+.card-evolutionCommits {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.card-evolutionCommits {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(1, 1fr); 
+}
+
+.card-evolutionCommits {
+    height: 50vh;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+.container-list-projects {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.container-list-projects {
+    width: 50vh;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+.card-calendar {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.card {
+    background-color: #F9E58B;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #F9E58B;
+}
+
+.container-dashboards {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 20px;
+}
+.container-list-projects{
+    background-color: white;
+    position: ;
 }
 
 .header{
-
+    background-color: #FBEFB9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
