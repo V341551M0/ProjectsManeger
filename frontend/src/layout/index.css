@@ -34,6 +34,31 @@
     background-color: white;
 }    
 
+.container-buttons{
+    background-color: #F9E58B;
+    height: 40px;
+    border-radius: 10px;
+    font-family: "Nexa";
+}
+
+/*
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-buttons button {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+*/
+
+
 
 .container-cards-graphics {
     grid-column: 2;
@@ -106,7 +131,6 @@
 }
 .container-list-projects{
     background-color: white;
-    position: ;
 }
 
 .header{
