@@ -41,24 +41,6 @@
     font-family: "Nexa";
 }
 
-/*
-.nav-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.nav-buttons button {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-*/
-
-
 
 .container-cards-graphics {
     grid-column: 2;
@@ -74,6 +56,40 @@
     border-radius: 20px;
 }
 
+.menu-options{
+    align-items: center;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+
+.botões-de-gerenciamento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container-buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-area{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
 
 
 .card-evolutionCommits {
