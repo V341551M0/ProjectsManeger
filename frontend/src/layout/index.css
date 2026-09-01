@@ -151,6 +151,60 @@
     width: 18px;
 }
 
+.text-filtrar {
+    position: relative;
+}
+
+.text-filtrar{
+    padding-left: 40px;
+}
+
+.text-filtrar img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
+.text-pesquise {
+    position: relative;
+}
+
+.text-pesquise{
+    padding-left: 40px;
+}
+
+.text-pesquise img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
+.text-gerir {
+    position: relative;
+}
+
+.text-gerir{
+    padding-left: 40px;
+}
+
+.text-gerir img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
 .card-evolutionCommits {
     height: 50vh;
 
