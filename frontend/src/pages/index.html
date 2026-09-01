@@ -5,6 +5,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Projects Manager</title>
     <link rel='stylesheet' href='../layout/index.css'>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <header class="header-menu">
@@ -18,7 +20,7 @@
 
                     <!--Botão de Pesquisa-->
                 <article class="text-pesquise">
-                    <input type="text" placeholder="Pesquise 🔎">
+                    <input type="text" placeholder="Pesquise">
                 </article>
 
                     <!--Gerir todos os Projetos-->
@@ -34,25 +36,36 @@
             </div>
 
             <div class="botões-de-gerenciamento">
-
                     <!--Botão que Apresenta os projetos mais recentes do usuario-->
-                <article class="pessoas-button">
-                    <button id="recentes" type="button">Recentes ↻</button>
+                <article class="recentes-button">
+                    <button id="recentes" type="button">
+                        <img src="../../src/assets/icons/recente.png">
+                        Recentes
+                    </button>
                 </article>
 
                     <!--Botão que exibe pessoas trabalhando nos projetos-->
                 <article class="pessoas-button">
-                    <button id="pessoas" type="button">Pessoas 👤</button>
+                    <button id="pessoas" type="button">
+                        <img src="../../src/assets/icons/do-utilizador.png">
+                        Pessoas                        
+                    </button>
                 </article>
 
                     <!--Botão de ordenação de entidades-->
                 <article class="ordem-button">
-                    <button id="ordenar" type="button">Ordenar ↓↑</button>
+                    <button id="ordenar" type="button">
+                        <img src="../../src/assets/icons/ordenar.png">
+                        Ordenar
+                    </button>
                 </article>
 
                     <!--Botão de ocultar informações indesejadas pelo usuario-->
                 <article class="ocultar-button">
-                    <button id="ocultar" type="button">Ocultar ⊘</button>
+                    <button id="ocultar" type="button">
+                        <img src="../../src/assets/icons/ocultar.png">
+                        Ocultar
+                    </button>
                 </article>
             </div>
 
@@ -66,6 +79,36 @@
 
         </section>
     </div>
+
+        <!--Pop Ups-->
+    <div class="container-popup">
+        <section class="PopUps-containers">
+            <!--PopUp Menu Usuario + Botões do PopUP Presentes no Menu Usuario-->
+            <div class="Buttons-PopUp-User">
+                <article class="button-config">
+                    <button type="button" id="configurações">
+                        <img src="../../src/assets/icons/configuracoes.png">
+                        Configurações
+                    </button>
+                </article>
+
+                <article class="button-archive">
+                    <button type="button" id="arquivar">
+                        <img src="../../src/assets/icons/arquivar.png">
+                        Arquivar
+                    </button>
+                </article>
+
+                <article class="button-trash">
+                    <button type="button" id="lixeira">
+                        <img src="../../src/assets/icons/lixeira.png">
+                        Lixeira
+                    </button>
+                </article>
+            </div>
+        </section>
+    </div>
+
 
     <div class="container-inicial">
         <section class="container-dashboards">
@@ -116,10 +159,11 @@
                 <!-- Calendario de Atividades-->
             <div class="calendar-graphics">
                 <article class="card-calendar">
-                <h2>Calendario</h2>
-                <div id="activity-calendar"></div>
-                    <!-- Conteudo preenchido dinamicamente via JS-->
-            </article>
+                    <h2>Calendario</h2>
+                    <div id="activity-calendar">
+                        <!-- Conteudo preenchido dinamicamente via JS-->
+                    </div>
+                </article>
             </div>
         </section>
     </div>
