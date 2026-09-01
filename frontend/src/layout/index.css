@@ -139,6 +139,18 @@
     width: 18px;
 }
 
+.button-sair img{
+    width: 18px;
+}
+
+.button-theme img{
+    width: 18px;
+}
+
+.button-feedback img{
+    width: 18px;
+}
+
 .card-evolutionCommits {
     height: 50vh;
 
