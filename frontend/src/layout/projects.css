@@ -1,0 +1,266 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nexa";
+    font-weight: 300px;
+}
+
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexa-light.otf");
+    font-weight: 300;
+    font-style: normal;
+    background-color: white;
+}
+
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/Nexa\ Bold.otf");
+    font-weight: 400;
+    font-size: normal;
+    background-color: white;
+}
+
+@font-face {
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexaregular.otf");
+    font-weight: 700;
+    font-size: normal;
+    background-color: white;
+}
+
+:root {
+    background-color: white;
+}    
+
+.container-buttons{
+    background-color: #F9E58B;
+    height: 40px;
+    border-radius: 10px;
+    font-family: "Nexa";
+}
+
+
+.container-cards-graphics {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.container-cards-graphics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+.menu-options{
+    align-items: center;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+
+.botões-de-gerenciamento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container-buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-area{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+
+.card-evolutionCommits {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.card-evolutionCommits {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(1, 1fr); 
+}
+
+.botões-de-gerenciamento button{
+    cursor: pointer;
+}
+
+.container-popup button{
+    cursor: pointer;
+}
+
+.pessoas-button img{
+    width: 18px;
+}
+
+.ocultar-button img{
+    width: 18px;
+}
+
+.recentes-button img{
+    width: 18px;
+}
+
+.ordem-button img{
+    width: 18px;
+}
+
+.button-config img{
+    width: 18px;
+}
+
+.button-archive img{
+    width: 18px;
+}
+
+.button-trash img{
+    width: 18px;
+}
+
+.button-sair img{
+    width: 18px;
+}
+
+.button-theme img{
+    width: 18px;
+}
+
+.button-feedback img{
+    width: 18px;
+}
+
+.text-filtrar {
+    position: relative;
+}
+
+.text-filtrar{
+    padding-left: 40px;
+}
+
+.text-filtrar img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
+.text-pesquise {
+    position: relative;
+}
+
+.text-pesquise{
+    padding-left: 40px;
+}
+
+.text-pesquise img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
+.text-gerir {
+    position: relative;
+}
+
+.text-gerir{
+    padding-left: 40px;
+}
+
+.text-gerir img{
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+}
+
+.card-evolutionCommits {
+    height: 50vh;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+.container-list-projects {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.container-list-projects {
+    width: 50vh;
+
+    background-color: #FDF5D1;
+    border-radius: 20px;
+}
+
+.card-calendar {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.card {
+    background-color: #F9E58B;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #F9E58B;
+}
+
+.container-dashboards {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.PopUps-containers {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+
+.container-list-projects{
+    background-color: white;
+}
+
+.header{
+    background-color: #FBEFB9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
