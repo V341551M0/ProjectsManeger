@@ -34,14 +34,6 @@
     background-color: white;
 }    
 
-.container-buttons{
-    background-color: #F9E58B;
-    height: 40px;
-    border-radius: 10px;
-    font-family: "Nexa";
-}
-
-
 .container-cards-graphics {
     grid-column: 2;
     grid-row: 1;
@@ -56,40 +48,6 @@
     border-radius: 20px;
 }
 
-.menu-options{
-    align-items: center;
-}
-
-.icon-button {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-}
-
-.icon-button img {
-    width: 24px;
-    height: 24px;
-}
-
-
-.botões-de-gerenciamento {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.container-buttons{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.text-area{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
 
 
 .card-evolutionCommits {
@@ -101,10 +59,6 @@
     display: grid;
     gap: 16px;
     grid-template-columns: repeat(1, 1fr); 
-}
-
-.botões-de-gerenciamento button{
-    cursor: pointer;
 }
 
 .container-popup button{
@@ -153,60 +107,6 @@
 
 .button-feedback img{
     width: 18px;
-}
-
-.text-filtrar {
-    position: relative;
-}
-
-.text-filtrar{
-    padding-left: 40px;
-}
-
-.text-filtrar img{
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 18px;
-    height: 18px;
-}
-
-.text-pesquise {
-    position: relative;
-}
-
-.text-pesquise{
-    padding-left: 40px;
-}
-
-.text-pesquise img{
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 18px;
-    height: 18px;
-}
-
-.text-gerir {
-    position: relative;
-}
-
-.text-gerir{
-    padding-left: 40px;
-}
-
-.text-gerir img{
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 18px;
-    height: 18px;
 }
 
 .card-evolutionCommits {
