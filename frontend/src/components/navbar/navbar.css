@@ -124,6 +124,22 @@
     padding-left: 40px;
 }
 
+.recentes-button img{
+    width: 18px;
+}
+
+.pessoas-button img{
+    width: 18px;
+}
+
+.ordem-button img{
+    width: 18px;
+}
+
+.ocultar-button img{
+    width: 18px;
+}
+
 .text-gerir img{
     position: absolute;
     left: 12px;
