@@ -12,9 +12,8 @@
     </div>
 
     <div class="container-inicial">
-        <section class="container-maneger">
+        <section class="projects">
                 <!--Exibição Dos Projetos-->
-            <div class="projects">
                 <article class="List-commit">
                     <!--Preenchido automaticamente com JS-->
                 </article>
@@ -22,22 +21,54 @@
                 <article class="calendar">
                     <!--Preenchido automaticamente com JS-->
                 </article>
-            </div>
+        </section>
 
-                <!--Exibição de Três Graficos-->
-            <div class="graphics">
-                <article class="linguagens-utilizadas">
-                    <!--Preenchido automaticamente com JS-->
-                </article>
+            <!--Exibição de Três Graficos-->
+        <section class="graphics">
+            <article class="linguagens-utilizadas">
+                <div class="chart-header">
+                    <h3>Linguagens Utilizadas</h3>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container donut-container">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
 
-                <article class="contribuição-pessoa">
-                    <!--Preenchido automaticamente com JS-->
-                </article>
+            <article class="contribuição-pessoa">
+                <div class="chart-header">
+                    <h3>Contribuição Por Pessoa</h3>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container donut-container">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
 
-                <article class="Progresso">
-                    <!--Preenchido automaticamente com JS-->
-                </article>
-            </div>
+            <article class="Progresso">
+                <div class="chart-header">
+                    <h3>Progresso</h3>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container donut-container">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
         </section>
     </div>
 </body>
