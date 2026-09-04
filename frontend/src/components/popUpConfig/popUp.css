@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nexa";
+    font-weight: 300px;
+}
+
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexa-light.otf");
+    font-weight: 300;
+    font-style: normal;
+    background-color: white;
+}
+
+@font-face{
+    font-family: "Nexa";
+    src: url("../assets/fonts/Nexa\ Bold.otf");
+    font-weight: 400;
+    font-size: normal;
+    background-color: white;
+}
+
+@font-face {
+    font-family: "Nexa";
+    src: url("../assets/fonts/nexaregular.otf");
+    font-weight: 700;
+    font-size: normal;
+    background-color: white;
+}
+
+:root {
+    background-color: white;
+}    
+
+.container-popup button{
+    cursor: pointer;
+}
+
+.pessoas-button img{
+    width: 18px;
+}
+
+.ocultar-button img{
+    width: 18px;
+}
+
+.recentes-button img{
+    width: 18px;
+}
+
+.ordem-button img{
+    width: 18px;
+}
+
+.button-config img{
+    width: 18px;
+}
+
+.button-archive img{
+    width: 18px;
+}
+
+.button-trash img{
+    width: 18px;
+}
+
+.button-sair img{
+    width: 18px;
+}
+
+.button-theme img{
+    width: 18px;
+}
+
+.button-idioma img{
+    width: 18px;
+}
+
+.button-feedback img{
+    width: 18px;
+}
+
+.PopUps-containers {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}

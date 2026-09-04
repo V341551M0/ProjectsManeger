@@ -48,8 +48,6 @@
     border-radius: 20px;
 }
 
-
-
 .card-evolutionCommits {
     grid-column: 1;
     grid-row: 1;
@@ -61,53 +59,7 @@
     grid-template-columns: repeat(1, 1fr); 
 }
 
-.container-popup button{
-    cursor: pointer;
-}
 
-.pessoas-button img{
-    width: 18px;
-}
-
-.ocultar-button img{
-    width: 18px;
-}
-
-.recentes-button img{
-    width: 18px;
-}
-
-.ordem-button img{
-    width: 18px;
-}
-
-.button-config img{
-    width: 18px;
-}
-
-.button-archive img{
-    width: 18px;
-}
-
-.button-trash img{
-    width: 18px;
-}
-
-.button-sair img{
-    width: 18px;
-}
-
-.button-theme img{
-    width: 18px;
-}
-
-.button-idioma img{
-    width: 18px;
-}
-
-.button-feedback img{
-    width: 18px;
-}
 
 .card-evolutionCommits {
     height: 50vh;
@@ -151,12 +103,6 @@
 
     gap: 20px;
 }
-
-.PopUps-containers {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-}
-
 
 .container-list-projects{
     background-color: white;
