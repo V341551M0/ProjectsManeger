@@ -224,6 +224,15 @@
 
 /*<!--Configurações do grafico de Coluna-->*/
 
+.columm-container{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    height: 35vh;
+    border: 3px solid #FDF5D1;
+}
+
+
 /*<!--Configurações do Titulo-->*/
 
 .title{
@@ -239,5 +248,6 @@
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
+    height: 40vh;
     border: 3px solid #FDF5D1;
 }
