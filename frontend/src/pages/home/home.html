@@ -13,60 +13,67 @@
     </div>
 
     <div class="container-inicial">
-        <section class="container-dashboards">
                     <!-- Lista de Projetos + Status / Resumo -->
-            <div class="container-list-projects">
-                <article class="list-projects">
-                    <h2>Seus Projetos</h2>
-                    <div class="activity-list-projects">
-                        <!-- Conteúdo preenchido dianamicamente via JS-->
-                    </div>
-                </article>
-            </div>
+        <section class="container-list-projects">
+            <article class="list-projects">
+                <h2>Seus Projetos</h2>
+                <div class="activity-list-projects">
+                    <!-- Conteúdo preenchido dianamicamente via JS-->
+                </div>
+            </article>
+        </section>
                 
-                <!-- status de tarefas / Grafico linha -->
-            <div class="container-cards-graphics">
-                <article class="card card-statusTask">
-                    <h2>Status por Tarefas</h2>
-                    <div id="activity-graphicStatus">
+                <!-- status de tarefas / Grafico pizza -->
+        <section class="container-cards-graphics">
+            <article class="card card-statusTask">
+                <h2>Status por Tarefas</h2>
+                <div id="activity-graphicStatus">
                         <!-- Conteúdo preenchido dinamicamente via JS-->
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <article class="card card-person">
-                    <h2>Tarefa por Responsavel</h2>
-                    <div id="activity-graphicPerson">
-                        <!-- Conteúdo preenchido dinamicamente via JS-->
-                    </div>
-                </article>
+            <article class="card card-person">
+                <h2>Tarefa por Responsavel</h2>
+                <div id="activity-graphicPerson">
+                    <!-- Conteúdo preenchido dinamicamente via JS-->
+                </div>
+            </article>
 
-                <article class="card card-taskTemp">
-                    <h2>Tarefas Atrasadas</h2>
-                    <div id="acitivty-graphicsTask">
-                        <!-- Conteúdo preenchido dinamicamente via JS-->
-                    </div>
-                </article>
-            </div>
+            <article class="card card-taskTemp">
+                <h2>Tarefas Atrasadas</h2>
+                <div id="acitivty-graphicsTask">
+                    <!-- Conteúdo preenchido dinamicamente via JS-->
+                </div>
+            </article>
+        </section>
 
                 <!-- Grafico em Linha -->
-            <div>
-                <article class="card-evolutionCommits">
-                    <h2>Commits Diarios</h2>
-                    <div id="activity-grafic-commit">
-                        <!-- Conteudo preenchido dinamicamente via JS--->
-                    </div>
-                </article>
+        <section class="graphic-commits">
+            <div class="chart-header">
+                <h3>Commits</h3>
+                <span class="metric-value" id="monthly-rate">--%</span>
             </div>
+            <div class="chart-container">
+                <svg class="line-chart-svg" viewBox="0 0 300 150">
+                    <!-- Linhas de Grade de Fundo -->
+                    <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
+                    <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
+                    <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
+
+                    <!-- Linha do Gráfico (Preenchida via JS futuramente) -->
+                    <path class="chart-line" d="M 0 120" />
+                </svg>
+            </div>
+        </section>
 
                 <!-- Calendario de Atividades-->
-            <div class="calendar-graphics">
-                <article class="card-calendar">
-                    <h2>Calendario</h2>
-                    <div id="activity-calendar">
-                        <!-- Conteudo preenchido dinamicamente via JS-->
-                    </div>
-                </article>
-            </div>
+        <section class="calendar-graphics">
+            <article class="card-calendar">
+                <h2>Calendario</h2>
+                <div id="activity-calendar">
+                    <!-- Conteudo preenchido dinamicamente via JS-->
+                </div>
+            </article>
         </section>
     </div>
 </body>
