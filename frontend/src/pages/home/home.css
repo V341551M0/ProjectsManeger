@@ -64,8 +64,6 @@
     grid-template-columns: repeat(1, 1fr); 
 }
 
-
-
 .card-evolutionCommits {
     height: 50vh;
 
@@ -76,13 +74,6 @@
 .container-list-projects {
     grid-column: 1;
     grid-row: 2;
-}
-
-.container-list-projects {
-    width: 50vh;
-
-    background-color: #FDF5D1;
-    border-radius: 20px;
 }
 
 .card-calendar {
@@ -97,7 +88,9 @@
     border: 1px solid #F9E58B;
 }
 
-.container-dashboards {
+/* <!--Posição de Pagina-->*/
+
+.container-inicial {
     width: 100%;
     height: 100%;
 
@@ -109,16 +102,18 @@
     gap: 20px;
 }
 
-.container-list-projects{
-    background-color: white;
-}
-
 .header{
     background-color: #FBEFB9;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+/*
+    <!--  Graficos -->
+*/
+
 
 .circle-graphic1{
     background-color: #FAEAA2;
@@ -142,5 +137,56 @@
 }
 
 .graphic-commits{
-    background-color: #FDF5D1;
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
 }
+
+.calendar-graphics{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.container-list-projects{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+/*<!--Configurações do grafico de Pizza-->*/
+
+.donut-container {
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.donut-chart-svg {
+  width: 100%;
+  height: auto;
+  transform: rotate(-90deg); /* Faz o progresso iniciar do topo */
+}
+
+.donut-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 12;
+}
+
+.donut-segment {
+  fill: none;
+  stroke: var(--accent-green);
+  stroke-width: 12;
+  stroke-dasharray: 251.2; /* Circunferência de raio 40: 2 * PI * 40 */
+  stroke-dashoffset: 251.2; /* Inicialmente vazio (100% oculto) */
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+/*<!--Configurações do grafico de Linha-->*/
+
+
+
+/*<!--Configurações do grafico de Coluna-->*/
