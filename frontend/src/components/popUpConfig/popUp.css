@@ -8,7 +8,7 @@
 
 @font-face{
     font-family: "Nexa";
-    src: url("../assets/fonts/nexa-light.otf");
+    src: url("../../assets/fonts/nexa-light.otf");
     font-weight: 300;
     font-style: normal;
     background-color: white;
@@ -16,7 +16,7 @@
 
 @font-face{
     font-family: "Nexa";
-    src: url("../assets/fonts/Nexa\ Bold.otf");
+    src: url("../../assets/fonts/Nexa\ Bold.otf");
     font-weight: 400;
     font-size: normal;
     background-color: white;
@@ -24,7 +24,7 @@
 
 @font-face {
     font-family: "Nexa";
-    src: url("../assets/fonts/nexaregular.otf");
+    src: url("../../assets/fonts/nexaregular.otf");
     font-weight: 700;
     font-size: normal;
     background-color: white;
