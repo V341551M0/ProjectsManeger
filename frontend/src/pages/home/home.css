@@ -34,6 +34,11 @@
     background-color: white;
 }    
 
+.container-inicial{
+    background-color: #fcf9eb;
+    border-radius: 20px;
+}
+
 .container-cards-graphics {
     grid-column: 2;
     grid-row: 1;
@@ -113,4 +118,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.circle-graphic1{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.columm-graphic2{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.circle-graphic3{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.graphic-commits{
+    background-color: #FDF5D1;
 }

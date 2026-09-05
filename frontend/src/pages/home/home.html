@@ -25,45 +25,80 @@
                 
                 <!-- status de tarefas / Grafico pizza -->
         <section class="container-cards-graphics">
-            <article class="card card-statusTask">
-                <h2>Status por Tarefas</h2>
-                <div id="activity-graphicStatus">
-                        <!-- Conteúdo preenchido dinamicamente via JS-->
+            <article class="circle-graphic1">
+                <div class="chart-header">
+                    <h3>Status Por Tarefa</h3>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container donut-container">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
                 </div>
             </article>
 
-            <article class="card card-person">
-                <h2>Tarefa por Responsavel</h2>
-                <div id="activity-graphicPerson">
-                    <!-- Conteúdo preenchido dinamicamente via JS-->
+            <article class="columm-graphic2">
+                <div class="chart-header">
+                    <h3>Tarefa Por Responsavel</h3>
+                    <span class="metric-value" id="weekly-total">--</span>
+                </div>
+                <div class="chart-container">
+                    <svg class="bar-chart-svg" viewBox="0 0 300 150">
+                        <!-- Linhas de Grade de Fundo -->
+                        <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
+                        <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
+                        <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
+                        
+                        <!-- Barras dos Dias da Semana (Sem alturas estáticas) -->
+                        <rect class="chart-bar" x="20" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="60" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="100" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="140" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="180" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="220" y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="260" y="120" width="20" height="0" />
+                    </svg>
                 </div>
             </article>
 
-            <article class="card card-taskTemp">
-                <h2>Tarefas Atrasadas</h2>
-                <div id="acitivty-graphicsTask">
-                    <!-- Conteúdo preenchido dinamicamente via JS-->
+            <article class="circle-graphic3">
+                <div class="chart-header">
+                    <h3>Tarefas Atrasadas</h3>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container donut-container">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
                 </div>
             </article>
         </section>
 
                 <!-- Grafico em Linha -->
         <section class="graphic-commits">
-            <div class="chart-header">
-                <h3>Commits</h3>
-                <span class="metric-value" id="monthly-rate">--%</span>
-            </div>
-            <div class="chart-container">
-                <svg class="line-chart-svg" viewBox="0 0 300 150">
-                    <!-- Linhas de Grade de Fundo -->
-                    <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
-                    <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
-                    <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
+            <article class="commit-line">
+                <div class="chart-header">
+                    <h3>Commits</h3>
+                    <span class="metric-value" id="monthly-rate">--%</span>
+                </div>
+                    <div class="chart-container">
+                    <svg class="line-chart-svg" viewBox="0 0 300 150">
+                        <!-- Linhas de Grade de Fundo -->
+                        <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
+                        <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
+                        <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
 
-                    <!-- Linha do Gráfico (Preenchida via JS futuramente) -->
-                    <path class="chart-line" d="M 0 120" />
-                </svg>
-            </div>
+                        <!-- Linha do Gráfico (Preenchida via JS futuramente) -->
+                        <path class="chart-line" d="M 0 120" />
+                    </svg>
+                </div>
+            </article>
         </section>
 
                 <!-- Calendario de Atividades-->
