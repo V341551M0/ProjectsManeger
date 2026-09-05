@@ -157,6 +157,16 @@
     border: 12px solid #FDF5D1;
 }
 
+.activity-list-projects{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    height: 40vh;
+    border: 3px solid #FDF5D1;
+}
+
+
+
 /*<!--Configurações do grafico de Pizza-->*/
 
 .donut-container {
@@ -187,6 +197,24 @@
 
 /*<!--Configurações do grafico de Linha-->*/
 
+.chart-container{
+    max-width: 160px;
+    margin: 0 auto;
+}
 
+.line-chat-svg{
+  width: 100%;
+  height: auto;
+  transform: rotate(-90deg);
+}
 
 /*<!--Configurações do grafico de Coluna-->*/
+
+/*<!--Configurações do Titulo-->*/
+
+.title{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
