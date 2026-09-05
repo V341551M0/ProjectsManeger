@@ -33,3 +33,57 @@
 :root {
     background-color: white;
 }    
+
+/*<-Configurações do Container Principal->*/
+
+.container-inicial{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/*<-Tabela (containers)->*/
+
+.container-projects{
+    grid-template-columns: 1fr 1fr;
+}
+
+.container-projects{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/*<-Posição de Tabela (sections)->*/
+
+.list-commit{
+    grid-column: 1;   
+}
+
+.calendar{
+    grid-column: 2;
+}
+
+.linguagens-utilizadas{
+    grid-column: 1;
+}
+
+.contribuicao-pessoa{
+    grid-column: 2;
+}
+
+.progresso{
+    grid-column: 3;
+}
+
+.container-projects{
+    background-color: #FDF5D1;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.container-graphics{
+    background-color: #FDF5D1;
+    border-radius: 30px;
+    padding: 20px;
+}
