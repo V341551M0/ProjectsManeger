@@ -87,3 +87,53 @@
     border-radius: 30px;
     padding: 20px;
 }
+
+/*Personalização de cores e subceções de containers*/
+.linguagens-utilizadas{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.contribuicao-pessoa{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+.progresso{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+/*<!--Configurações do grafico de Pizza-->*/
+
+.donut-container {
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.donut-chart-svg {
+  width: 100%;
+  height: auto;
+  transform: rotate(-90deg); /* Faz o progresso iniciar do topo */
+}
+
+.donut-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 12;
+}
+
+.donut-segment {
+  fill: none;
+  stroke: var(--accent-green);
+  stroke-width: 12;
+  stroke-dasharray: 251.2; /* Circunferência de raio 40: 2 * PI * 40 */
+  stroke-dashoffset: 251.2; /* Inicialmente vazio (100% oculto) */
+  transition: stroke-dashoffset 0.5s ease;
+}
