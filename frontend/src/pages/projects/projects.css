@@ -34,48 +34,24 @@
     background-color: white;
 }    
 
-/*<-Configurações do Container Principal->*/
+/*<-Configuração do Container Principal->*/
 
 .container-inicial{
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 20px;
 }
 
 /*<-Tabela (containers)->*/
 
 .container-projects{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr 1fr);
 }
 
-.container-projects{
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-/*<-Posição de Tabela (sections)->*/
-
-.list-commit{
-    grid-column: 1;   
-}
-
-.calendar{
-    grid-column: 2;
-}
-
-.linguagens-utilizadas{
-    grid-column: 1;
-}
-
-.contribuicao-pessoa{
-    grid-column: 2;
-}
-
-.progresso{
-    grid-column: 3;
-}
-
+/*Personalização dos Containers (Principal e Graphics)*/
 .container-projects{
     background-color: #FDF5D1;
     border-radius: 30px;
@@ -108,6 +84,36 @@
     border-radius: 30px;
     padding: 20px;
     border: 12px solid #FDF5D1;
+}
+
+/*Personalização do titulo e conteudo do container-graphics*/
+    /*Titulos*/
+.title{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+    /*Conteudos*/
+.chart-container-lenguage{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+
+.chart-container-pessoa{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+
+.chart-container-progresso{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
 }
 
 /*<!--Configurações do grafico de Pizza-->*/
