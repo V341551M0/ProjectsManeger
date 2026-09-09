@@ -1,3 +1,4 @@
 .env.example
 .github
 .vscode
+target/
