@@ -44,17 +44,21 @@
     grid-template-rows: 1fr 1fr;
     gap: 20px;
 }
-    /*<-Configuração do Container Graphics->*/
+    /*Configuração do Container Projects*/
+.container-projects{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+    /*Configuração do Container Projects*/
 .container-graphics{
     width: 100%;
     height: 100%;
     display: grid;
     gap: 20px;
 }
-
-/*<-Tabela (containers)->*/
-
-
 
 /*Personalização dos Containers (Principal e Graphics)*/
 .container-projects{
