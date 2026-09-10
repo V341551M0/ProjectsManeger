@@ -1,193 +1,326 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Nexa";
-    font-weight: 300px;
+    font-family: "Nexa", sans-serif;
+    font-weight: 300;
 }
 
-@font-face{
+@font-face {
     font-family: "Nexa";
     src: url("../../assets/fonts/nexa-light.otf");
     font-weight: 300;
     font-style: normal;
-    background-color: white;
 }
 
-@font-face{
+@font-face {
     font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa\ Bold.otf");
-    font-weight: 400;
-    font-size: normal;
-    background-color: white;
+    src: url("../../assets/fonts/Nexa Bold.otf");
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
     font-family: "Nexa";
     src: url("../../assets/fonts/nexaregular.otf");
-    font-weight: 700;
-    font-size: normal;
-    background-color: white;
+    font-weight: 400;
+    font-style: normal;
 }
 
 :root {
     background-color: white;
-}    
+}
+
 
 /*Configuração dos Containers*/
     /*<-Configuração do Container Principal->*/
-.container-inicial{
+.container-inicial {
     width: 100%;
-    height: 100%;
+    min-height: 100dvh;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+
+    /*
+     * O Projects recebe mais espaço horizontal,
+     * enquanto o Graphics recebe uma área menor.
+     */
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+
     gap: 20px;
+    padding: 20px;
 }
+
     /*Configuração do Container Projects*/
-.container-projects{
+.container-projects {
     width: 100%;
-    height: 100%;
+    min-width: 0;
+    min-height: 0;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
     gap: 20px;
 }
+
     /*Configuração do Container Projects*/
-.container-graphics{
+.container-graphics {
     width: 100%;
-    height: 100%;
+    min-width: 0;
+    min-height: 0;
+
     display: grid;
-    gap: 20px;
+
+    /*
+     * Os três gráficos ocupam uma área compacta
+     * e ficam distribuídos igualmente.
+     */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
 }
+
 
 /*Personalização dos Containers (Principal e Graphics)*/
-.container-projects{
+.container-projects {
     background-color: #FDF5D1;
     border-radius: 30px;
     padding: 20px;
+
+    min-width: 0;
+    min-height: 0;
 }
 
-.container-graphics{
+.container-graphics {
     background-color: #FDF5D1;
     border-radius: 30px;
     padding: 20px;
+
+    min-width: 0;
+    min-height: 0;
 }
 
-/*Personalização de cores e subceções de containers-graphics*/
-.linguagens-utilizadas{
+
+/*Personalização de cores, tamanho e subceções de containers-graphics*/
+.linguagens-utilizadas {
     background-color: #FAEAA2;
     border-radius: 30px;
     padding: 20px;
     border: 12px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-.contribuicao-pessoa{
+.contribuicao-pessoa {
     background-color: #FAEAA2;
     border-radius: 30px;
     padding: 20px;
     border: 12px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-.progresso{
+.progresso {
     background-color: #FAEAA2;
     border-radius: 30px;
     padding: 20px;
     border: 12px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-/*Personalização de cores e subceções de containers-inicial*/
 
-.list-commit{
-    background-color: #FAEAA2;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #FDF5D1; 
-}
+/*Personalização de cores, tamanho e subceções de containers-inicial*/
 
-.calendar{
+.list-commit {
     background-color: #FAEAA2;
     border-radius: 30px;
     padding: 20px;
     border: 12px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-/*Personalização do titulo e conteudo do container-incial*/
+.calendar {
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
+}
+
+
+/*Personalização do titulo, tamanho e conteudo do container-incial*/
     /*Titulos*/
-.title-ci{
+.title-ci {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
+
     /*Conteudos*/
-.activity-list-commits{
+.activity-list-commits {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
 }
 
-.calendar-activity{
+.calendar-activity {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
 }
 
-/*Personalização do titulo e conteudo do container-graphics*/
+
+/*Personalização do titulo, tamanho e conteudo do container-graphics*/
     /*Titulos*/
-.title-cg{
+.title-cg {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
+
     /*Conteudos*/
-.chart-container-lenguage{
+.chart-container-lenguage {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-.chart-container-pessoa{
+.chart-container-pessoa {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
 
-.chart-container-progresso{
+.chart-container-progresso {
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
     border: 3px solid #FDF5D1;
+
+    width: 100%;
+    min-width: 0;
 }
+
 
 /*<!--Configurações do grafico de Pizza-->*/
 
 .donut-container {
-  max-width: 160px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 160px;
+    margin: 0 auto;
 }
 
 .donut-chart-svg {
-  width: 100%;
-  height: auto;
-  transform: rotate(-90deg); /* Faz o progresso iniciar do topo */
+    width: 100%;
+    height: auto;
+    transform: rotate(-90deg); /* Faz o progresso iniciar do topo */
 }
 
 .donut-bg {
-  fill: none;
-  stroke: var(--border-color);
-  stroke-width: 12;
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 12;
 }
 
 .donut-segment {
-  fill: none;
-  stroke: var(--accent-green);
-  stroke-width: 12;
-  stroke-dasharray: 251.2; /* Circunferência de raio 40: 2 * PI * 40 */
-  stroke-dashoffset: 251.2; /* Inicialmente vazio (100% oculto) */
-  transition: stroke-dashoffset 0.5s ease;
+    fill: none;
+    stroke: var(--accent-green);
+    stroke-width: 12;
+    stroke-dasharray: 251.2; /* Circunferência de raio 40: 2 * PI * 40 */
+    stroke-dashoffset: 251.2; /* Inicialmente vazio (100% oculto) */
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+
+/*Configuração para telas menores*/
+@media (max-width: 1000px) {
+
+    .container-inicial {
+        grid-template-columns: 1fr;
+    }
+
+    .container-graphics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/*Configuração para telas muito pequenas*/
+@media (max-width: 768px) {
+
+    .container-inicial {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .container-projects {
+        grid-template-columns: 1fr;
+    }
+
+    .container-graphics {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/*Configuração para telas extremamente pequenas*/
+@media (max-width: 480px) {
+
+    .container-inicial {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .container-projects,
+    .container-graphics {
+        padding: 10px;
+        gap: 10px;
+        border-radius: 20px;
+    }
+
+    .list-commit,
+    .calendar,
+    .linguagens-utilizadas,
+    .contribuicao-pessoa,
+    .progresso {
+        padding: 10px;
+        border-width: 8px;
+        border-radius: 20px;
+    }
+
 }
