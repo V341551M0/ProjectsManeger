@@ -64,7 +64,7 @@
     padding: 20px;
 }
 
-/*Personalização de cores e subceções de containers*/
+/*Personalização de cores e subceções de containers-graphics*/
 .linguagens-utilizadas{
     background-color: #FAEAA2;
     border-radius: 30px;
@@ -86,9 +86,48 @@
     border: 12px solid #FDF5D1;
 }
 
+/*Personalização de cores e subceções de containers-inicial*/
+
+.list-commit{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1; 
+}
+
+.calendar{
+    background-color: #FAEAA2;
+    border-radius: 30px;
+    padding: 20px;
+    border: 12px solid #FDF5D1;
+}
+
+/*Personalização do titulo e conteudo do container-incial*/
+    /*Titulos*/
+.title-ci{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+    /*Conteudos*/
+.activity-list-commits{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+
+.calendar-activity{
+    background-color: #F9E58B;
+    border-radius: 30px;
+    padding: 20px;
+    border: 3px solid #FDF5D1;
+}
+
 /*Personalização do titulo e conteudo do container-graphics*/
     /*Titulos*/
-.title{
+.title-cg{
     background-color: #F9E58B;
     border-radius: 30px;
     padding: 20px;
