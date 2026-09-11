@@ -25,10 +25,17 @@
     src: url("../../assets/fonts/nexaregular.otf");
     font-weight: 400;
     font-style: normal;
+
 }
 
 :root {
-    background-color: white;
+    background-color: #0F1418;
+    --color-text: #E8EEF0;
+}
+
+    /*Cor de Texto*/
+h3{
+    color: var(--color-text);
 }
 
 
@@ -82,7 +89,7 @@
 
 /*Personalização dos Containers (Principal e Graphics)*/
 .container-projects {
-    background-color: #FDF5D1;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
 
@@ -91,7 +98,7 @@
 }
 
 .container-graphics {
-    background-color: #FDF5D1;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
 
@@ -102,30 +109,30 @@
 
 /*Personalização de cores, tamanho e subceções de containers-graphics*/
 .linguagens-utilizadas {
-    background-color: #FAEAA2;
+    background-color: #1D262D;
     border-radius: 30px;
     padding: 20px;
-    border: 12px solid #FDF5D1;
+    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
 }
 
 .contribuicao-pessoa {
-    background-color: #FAEAA2;
+    background-color: #1D262D;
     border-radius: 30px;
     padding: 20px;
-    border: 12px solid #FDF5D1;
+    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
 }
 
 .progresso {
-    background-color: #FAEAA2;
+    background-color: #1D262D;
     border-radius: 30px;
     padding: 20px;
-    border: 12px solid #FDF5D1;
+    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -135,20 +142,20 @@
 /*Personalização de cores, tamanho e subceções de containers-inicial*/
 
 .list-commit {
-    background-color: #FAEAA2;
+    background-color: #1D262D;
     border-radius: 30px;
     padding: 20px;
-    border: 12px solid #FDF5D1;
+    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
 }
 
 .calendar {
-    background-color: #FAEAA2;
+    background-color: #1D262D;
     border-radius: 30px;
     padding: 20px;
-    border: 12px solid #FDF5D1;
+    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -158,10 +165,10 @@
 /*Personalização do titulo, tamanho e conteudo do container-incial*/
     /*Titulos*/
 .title-ci {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -169,10 +176,10 @@
 
     /*Conteudos*/
 .activity-list-commits {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -180,10 +187,10 @@
 }
 
 .calendar-activity {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -194,10 +201,10 @@
 /*Personalização do titulo, tamanho e conteudo do container-graphics*/
     /*Titulos*/
 .title-cg {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
@@ -205,30 +212,30 @@
 
     /*Conteudos*/
 .chart-container-lenguage {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
 }
 
 .chart-container-pessoa {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
 }
 
 .chart-container-progresso {
-    background-color: #F9E58B;
+    background-color: #161D22;
     border-radius: 30px;
     padding: 20px;
-    border: 3px solid #FDF5D1;
+    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
