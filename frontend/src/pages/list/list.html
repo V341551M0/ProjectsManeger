@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Maneger</title>
+    <link rel="stylesheet" href="list.css">
+    <script src="list.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <!--Preenchido Automaticamente com JS-->
+    </div>
+
+    <div class="container-principal">
+            <!--Listagem dos Projetos-->
+        <section class="container-list">
+            <article class="list">
+                <div class="chart-header">
+                    <div class="title-list"><h3>Seus Projetos</h3></div>
+                </div>
+                <div class="list-projects">
+                    <!--Conteudo Preenchido automaticamente com JS-->
+                </div>
+            </article>
+        </section>
+
+            <!--Graficos Relacionado aos Projetos-->
+        <section class="container-graphics">
+            <article class="linguagens-utilizadas">
+                <div class="chart-header">
+                    <div class="title-cg"><h3>Linguagens Utilizadas</h3></div>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container-lenguage">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
+
+            <article class="contribuicao-pessoa">
+                <div class="chart-header">
+                    <div class="title-cg"><h3>Contribuição Por Pessoa</h3></div>
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container-pessoa">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
+
+            <article class="progresso">
+                <div class="chart-header">
+                    <div class="title-cg"><h3>Progresso</h3></div> 
+                    <span class="metric-value" id="completion-ratio">-- / --</span>
+                </div>
+                <div class="chart-container-progresso">
+                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                        <!-- Círculo de Fundo -->
+                        <circle class="donut-bg" cx="50" cy="50" r="40" />
+                        <!-- Círculo de Progresso -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+            </article>
+        </section>
+    </div>
+</body>
+</html>
