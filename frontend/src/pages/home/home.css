@@ -3,35 +3,33 @@
    Estilos principais do dashboard
    ============================================================= */
 
-
 /* =============================================================
    1. FONTES
    ============================================================= */
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexa-light.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexa-light.otf') format('opentype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexaregular.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexaregular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa Bold.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/Nexa Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
-
 
 /* =============================================================
    2. VARIÁVEIS GLOBAIS
@@ -40,19 +38,18 @@
    ============================================================= */
 
 :root {
-
     /* Cores principais */
-    --color-background: #0F1418;
-    --color-surface: #161D22;
-    --color-card: #1D262D;
+    --color-background: #0f1418;
+    --color-surface: #161d22;
+    --color-card: #1d262d;
     --color-border: #273139;
 
     /* Texto */
-    --color-text: #E8EEF0;
-    --color-text-muted: #8E9AA2;
+    --color-text: #e8eef0;
+    --color-text-muted: #8e9aa2;
 
     /* Cor de destaque */
-    --color-accent: #72D6A0;
+    --color-accent: #72d6a0;
 
     /* Dimensões */
     --radius-large: 24px;
@@ -68,7 +65,6 @@
     --transition-normal: 300ms ease;
 }
 
-
 /* =============================================================
    3. RESET
    ============================================================= */
@@ -78,7 +74,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 
 /* =============================================================
    4. BASE
@@ -95,7 +90,7 @@ body {
     background: var(--color-background);
     color: var(--color-text);
 
-    font-family: "Nexa", sans-serif;
+    font-family: 'Nexa', sans-serif;
     font-weight: 400;
 
     line-height: 1.5;
@@ -103,7 +98,6 @@ body {
     /* Evita overflow horizontal acidental */
     overflow-x: hidden;
 }
-
 
 /* =============================================================
    5. TIPOGRAFIA
@@ -124,7 +118,6 @@ p {
     color: var(--color-text-muted);
 }
 
-
 /* =============================================================
    6. NAVBAR
    ============================================================= */
@@ -142,13 +135,11 @@ p {
     border-bottom: 1px solid var(--color-border);
 }
 
-
 /* =============================================================
    7. DASHBOARD PRINCIPAL
    ============================================================= */
 
 .dashboard {
-
     width: 100%;
     min-height: calc(100dvh - 64px);
 
@@ -172,7 +163,6 @@ p {
     padding: var(--spacing-large);
 }
 
-
 /* =============================================================
    8. SEÇÕES
    ============================================================= */
@@ -181,7 +171,6 @@ p {
     min-width: 0;
     min-height: 0;
 }
-
 
 /* =============================================================
    9. CARDS PRINCIPAIS
@@ -205,7 +194,6 @@ p {
     overflow: hidden;
 }
 
-
 /* =============================================================
    10. CABEÇALHO DOS CARDS
    ============================================================= */
@@ -224,7 +212,6 @@ p {
     white-space: nowrap;
 }
 
-
 /* =============================================================
    11. LISTA DE PROJETOS
    ============================================================= */
@@ -242,7 +229,6 @@ p {
 }
 
 .projects-list {
-
     flex: 1;
 
     min-height: 300px;
@@ -261,13 +247,11 @@ p {
     overflow-y: auto;
 }
 
-
 /* =============================================================
    12. ÁREA DE INDICADORES
    ============================================================= */
 
 .metrics-section {
-
     grid-column: 2;
     grid-row: 1;
 
@@ -277,21 +261,16 @@ p {
      * Os três indicadores ficam lado a lado
      * quando houver espaço suficiente.
      */
-    grid-template-columns: repeat(
-        3,
-        minmax(0, 1fr)
-    );
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: var(--spacing-medium);
 }
-
 
 /* =============================================================
    13. CARDS DOS INDICADORES
    ============================================================= */
 
 .metric-card {
-
     background: var(--color-card);
 
     display: flex;
@@ -299,7 +278,6 @@ p {
 
     min-height: 300px;
 }
-
 
 /* =============================================================
    14. CABEÇALHO DOS INDICADORES
@@ -310,7 +288,6 @@ p {
 }
 
 .metric-value {
-
     color: var(--color-accent);
 
     font-size: 0.9rem;
@@ -319,13 +296,11 @@ p {
     white-space: nowrap;
 }
 
-
 /* =============================================================
    15. CONTAINERS DOS GRÁFICOS
    ============================================================= */
 
 .chart-container {
-
     width: 100%;
     min-width: 0;
 
@@ -343,7 +318,6 @@ p {
     overflow: hidden;
 }
 
-
 /* =============================================================
    16. DONUT
    ============================================================= */
@@ -356,7 +330,6 @@ p {
 }
 
 .donut-chart {
-
     width: 100%;
     height: 100%;
 
@@ -365,10 +338,8 @@ p {
     overflow: visible;
 }
 
-
 /* Círculo de fundo */
 .donut-background {
-
     fill: none;
 
     stroke: var(--color-border);
@@ -376,10 +347,8 @@ p {
     stroke-width: 12;
 }
 
-
 /* Círculo de progresso */
 .donut-progress {
-
     fill: none;
 
     stroke: var(--color-accent);
@@ -396,10 +365,8 @@ p {
 
     stroke-linecap: round;
 
-    transition:
-        stroke-dashoffset var(--transition-normal);
+    transition: stroke-dashoffset var(--transition-normal);
 }
-
 
 /*
  * Estado específico para tarefas atrasadas.
@@ -407,33 +374,28 @@ p {
  * a classe para que a cor possa ser alterada futuramente.
  */
 .overdue-progress {
-    stroke: #D66F72;
+    stroke: #d66f72;
 }
-
 
 /* =============================================================
    17. GRÁFICO DE BARRAS
    ============================================================= */
 
 .bar-container {
-
     width: 100%;
 
     min-height: 180px;
 }
 
 .bar-chart {
-
     width: 100%;
     height: auto;
 
     overflow: visible;
 }
 
-
 /* Linhas horizontais */
 .chart-grid-line {
-
     stroke: var(--color-border);
 
     stroke-width: 1;
@@ -441,10 +403,8 @@ p {
     vector-effect: non-scaling-stroke;
 }
 
-
 /* Barras */
 .chart-bar {
-
     fill: var(--color-accent);
 
     rx: 4;
@@ -454,44 +414,35 @@ p {
         y var(--transition-normal);
 }
 
-
 /* =============================================================
    18. COMMITS
    ============================================================= */
 
 .commits-section {
-
     grid-column: 1;
     grid-row: 2;
 }
 
 .commits-section .dashboard-card {
-
     min-height: 350px;
 }
 
-
 /* Container do gráfico */
 .line-container {
-
     width: 100%;
     min-height: 260px;
 }
 
-
 /* SVG */
 .line-chart {
-
     width: 100%;
     height: auto;
 
     overflow: visible;
 }
 
-
 /* Linha de commits */
 .chart-line {
-
     fill: none;
 
     stroke: var(--color-accent);
@@ -503,28 +454,23 @@ p {
 
     vector-effect: non-scaling-stroke;
 
-    transition:
-        d var(--transition-normal);
+    transition: d var(--transition-normal);
 }
-
 
 /* =============================================================
    19. CALENDÁRIO
    ============================================================= */
 
 .calendar-section {
-
     grid-column: 2;
     grid-row: 2;
 }
 
 .calendar-section .dashboard-card {
-
     min-height: 350px;
 }
 
 .activity-calendar {
-
     width: 100%;
     min-height: 260px;
 
@@ -538,18 +484,14 @@ p {
     overflow: auto;
 }
 
-
 /* =============================================================
    20. SCROLLBAR
    ============================================================= */
 
 * {
     scrollbar-width: thin;
-    scrollbar-color:
-        var(--color-border)
-        transparent;
+    scrollbar-color: var(--color-border) transparent;
 }
-
 
 /* Chromium / WebKit */
 ::-webkit-scrollbar {
@@ -562,21 +504,17 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-
     background: var(--color-border);
 
     border-radius: 999px;
 }
-
 
 /* =============================================================
    21. RESPONSIVIDADE — TABLETS
    ============================================================= */
 
 @media (max-width: 1200px) {
-
     .dashboard {
-
         /*
          * Em telas menores, as duas colunas
          * passam a ocupar aproximadamente metade
@@ -588,24 +526,19 @@ p {
     }
 
     .metrics-section {
-
         /*
          * Os indicadores passam para duas colunas.
          */
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-
 
 /* =============================================================
    22. RESPONSIVIDADE — TABLETS PEQUENOS
    ============================================================= */
 
 @media (max-width: 900px) {
-
     .dashboard {
-
         /*
          * O dashboard passa a ser uma única coluna.
          */
@@ -617,7 +550,6 @@ p {
     .metrics-section,
     .commits-section,
     .calendar-section {
-
         grid-column: 1;
     }
 
@@ -628,8 +560,7 @@ p {
     .metrics-section {
         grid-row: auto;
 
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .commits-section {
@@ -641,28 +572,22 @@ p {
     }
 }
 
-
 /* =============================================================
    23. RESPONSIVIDADE — CELULARES
    ============================================================= */
 
 @media (max-width: 650px) {
-
     .dashboard {
-
         gap: var(--spacing-medium);
 
         padding: var(--spacing-medium);
     }
 
     .navbar {
-
-        padding:
-            var(--spacing-medium);
+        padding: var(--spacing-medium);
     }
 
     .metrics-section {
-
         /*
          * Cada indicador passa a ocupar uma linha.
          */
@@ -670,23 +595,19 @@ p {
     }
 
     .metric-card {
-
         min-height: 280px;
     }
 
     .card-header {
-
         margin-bottom: var(--spacing-medium);
     }
 
     .projects-card,
     .commits-section .dashboard-card,
     .calendar-section .dashboard-card {
-
         min-height: 320px;
     }
 }
-
 
 /* =============================================================
    24. ACESSIBILIDADE
@@ -697,11 +618,9 @@ p {
  * reduzir movimento.
  */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
-
         scroll-behavior: auto !important;
 
         transition-duration: 0.01ms !important;

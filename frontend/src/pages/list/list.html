@@ -1,201 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Manager</title>
-    <link rel="stylesheet" href="list.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Projects Manager</title>
+        <link rel="stylesheet" href="list.css" />
 
-    <!-- Executa o JS somente após o HTML ser carregado -->
-    <script src="list.js" defer></script>
-</head>
+        <!-- Executa o JS somente após o HTML ser carregado -->
+        <script src="list.js" defer></script>
+    </head>
 
-<body>
-    <!-- =========================================================
+    <body>
+        <!-- =========================================================
          NAVEGAÇÃO
          ========================================================= -->
 
-    <nav class="navbar" aria-label="Navegação principal">
-        <!-- Preenchido automaticamente com JS -->
-    </nav>
+        <nav class="navbar" aria-label="Navegação principal">
+            <!-- Preenchido automaticamente com JS -->
+        </nav>
 
-
-    <!-- =========================================================
+        <!-- =========================================================
          CONTAINER PRINCIPAL
          ========================================================= -->
 
-    <main class="container-principal">
-
-
-        <!-- =====================================================
-             LISTAGEM DOS PROJETOS
-             ===================================================== -->
-
-        <section
-            class="container-list"
-            aria-label="Lista de projetos"
-        >
-
-            <article class="list">
-                <header class="chart-header">
-                    <div class="title-list">
-                        <h2>Seus projetos</h2>
-                    </div>
-                </header>
-
-
-                <!--
+        <main class="container-principal">
+            <section class="container-list" aria-label="Lista de projetos">
+                <article class="list">
+                    <header class="chart-header">
+                        <div class="title-list">
+                            <h2>Seus projetos</h2>
+                        </div>
+                    </header>
+                    <!--
                     Conteúdo preenchido dinamicamente pelo list.js.
                 -->
-                <div
-                    class="list-projects"
-                    id="list-projects"
-                >
-                    <!-- Conteúdo preenchido automaticamente com JS -->
-                </div>
-            </article>
-        </section>
-
-
-        <!-- =====================================================
-             GRÁFICOS RELACIONADOS AOS PROJETOS
-             ===================================================== -->
-
-        <section
-            class="container-graphics"
-            aria-label="Estatísticas dos projetos"
-        >
-
-
-            <!-- =================================================
-                 LINGUAGENS UTILIZADAS
-                 ================================================= -->
-
-            <article class="graphic-card linguagens-utilizadas">
-                <header class="chart-header">
-                    <div class="title-cg">
-                        <h2>Linguagens utilizadas</h2>
+                    <div class="list-projects" id="list-projects">
+                        <!-- Conteúdo preenchido automaticamente com JS -->
                     </div>
-                    <span
-                        class="metric-value"
-                        id="language-ratio"
-                    >
-                        -- / --
-                    </span>
-                </header>
+                </article>
+            </section>
+            <section class="container-graphics" aria-label="Estatísticas dos projetos">
+                <article class="graphic-card linguagens-utilizadas">
+                    <header class="chart-header">
+                        <div class="title-cg">
+                            <h2>Linguagens utilizadas</h2>
+                        </div>
+                        <span class="metric-value" id="language-ratio"> -- / -- </span>
+                    </header>
+                    <div class="chart-container">
+                        <svg
+                            class="donut-chart-svg"
+                            viewBox="0 0 100 100"
+                            role="img"
+                            aria-label="Distribuição das linguagens utilizadas"
+                        >
+                            <circle class="donut-bg" cx="50" cy="50" r="40" />
 
+                            <circle
+                                class="donut-segment"
+                                id="language-progress"
+                                cx="50"
+                                cy="50"
+                                r="40"
+                            />
+                        </svg>
+                    </div>
+                </article>
 
-                <div class="chart-container">
-                    <svg
-                        class="donut-chart-svg"
-                        viewBox="0 0 100 100"
-                        role="img"
-                        aria-label="Distribuição das linguagens utilizadas"
-                    >
-
-                        <circle
-                            class="donut-bg"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-
-                        <circle
-                            class="donut-segment"
-                            id="language-progress"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                    </svg>
-                </div>
-            </article>
-
-
-            <!-- =================================================
+                <!-- =================================================
                  CONTRIBUIÇÃO POR PESSOA
                  ================================================= -->
 
-            <article class="graphic-card contribuicao-pessoa">
-                <header class="chart-header">
-                    <div class="title-cg">
-                        <h2>Contribuição por pessoa</h2>
+                <article class="graphic-card contribuicao-pessoa">
+                    <header class="chart-header">
+                        <div class="title-cg">
+                            <h2>Contribuição por pessoa</h2>
+                        </div>
+                        <span class="metric-value" id="contribution-ratio"> -- / -- </span>
+                    </header>
+
+                    <div class="chart-container">
+                        <svg
+                            class="donut-chart-svg"
+                            viewBox="0 0 100 100"
+                            role="img"
+                            aria-label="Contribuição por pessoa"
+                        >
+                            <circle class="donut-bg" cx="50" cy="50" r="40" />
+                            <circle
+                                class="donut-segment"
+                                id="contribution-progress"
+                                cx="50"
+                                cy="50"
+                                r="40"
+                            />
+                        </svg>
                     </div>
-                    <span
-                        class="metric-value"
-                        id="contribution-ratio"
-                    >
-                        -- / --
-                    </span>
-                </header>
+                </article>
 
-
-                <div class="chart-container">
-                    <svg
-                        class="donut-chart-svg"
-                        viewBox="0 0 100 100"
-                        role="img"
-                        aria-label="Contribuição por pessoa"
-                    >
-                        <circle
-                            class="donut-bg"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                        <circle
-                            class="donut-segment"
-                            id="contribution-progress"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                    </svg>
-                </div>
-            </article>
-
-
-            <!-- =================================================
+                <!-- =================================================
                  PROGRESSO
                  ================================================= -->
 
-            <article class="graphic-card progresso">
-                <header class="chart-header">
-                    <div class="title-cg">
-                        <h2>Progresso</h2>
+                <article class="graphic-card progresso">
+                    <header class="chart-header">
+                        <div class="title-cg">
+                            <h2>Progresso</h2>
+                        </div>
+                        <spa> > -- / -- </spa>
+                    </header>
+
+                    <div class="chart-container">
+                        <svg
+                            class="donut-chart-svg"
+                            viewBox="0 0 100 100"
+                            role="img"
+                            aria-label="Progresso dos projetos"
+                        >
+                            <circle class="donut-bg" cx="50" cy="50" r="40" />
+
+                            <circle
+                                class="donut-segment"
+                                id="project-progress"
+                                cx="50"
+                                cy="50"
+                                r="40"
+                            />
+                        </svg>
                     </div>
-                    <spa>
-                    >
-                        -- / --
-                    </spa>
-                </header>
-
-
-                <div class="chart-container">
-                    <svg
-                        class="donut-chart-svg"
-                        viewBox="0 0 100 100"
-                        role="img"
-                        aria-label="Progresso dos projetos"
-                    >
-                        <circle
-                            class="donut-bg"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-
-                        <circle
-                            class="donut-segment"
-                            id="project-progress"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                    </svg>
-                </div>
-            </article>
-        </section>
-    </main>
-</body>
+                </article>
+            </section>
+        </main>
+    </body>
 </html>

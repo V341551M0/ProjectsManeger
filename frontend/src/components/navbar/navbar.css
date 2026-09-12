@@ -1,30 +1,30 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Nexa";
+    font-family: 'Nexa';
     font-weight: 300px;
 }
 
-@font-face{
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexa-light.otf");
+@font-face {
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexa-light.otf');
     font-weight: 300;
     font-style: normal;
     background-color: white;
 }
 
-@font-face{
-    font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa\ Bold.otf");
+@font-face {
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/Nexa\ Bold.otf');
     font-weight: 400;
     font-size: normal;
     background-color: white;
 }
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexaregular.otf");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexaregular.otf');
     font-weight: 700;
     font-size: normal;
     background-color: white;
@@ -32,16 +32,16 @@
 
 :root {
     background-color: white;
-}   
-
-.container-buttons{
-    background-color: #F9E58B;
-    height: 40px;
-    border-radius: 10px;
-    font-family: "Nexa";
 }
 
-.menu-options{
+.container-buttons {
+    background-color: #f9e58b;
+    height: 40px;
+    border-radius: 10px;
+    font-family: 'Nexa';
+}
+
+.menu-options {
     align-items: center;
 }
 
@@ -57,26 +57,25 @@
     height: 24px;
 }
 
-
 .botões-de-gerenciamento {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.container-buttons{
+.container-buttons {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.text-area{
+.text-area {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.botões-de-gerenciamento button{
+.botões-de-gerenciamento button {
     cursor: pointer;
 }
 
@@ -84,11 +83,11 @@
     position: relative;
 }
 
-.text-filtrar{
+.text-filtrar {
     padding-left: 40px;
 }
 
-.text-filtrar img{
+.text-filtrar img {
     position: absolute;
     left: 12px;
     top: 50%;
@@ -102,11 +101,11 @@
     position: relative;
 }
 
-.text-pesquise{
+.text-pesquise {
     padding-left: 40px;
 }
 
-.text-pesquise img{
+.text-pesquise img {
     position: absolute;
     left: 12px;
     top: 50%;
@@ -120,27 +119,27 @@
     position: relative;
 }
 
-.text-gerir{
+.text-gerir {
     padding-left: 40px;
 }
 
-.recentes-button img{
+.recentes-button img {
     width: 18px;
 }
 
-.pessoas-button img{
+.pessoas-button img {
     width: 18px;
 }
 
-.ordem-button img{
+.ordem-button img {
     width: 18px;
 }
 
-.ocultar-button img{
+.ocultar-button img {
     width: 18px;
 }
 
-.text-gerir img{
+.text-gerir img {
     position: absolute;
     left: 12px;
     top: 50%;
@@ -149,4 +148,3 @@
     width: 18px;
     height: 18px;
 }
-

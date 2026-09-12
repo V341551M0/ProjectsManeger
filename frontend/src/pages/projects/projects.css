@@ -12,57 +12,54 @@
     box-sizing: border-box;
 }
 
-
 /* ================================================================
    FONTES
    ================================================================= */
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexa-light.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexa-light.otf') format('opentype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexaregular.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexaregular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa Bold.otf") format("opentype");
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/Nexa Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
-
 
 /* ================================================================
    VARIÁVEIS GLOBAIS
    ================================================================= */
 
 :root {
-
     /* Cores principais */
-    --color-background: #0F1418;
-    --color-surface: #161D22;
-    --color-card: #1D262D;
+    --color-background: #0f1418;
+    --color-surface: #161d22;
+    --color-card: #1d262d;
 
     /* Bordas */
     --color-border: #273139;
 
     /* Texto */
-    --color-text: #E8EEF0;
-    --color-text-muted: #8E9AA2;
+    --color-text: #e8eef0;
+    --color-text-muted: #8e9aa2;
 
     /* Cores de estado */
-    --color-accent: #72D6A0;
-    --color-danger: #D66F72;
+    --color-accent: #72d6a0;
+    --color-danger: #d66f72;
 
     /* Raios */
     --radius-large: 24px;
@@ -78,9 +75,7 @@
     /* Transições */
     --transition-fast: 150ms ease;
     --transition-normal: 300ms ease;
-
 }
-
 
 /* ================================================================
    BASE
@@ -91,21 +86,19 @@ html {
     color-scheme: dark;
 }
 
-
 body {
     min-height: 100dvh;
 
     background-color: var(--color-background);
     color: var(--color-text);
 
-    font-family: "Nexa", sans-serif;
+    font-family: 'Nexa', sans-serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.5;
 
     overflow-x: hidden;
 }
-
 
 /*
  * Títulos utilizam a versão Bold da Nexa.
@@ -116,11 +109,9 @@ h3 {
     font-weight: 700;
 }
 
-
 h2 {
     font-size: 1rem;
 }
-
 
 button,
 input,
@@ -129,13 +120,11 @@ select {
     font: inherit;
 }
 
-
 /* ================================================================
    NAVBAR
    ================================================================= */
 
 .navbar {
-
     width: 100%;
     min-height: 64px;
 
@@ -147,9 +136,7 @@ select {
     background-color: var(--color-surface);
 
     border-bottom: 1px solid var(--color-border);
-
 }
-
 
 /* ================================================================
    CONTAINER PRINCIPAL
@@ -168,7 +155,6 @@ select {
  */
 
 .container-inicial {
-
     width: 100%;
 
     min-height: calc(100dvh - 64px);
@@ -182,9 +168,7 @@ select {
     gap: var(--spacing-large);
 
     padding: var(--spacing-large);
-
 }
-
 
 /* ================================================================
    CONTAINER DE PROJECTS
@@ -198,7 +182,6 @@ select {
  */
 
 .container-projects {
-
     width: 100%;
     min-width: 0;
     min-height: 0;
@@ -217,9 +200,7 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-large);
-
 }
-
 
 /* ================================================================
    CARDS DE PROJECTS
@@ -232,7 +213,6 @@ select {
 
 .list-commit,
 .calendar {
-
     width: 100%;
     min-width: 0;
     min-height: 400px;
@@ -248,16 +228,13 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
-
 }
-
 
 /* ================================================================
    TÍTULOS
    ================================================================= */
 
 .title-ci {
-
     width: 100%;
     min-width: 0;
 
@@ -272,9 +249,7 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-small);
-
 }
-
 
 /* ================================================================
    CONTEÚDO DOS CARDS
@@ -282,7 +257,6 @@ select {
 
 .activity-list-commits,
 .calendar-activity {
-
     width: 100%;
     min-width: 0;
     min-height: 0;
@@ -297,9 +271,7 @@ select {
     border-radius: var(--radius-small);
 
     overflow: auto;
-
 }
-
 
 /* ================================================================
    CONTAINER DOS GRÁFICOS
@@ -310,15 +282,13 @@ select {
  */
 
 .container-graphics {
-
     width: 100%;
     min-width: 0;
     min-height: 0;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: var(--spacing-medium);
 
@@ -328,9 +298,7 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-large);
-
 }
-
 
 /* ================================================================
    CARDS DOS GRÁFICOS
@@ -350,7 +318,6 @@ select {
  */
 
 .graphic-card {
-
     width: 100%;
     min-width: 0;
     min-height: 300px;
@@ -366,16 +333,13 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
-
 }
-
 
 /* ================================================================
    CABEÇALHO DOS GRÁFICOS
    ================================================================= */
 
 .chart-header {
-
     width: 100%;
     min-width: 0;
 
@@ -384,15 +348,12 @@ select {
     justify-content: space-between;
 
     gap: var(--spacing-small);
-
 }
-
 
 /*
  * O título ocupa o espaço disponível.
  */
 .title-cg {
-
     min-width: 0;
     flex: 1;
 
@@ -407,28 +368,22 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-small);
-
 }
 
-
 .title-cg h2 {
-
     /*
      * Impede que títulos muito longos estourem o card.
      */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
 }
-
 
 /* ================================================================
    VALORES DOS GRÁFICOS
    ================================================================= */
 
 .metric-value {
-
     flex-shrink: 0;
 
     color: var(--color-accent);
@@ -437,9 +392,7 @@ select {
     font-weight: 700;
 
     white-space: nowrap;
-
 }
-
 
 /* ================================================================
    ÁREA DOS GRÁFICOS
@@ -459,7 +412,6 @@ select {
  */
 
 .chart-container {
-
     width: 100%;
     min-width: 0;
 
@@ -475,16 +427,13 @@ select {
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-small);
-
 }
-
 
 /* ================================================================
    DONUT CHART
    ================================================================= */
 
 .donut-chart-svg {
-
     width: min(100%, 180px);
     height: auto;
 
@@ -495,23 +444,18 @@ select {
     transform: rotate(-90deg);
 
     overflow: visible;
-
 }
-
 
 /*
  * Círculo de fundo.
  */
 .donut-bg {
-
     fill: none;
 
     stroke: var(--color-border);
 
     stroke-width: 12;
-
 }
-
 
 /*
  * Círculo de progresso.
@@ -521,7 +465,6 @@ select {
  * 2 × π × 40 = 251.2
  */
 .donut-segment {
-
     fill: none;
 
     stroke: var(--color-accent);
@@ -541,12 +484,8 @@ select {
      * para representar a porcentagem.
      */
 
-    transition:
-        stroke-dashoffset
-        var(--transition-normal);
-
+    transition: stroke-dashoffset var(--transition-normal);
 }
-
 
 /*
  * Evita que o SVG aumente a espessura aparente da linha
@@ -554,11 +493,8 @@ select {
  */
 .donut-bg,
 .donut-segment {
-
     vector-effect: non-scaling-stroke;
-
 }
-
 
 /* ================================================================
    SCROLLBAR
@@ -571,30 +507,21 @@ select {
 
 .activity-list-commits::-webkit-scrollbar,
 .calendar-activity::-webkit-scrollbar {
-
     width: 6px;
     height: 6px;
-
 }
-
 
 .activity-list-commits::-webkit-scrollbar-track,
 .calendar-activity::-webkit-scrollbar-track {
-
     background: transparent;
-
 }
-
 
 .activity-list-commits::-webkit-scrollbar-thumb,
 .calendar-activity::-webkit-scrollbar-thumb {
-
     background-color: var(--color-border);
 
     border-radius: 999px;
-
 }
-
 
 /* ================================================================
    RESPONSIVIDADE — ATÉ 1200px
@@ -606,42 +533,30 @@ select {
  */
 
 @media (max-width: 1200px) {
-
     .container-inicial {
-
         grid-template-columns:
             minmax(0, 1.4fr)
             minmax(280px, 1fr);
-
     }
 
     .container-graphics {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
 }
-
 
 /* ================================================================
    RESPONSIVIDADE — ATÉ 900px
    ================================================================= */
 
 @media (max-width: 900px) {
-
     /*
      * Os dois grandes containers passam a ocupar
      * toda a largura disponível.
      */
 
     .container-inicial {
-
         grid-template-columns: 1fr;
-
     }
-
 
     /*
      * Os três gráficos voltam a ficar em uma linha,
@@ -649,138 +564,94 @@ select {
      */
 
     .container-graphics {
-
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
 }
-
 
 /* ================================================================
    RESPONSIVIDADE — ATÉ 768px
    ================================================================= */
 
 @media (max-width: 768px) {
-
     .container-inicial {
-
         padding: 15px;
 
         gap: 15px;
-
     }
-
 
     /*
      * Commits e calendário passam a ficar empilhados.
      */
 
     .container-projects {
-
         grid-template-columns: 1fr;
-
     }
-
 
     /*
      * Os gráficos também ficam empilhados.
      */
 
     .container-graphics {
-
         grid-template-columns: 1fr;
-
     }
-
 
     .list-commit,
     .calendar {
-
         min-height: 350px;
-
     }
-
 }
-
 
 /* ================================================================
    RESPONSIVIDADE — ATÉ 480px
    ================================================================= */
 
 @media (max-width: 480px) {
-
     .navbar {
-
         min-height: 56px;
 
-        padding:
-            0 var(--spacing-medium);
-
+        padding: 0 var(--spacing-medium);
     }
 
-
     .container-inicial {
-
         padding: var(--spacing-small);
 
         gap: var(--spacing-small);
-
     }
-
 
     .container-projects,
     .container-graphics {
-
         padding: var(--spacing-small);
 
         gap: var(--spacing-small);
 
         border-radius: var(--radius-medium);
-
     }
-
 
     .list-commit,
     .calendar,
     .graphic-card {
-
         padding: var(--spacing-small);
 
         border-radius: var(--radius-medium);
-
     }
-
 
     .title-ci,
     .title-cg {
-
         min-height: 44px;
 
-        padding:
-            0 var(--spacing-small);
-
+        padding: 0 var(--spacing-small);
     }
-
 
     .activity-list-commits,
     .calendar-activity,
     .chart-container {
-
         padding: var(--spacing-small);
-
     }
-
 
     .donut-chart-svg {
-
         width: min(100%, 150px);
-
     }
-
 }
-
 
 /* ================================================================
    ACESSIBILIDADE
@@ -792,17 +663,13 @@ select {
  */
 
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
-
         scroll-behavior: auto !important;
 
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-
     }
-
 }

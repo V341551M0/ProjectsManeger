@@ -1,319 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8" />
 
-    <!-- Responsividade em dispositivos móveis -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Responsividade em dispositivos móveis -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Projects Manager</title>
+        <title>Projects Manager</title>
 
-    <!-- Folha de estilos principal -->
-    <link rel="stylesheet" href="home.css">
+        <!-- Folha de estilos principal -->
+        <link rel="stylesheet" href="home.css" />
 
-    <!-- defer garante que o HTML seja carregado antes do JavaScript -->
-    <script src="home.js" defer></script>
-</head>
+        <!-- defer garante que o HTML seja carregado antes do JavaScript -->
+        <script src="home.js" defer></script>
+    </head>
 
-<body>
-
-    <!-- =========================================================
+    <body>
+        <!-- =========================================================
          NAVEGAÇÃO
          O conteúdo será inserido dinamicamente pelo JavaScript.
          ========================================================= -->
-    <nav class="navbar" aria-label="Navegação principal">
-        <!-- Preenchido automaticamente via JS -->
-    </nav>
+        <nav class="navbar" aria-label="Navegação principal">
+            <!-- Preenchido automaticamente via JS -->
+        </nav>
 
-
-    <!-- =========================================================
+        <!-- =========================================================
          CONTEÚDO PRINCIPAL
          ========================================================= -->
-    <main class="dashboard">
-
-        <!-- =====================================================
+        <main class="dashboard">
+            <!-- =====================================================
              PROJETOS
              ===================================================== -->
-        <section class="dashboard-section projects-section">
+            <section class="dashboard-section projects-section">
+                <article class="dashboard-card projects-card">
+                    <header class="card-header">
+                        <h2>Seus projetos</h2>
+                    </header>
 
-            <article class="dashboard-card projects-card">
-
-                <header class="card-header">
-                    <h2>Seus projetos</h2>
-                </header>
-
-                <div
-                    class="projects-list"
-                    id="projects-list"
-                    aria-label="Lista de projetos"
-                >
-                    <!--
+                    <div class="projects-list" id="projects-list" aria-label="Lista de projetos">
+                        <!--
                         Os projetos serão inseridos dinamicamente
                         pelo JavaScript.
-                    -->
-                </div>
+                    --></div>
+                </article>
+            </section>
 
-            </article>
-
-        </section>
-
-
-        <!-- =====================================================
+            <!-- =====================================================
              INDICADORES / GRÁFICOS
              ===================================================== -->
-        <section
-            class="dashboard-section metrics-section"
-            aria-label="Indicadores"
-        >
-
-            <!-- =================================================
+            <section class="dashboard-section metrics-section" aria-label="Indicadores">
+                <!-- =================================================
                  GRÁFICO 1 — STATUS DAS TAREFAS
                  ================================================= -->
-            <article class="dashboard-card metric-card">
+                <article class="dashboard-card metric-card">
+                    <header class="card-header metric-header">
+                        <h2>Status das tarefas</h2>
 
-                <header class="card-header metric-header">
-                    <h2>Status das tarefas</h2>
+                        <span class="metric-value" id="task-completion-ratio"> -- / -- </span>
+                    </header>
 
-                    <span
-                        class="metric-value"
-                        id="task-completion-ratio"
-                    >
-                        -- / --
-                    </span>
-                </header>
+                    <div class="chart-container donut-container">
+                        <svg
+                            class="donut-chart"
+                            viewBox="0 0 100 100"
+                            role="img"
+                            aria-label="Progresso das tarefas"
+                        >
+                            <!-- Círculo de fundo -->
+                            <circle class="donut-background" cx="50" cy="50" r="40" />
 
-                <div class="chart-container donut-container">
+                            <!-- Círculo de progresso -->
+                            <circle
+                                class="donut-progress"
+                                id="task-progress"
+                                cx="50"
+                                cy="50"
+                                r="40"
+                            />
+                        </svg>
+                    </div>
+                </article>
 
-                    <svg
-                        class="donut-chart"
-                        viewBox="0 0 100 100"
-                        role="img"
-                        aria-label="Progresso das tarefas"
-                    >
-                        <!-- Círculo de fundo -->
-                        <circle
-                            class="donut-background"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-
-                        <!-- Círculo de progresso -->
-                        <circle
-                            class="donut-progress"
-                            id="task-progress"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                    </svg>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
+                <!-- =================================================
                  GRÁFICO 2 — TAREFAS POR RESPONSÁVEL
                  ================================================= -->
-            <article class="dashboard-card metric-card">
+                <article class="dashboard-card metric-card">
+                    <header class="card-header metric-header">
+                        <h2>Tarefas por responsável</h2>
 
-                <header class="card-header metric-header">
-                    <h2>Tarefas por responsável</h2>
+                        <span class="metric-value" id="tasks-total"> -- </span>
+                    </header>
 
-                    <span
-                        class="metric-value"
-                        id="tasks-total"
-                    >
-                        --
-                    </span>
-                </header>
+                    <div class="chart-container bar-container">
+                        <svg
+                            class="bar-chart"
+                            viewBox="0 0 300 150"
+                            role="img"
+                            aria-label="Tarefas por responsável"
+                        >
+                            <!-- Linhas de grade -->
+                            <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
 
-                <div class="chart-container bar-container">
+                            <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
 
-                    <svg
-                        class="bar-chart"
-                        viewBox="0 0 300 150"
-                        role="img"
-                        aria-label="Tarefas por responsável"
-                    >
-                        <!-- Linhas de grade -->
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="30"
-                            x2="300"
-                            y2="30"
-                        />
+                            <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
 
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="75"
-                            x2="300"
-                            y2="75"
-                        />
+                            <!-- Barras -->
+                            <rect class="chart-bar" x="20" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="60" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="100" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="140" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="180" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="220" y="120" width="20" height="0" />
+                            <rect class="chart-bar" x="260" y="120" width="20" height="0" />
+                        </svg>
+                    </div>
+                </article>
 
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="120"
-                            x2="300"
-                            y2="120"
-                        />
-
-                        <!-- Barras -->
-                        <rect class="chart-bar" x="20"  y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="60"  y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="100" y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="140" y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="180" y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="220" y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="260" y="120" width="20" height="0" />
-                    </svg>
-
-                </div>
-
-            </article>
-
-
-            <!-- =================================================
+                <!-- =================================================
                  GRÁFICO 3 — TAREFAS ATRASADAS
                  ================================================= -->
-            <article class="dashboard-card metric-card">
+                <article class="dashboard-card metric-card">
+                    <header class="card-header metric-header">
+                        <h2>Tarefas atrasadas</h2>
 
-                <header class="card-header metric-header">
-                    <h2>Tarefas atrasadas</h2>
+                        <span class="metric-value" id="overdue-task-ratio"> -- / -- </span>
+                    </header>
 
-                    <span
-                        class="metric-value"
-                        id="overdue-task-ratio"
-                    >
-                        -- / --
-                    </span>
-                </header>
+                    <div class="chart-container donut-container">
+                        <svg
+                            class="donut-chart"
+                            viewBox="0 0 100 100"
+                            role="img"
+                            aria-label="Tarefas atrasadas"
+                        >
+                            <!-- Círculo de fundo -->
+                            <circle class="donut-background" cx="50" cy="50" r="40" />
 
-                <div class="chart-container donut-container">
+                            <!-- Círculo de progresso -->
+                            <circle
+                                class="donut-progress overdue-progress"
+                                id="overdue-progress"
+                                cx="50"
+                                cy="50"
+                                r="40"
+                            />
+                        </svg>
+                    </div>
+                </article>
+            </section>
 
-                    <svg
-                        class="donut-chart"
-                        viewBox="0 0 100 100"
-                        role="img"
-                        aria-label="Tarefas atrasadas"
-                    >
-                        <!-- Círculo de fundo -->
-                        <circle
-                            class="donut-background"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-
-                        <!-- Círculo de progresso -->
-                        <circle
-                            class="donut-progress overdue-progress"
-                            id="overdue-progress"
-                            cx="50"
-                            cy="50"
-                            r="40"
-                        />
-                    </svg>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- =====================================================
+            <!-- =====================================================
              COMMITS
              ===================================================== -->
-        <section class="dashboard-section commits-section">
+            <section class="dashboard-section commits-section">
+                <article class="dashboard-card">
+                    <header class="card-header">
+                        <h2>Commits</h2>
+                    </header>
 
-            <article class="dashboard-card">
+                    <div class="chart-container line-container">
+                        <svg
+                            class="line-chart"
+                            viewBox="0 0 300 150"
+                            role="img"
+                            aria-label="Atividade de commits"
+                        >
+                            <!-- Linhas de grade -->
+                            <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
 
-                <header class="card-header">
-                    <h2>Commits</h2>
-                </header>
+                            <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
 
-                <div class="chart-container line-container">
+                            <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
 
-                    <svg
-                        class="line-chart"
-                        viewBox="0 0 300 150"
-                        role="img"
-                        aria-label="Atividade de commits"
-                    >
-                        <!-- Linhas de grade -->
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="30"
-                            x2="300"
-                            y2="30"
-                        />
-
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="75"
-                            x2="300"
-                            y2="75"
-                        />
-
-                        <line
-                            class="chart-grid-line"
-                            x1="0"
-                            y1="120"
-                            x2="300"
-                            y2="120"
-                        />
-
-                        <!--
+                            <!--
                             A linha será construída pelo JavaScript
                             conforme os dados de commits.
                         -->
-                        <path
-                            class="chart-line"
-                            id="commit-line"
-                            d="M 0 120"
-                        />
-                    </svg>
+                            <path class="chart-line" id="commit-line" d="M 0 120" />
+                        </svg>
+                    </div>
+                </article>
+            </section>
 
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- =====================================================
+            <!-- =====================================================
              CALENDÁRIO
              ===================================================== -->
-        <section class="dashboard-section calendar-section">
+            <section class="dashboard-section calendar-section">
+                <article class="dashboard-card">
+                    <header class="card-header">
+                        <h2>Calendário</h2>
+                    </header>
 
-            <article class="dashboard-card">
-
-                <header class="card-header">
-                    <h2>Calendário</h2>
-                </header>
-
-                <div
-                    class="activity-calendar"
-                    id="activity-calendar"
-                    aria-label="Calendário de atividades"
-                >
-                    <!--
+                    <div
+                        class="activity-calendar"
+                        id="activity-calendar"
+                        aria-label="Calendário de atividades"
+                    >
+                        <!--
                         Calendário preenchido dinamicamente pelo JS.
-                    -->
-                </div>
-
-            </article>
-
-        </section>
-
-    </main>
-
-</body>
+                    --></div>
+                </article>
+            </section>
+        </main>
+    </body>
 </html>
