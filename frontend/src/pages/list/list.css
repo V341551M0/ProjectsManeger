@@ -1,33 +1,822 @@
+/* ================================================================
+   RESET
+   ================================================================= */
+
 * {
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
+
     font-family: "Nexa", sans-serif;
-    font-weight: 300;
 }
+
+
+/* ================================================================
+   FONTES
+   ================================================================= */
 
 @font-face {
     font-family: "Nexa";
-    src: url("../../assets/fonts/nexa-light.otf");
+
+    src: url("../../assets/fonts/nexa-light.otf")
+         format("opentype");
+
     font-weight: 300;
     font-style: normal;
+
+    font-display: swap;
 }
+
 
 @font-face {
     font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa Bold.otf");
-    font-weight: 700;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexaregular.otf");
+    src: url("../../assets/fonts/nexaregular.otf")
+         format("opentype");
+
     font-weight: 400;
     font-style: normal;
+
+    font-display: swap;
 }
 
-:root {
-    background-color: white;
+
+@font-face {
+    font-family: "Nexa";
+
+    src: url("../../assets/fonts/Nexa Bold.otf")
+         format("opentype");
+
+    font-weight: 700;
+    font-style: normal;
+
+    font-display: swap;
 }
+
+
+/* ================================================================
+   VARIÁVEIS GLOBAIS
+   ================================================================= */
+
+:root {
+
+    /* Fundos */
+    --color-background: #0F1418;
+    --color-surface: #161D22;
+    --color-card: #1D262D;
+
+    /* Bordas */
+    --color-border: #273139;
+
+    /* Texto */
+    --color-text: #E8EEF0;
+    --color-text-muted: #8E9AA2;
+
+    /* Estados */
+    --color-accent: #72D6A0;
+    --color-danger: #D66F72;
+
+    /* Raios */
+    --radius-large: 24px;
+    --radius-medium: 16px;
+    --radius-small: 10px;
+
+    /* Espaçamento */
+    --spacing-small: 10px;
+    --spacing-medium: 16px;
+    --spacing-large: 20px;
+    --spacing-xlarge: 24px;
+
+    /* Transições */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+
+}
+
+
+/* ================================================================
+   BASE
+   ================================================================= */
+
+html {
+    background-color: var(--color-background);
+
+    color-scheme: dark;
+}
+
+
+body {
+
+    width: 100%;
+    min-height: 100dvh;
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+
+    font-size: 15px;
+    font-weight: 300;
+
+    line-height: 1.5;
+
+    overflow-x: hidden;
+
+}
+
+
+h2,
+h3 {
+
+    color: var(--color-text);
+
+    font-weight: 700;
+
+}
+
+
+h2 {
+    font-size: 1rem;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* ================================================================
+   NAVBAR
+   ================================================================= */
+
+.navbar {
+
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        0 var(--spacing-xlarge);
+
+    background-color: var(--color-surface);
+
+    border-bottom:
+        1px solid var(--color-border);
+
+}
+
+
+/* ================================================================
+   CONTAINER PRINCIPAL
+   ================================================================= */
+
+/*
+ * Estrutura:
+ *
+ * container-principal
+ * ├── container-list
+ * │   └── list
+ * │
+ * └── container-graphics
+ *     ├── linguagens-utilizadas
+ *     ├── contribuicao-pessoa
+ *     └── progresso
+ *
+ * A lista recebe mais espaço porque é o elemento principal
+ * desta página.
+ */
+
+.container-principal {
+
+    width: 100%;
+
+    min-height:
+        calc(100dvh - 64px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(320px, 1fr);
+
+    gap: var(--spacing-large);
+
+    padding: var(--spacing-large);
+
+}
+
+
+/* ================================================================
+   LISTAGEM
+   ================================================================= */
+
+.container-list {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    padding: var(--spacing-large);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-large);
+
+}
+
+
+/* ================================================================
+   CARD PRINCIPAL DA LISTA
+   ================================================================= */
+
+.list {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-card);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-medium);
+
+}
+
+
+/* ================================================================
+   CABEÇALHO DA LISTA
+   ================================================================= */
+
+.chart-header {
+
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--spacing-small);
+
+}
+
+
+.title-list {
+
+    width: 100%;
+    min-width: 0;
+
+    min-height: 54px;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        0 var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-small);
+
+}
+
+
+.title-list h2 {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+/* ================================================================
+   ÁREA DOS PROJETOS
+   ================================================================= */
+
+.list-projects {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    flex: 1;
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-small);
+
+    overflow: auto;
+
+}
+
+
+/* ================================================================
+   CONTAINER DOS GRÁFICOS
+   ================================================================= */
+
+.container-graphics {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    /*
+     * Os três gráficos ficam lado a lado em telas grandes.
+     */
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-large);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-large);
+
+}
+
+
+/* ================================================================
+   CARDS DOS GRÁFICOS
+   ================================================================= */
+
+/*
+ * Os três gráficos possuem a mesma estrutura visual.
+ *
+ * A classe .graphic-card evita repetir dezenas de propriedades
+ * em cada gráfico.
+ *
+ * As classes individuais continuam presentes no HTML porque
+ * podem ser úteis para o JavaScript.
+ */
+
+.graphic-card {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-card);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-medium);
+
+}
+
+
+/* ================================================================
+   TÍTULOS DOS GRÁFICOS
+   ================================================================= */
+
+.title-cg {
+
+    min-width: 0;
+
+    flex: 1;
+
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        0 var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-small);
+
+}
+
+
+.title-cg h2 {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+/* ================================================================
+   VALORES
+   ================================================================= */
+
+.metric-value {
+
+    flex-shrink: 0;
+
+    color: var(--color-accent);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+/* ================================================================
+   CONTAINER DOS GRÁFICOS
+   ================================================================= */
+
+.chart-container {
+
+    width: 100%;
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-small);
+
+}
+
+
+/* ================================================================
+   DONUT CHART
+   ================================================================= */
+
+.donut-chart-svg {
+
+    width: min(100%, 180px);
+
+    height: auto;
+
+    /*
+     * Sem rotação o SVG inicia o círculo à direita.
+     * Rotacionando -90deg, o progresso começa no topo.
+     */
+    transform:
+        rotate(-90deg);
+
+    overflow: visible;
+
+}
+
+
+/*
+ * Círculo de fundo.
+ */
+
+.donut-bg {
+
+    fill: none;
+
+    stroke:
+        var(--color-border);
+
+    stroke-width: 12;
+
+}
+
+
+/*
+ * Segmento de progresso.
+ *
+ * Circunferência:
+ *
+ * 2 × π × 40 ≈ 251.2
+ */
+
+.donut-segment {
+
+    fill: none;
+
+    stroke:
+        var(--color-accent);
+
+    stroke-width: 12;
+
+    stroke-linecap: round;
+
+    stroke-dasharray:
+        251.2;
+
+    /*
+     * Começa vazio.
+     * O JavaScript poderá modificar esse valor.
+     */
+    stroke-dashoffset:
+        251.2;
+
+    transition:
+        stroke-dashoffset
+        var(--transition-normal);
+
+}
+
+
+/*
+ * Mantém a espessura da linha consistente durante
+ * o redimensionamento do SVG.
+ */
+
+.donut-bg,
+.donut-segment {
+
+    vector-effect:
+        non-scaling-stroke;
+
+}
+
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================= */
+
+.list-projects::-webkit-scrollbar {
+
+    width: 6px;
+    height: 6px;
+
+}
+
+
+.list-projects::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.list-projects::-webkit-scrollbar-thumb {
+
+    background-color:
+        var(--color-border);
+
+    border-radius:
+        999px;
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 1200px
+   ================================================================= */
+
+@media (max-width: 1200px) {
+
+    .container-principal {
+
+        grid-template-columns:
+            minmax(0, 1.4fr)
+            minmax(280px, 1fr);
+
+    }
+
+
+    .container-graphics {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 900px
+   ================================================================= */
+
+@media (max-width: 900px) {
+
+    /*
+     * A lista e os gráficos passam a ocupar toda a largura.
+     */
+
+    .container-principal {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    /*
+     * Com toda a largura disponível, os três gráficos
+     * podem novamente ficar lado a lado.
+     */
+
+    .container-graphics {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 768px
+   ================================================================= */
+
+@media (max-width: 768px) {
+
+    .container-principal {
+
+        padding: 15px;
+
+        gap: 15px;
+
+    }
+
+
+    .container-list,
+    .container-graphics {
+
+        padding: 15px;
+
+    }
+
+
+    /*
+     * Em tablets pequenos, os gráficos passam a ser empilhados.
+     */
+
+    .container-graphics {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .list {
+
+        min-height: 400px;
+
+    }
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 480px
+   ================================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+
+        min-height: 56px;
+
+        padding:
+            0 var(--spacing-medium);
+
+    }
+
+
+    .container-principal {
+
+        padding: var(--spacing-small);
+
+        gap: var(--spacing-small);
+
+    }
+
+
+    .container-list,
+    .container-graphics {
+
+        padding: var(--spacing-small);
+
+        gap: var(--spacing-small);
+
+        border-radius:
+            var(--radius-medium);
+
+    }
+
+
+    .list,
+    .graphic-card {
+
+        padding: var(--spacing-small);
+
+        border-radius:
+            var(--radius-medium);
+
+    }
+
+
+    .title-list,
+    .title-cg {
+
+        min-height: 44px;
+
+        padding:
+            0 var(--spacing-small);
+
+    }
+
+
+    .list-projects,
+    .chart-container {
+
+        padding:
+            var(--spacing-small);
+
+    }
+
+
+    .donut-chart-svg {
+
+        width: min(100%, 150px);
+
+    }
+
+}
+
+
+/* ================================================================
+   ACESSIBILIDADE
+   ================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+    }
+
+}
+
 
