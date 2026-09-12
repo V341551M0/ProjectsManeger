@@ -1,115 +1,319 @@
-<!-- <!DOCTYPE html> -->
-<html lang='pt-BR'>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+
+    <!-- Responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Projects Manager</title>
-    <link rel='stylesheet' href='home.css'>
-    <script src="home.js"></script>
+
+    <!-- Folha de estilos principal -->
+    <link rel="stylesheet" href="home.css">
+
+    <!-- defer garante que o HTML seja carregado antes do JavaScript -->
+    <script src="home.js" defer></script>
 </head>
+
 <body>
-    <div class="navbar">
-        <!--Preenchido Automaticamente com JS-->
-    </div>
 
-    <div class="container-inicial">
-                    <!-- Lista de Projetos + Status / Resumo -->
-        <section class="container-list-projects">
-            <article class="list-projects">
-                <div class="title"><h3>Seus Projetos</h3></div>
-                <div class="activity-list-projects">
-                    <!-- Conteúdo preenchido dianamicamente via JS-->
+    <!-- =========================================================
+         NAVEGAÇÃO
+         O conteúdo será inserido dinamicamente pelo JavaScript.
+         ========================================================= -->
+    <nav class="navbar" aria-label="Navegação principal">
+        <!-- Preenchido automaticamente via JS -->
+    </nav>
+
+
+    <!-- =========================================================
+         CONTEÚDO PRINCIPAL
+         ========================================================= -->
+    <main class="dashboard">
+
+        <!-- =====================================================
+             PROJETOS
+             ===================================================== -->
+        <section class="dashboard-section projects-section">
+
+            <article class="dashboard-card projects-card">
+
+                <header class="card-header">
+                    <h2>Seus projetos</h2>
+                </header>
+
+                <div
+                    class="projects-list"
+                    id="projects-list"
+                    aria-label="Lista de projetos"
+                >
+                    <!--
+                        Os projetos serão inseridos dinamicamente
+                        pelo JavaScript.
+                    -->
                 </div>
+
             </article>
+
         </section>
-                
-                <!-- status de tarefas / Grafico pizza -->
-        <section class="container-cards-graphics">
-            <article class="circle-graphic1">
-                <div class="chart-header">
-                    <div class="title"><h3>Status por Tarefa</h3></div>
-                    <span class="metric-value" id="completion-ratio">-- / --</span>
-                </div>
+
+
+        <!-- =====================================================
+             INDICADORES / GRÁFICOS
+             ===================================================== -->
+        <section
+            class="dashboard-section metrics-section"
+            aria-label="Indicadores"
+        >
+
+            <!-- =================================================
+                 GRÁFICO 1 — STATUS DAS TAREFAS
+                 ================================================= -->
+            <article class="dashboard-card metric-card">
+
+                <header class="card-header metric-header">
+                    <h2>Status das tarefas</h2>
+
+                    <span
+                        class="metric-value"
+                        id="task-completion-ratio"
+                    >
+                        -- / --
+                    </span>
+                </header>
+
                 <div class="chart-container donut-container">
-                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
-                        <!-- Círculo de Fundo -->
-                        <circle class="donut-bg" cx="50" cy="50" r="40" />
-                        <!-- Círculo de Progresso -->
-                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+
+                    <svg
+                        class="donut-chart"
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Progresso das tarefas"
+                    >
+                        <!-- Círculo de fundo -->
+                        <circle
+                            class="donut-background"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+
+                        <!-- Círculo de progresso -->
+                        <circle
+                            class="donut-progress"
+                            id="task-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
                     </svg>
+
                 </div>
+
             </article>
 
-            <article class="columm-graphic2">
-                <div class="chart-header">
-                    <div class="title"><h3>Tarefa Por Responsavel</h3></div>
-                    <span class="metric-value" id="weekly-total">--</span>
-                </div>
-                <div class="columm-container">
-                    <svg class="bar-chart-svg" viewBox="0 0 300 150">
-                        <!-- Linhas de Grade de Fundo -->
-                        <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
-                        <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
-                        <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
-                        
-                        <!-- Barras dos Dias da Semana (Sem alturas estáticas) -->
-                        <rect class="chart-bar" x="20" y="120" width="20" height="0" />
-                        <rect class="chart-bar" x="60" y="120" width="20" height="0" />
+
+            <!-- =================================================
+                 GRÁFICO 2 — TAREFAS POR RESPONSÁVEL
+                 ================================================= -->
+            <article class="dashboard-card metric-card">
+
+                <header class="card-header metric-header">
+                    <h2>Tarefas por responsável</h2>
+
+                    <span
+                        class="metric-value"
+                        id="tasks-total"
+                    >
+                        --
+                    </span>
+                </header>
+
+                <div class="chart-container bar-container">
+
+                    <svg
+                        class="bar-chart"
+                        viewBox="0 0 300 150"
+                        role="img"
+                        aria-label="Tarefas por responsável"
+                    >
+                        <!-- Linhas de grade -->
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="30"
+                            x2="300"
+                            y2="30"
+                        />
+
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="75"
+                            x2="300"
+                            y2="75"
+                        />
+
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="120"
+                            x2="300"
+                            y2="120"
+                        />
+
+                        <!-- Barras -->
+                        <rect class="chart-bar" x="20"  y="120" width="20" height="0" />
+                        <rect class="chart-bar" x="60"  y="120" width="20" height="0" />
                         <rect class="chart-bar" x="100" y="120" width="20" height="0" />
                         <rect class="chart-bar" x="140" y="120" width="20" height="0" />
                         <rect class="chart-bar" x="180" y="120" width="20" height="0" />
                         <rect class="chart-bar" x="220" y="120" width="20" height="0" />
                         <rect class="chart-bar" x="260" y="120" width="20" height="0" />
                     </svg>
+
                 </div>
+
             </article>
 
-            <article class="circle-graphic3">
-                <div class="chart-header">
-                    <div class="title"><h3>Tarefas Atrasadas</h3></div>
-                    <span class="metric-value" id="completion-ratio">-- / --</span>
-                </div>
+
+            <!-- =================================================
+                 GRÁFICO 3 — TAREFAS ATRASADAS
+                 ================================================= -->
+            <article class="dashboard-card metric-card">
+
+                <header class="card-header metric-header">
+                    <h2>Tarefas atrasadas</h2>
+
+                    <span
+                        class="metric-value"
+                        id="overdue-task-ratio"
+                    >
+                        -- / --
+                    </span>
+                </header>
+
                 <div class="chart-container donut-container">
-                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
-                        <!-- Círculo de Fundo -->
-                        <circle class="donut-bg" cx="50" cy="50" r="40" />
-                        <!-- Círculo de Progresso -->
-                        <circle class="donut-segment" cx="50" cy="50" r="40" />
+
+                    <svg
+                        class="donut-chart"
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Tarefas atrasadas"
+                    >
+                        <!-- Círculo de fundo -->
+                        <circle
+                            class="donut-background"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+
+                        <!-- Círculo de progresso -->
+                        <circle
+                            class="donut-progress overdue-progress"
+                            id="overdue-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
                     </svg>
+
                 </div>
+
             </article>
+
         </section>
 
-                <!-- Grafico em Linha -->
-        <section class="graphic-commits">
-            <article class="commit-line">
-                <div class="chart-header">
-                    <div class="title"><h3>Commit</h3></div>
-                </div>
-                <div class="chart-line-container">
-                    <svg class="line-chart-svg" viewBox="0 0 300 150">
-                        <!-- Linhas de Grade de Fundo -->
-                        <line class="chart-grid-line" x1="0" y1="30" x2="300" y2="30" />
-                        <line class="chart-grid-line" x1="0" y1="75" x2="300" y2="75" />
-                        <line class="chart-grid-line" x1="0" y1="120" x2="300" y2="120" />
 
-                        <!-- Linha do Gráfico (Preenchida via JS futuramente) -->
-                        <path class="chart-line" d="M 0 120" />
+        <!-- =====================================================
+             COMMITS
+             ===================================================== -->
+        <section class="dashboard-section commits-section">
+
+            <article class="dashboard-card">
+
+                <header class="card-header">
+                    <h2>Commits</h2>
+                </header>
+
+                <div class="chart-container line-container">
+
+                    <svg
+                        class="line-chart"
+                        viewBox="0 0 300 150"
+                        role="img"
+                        aria-label="Atividade de commits"
+                    >
+                        <!-- Linhas de grade -->
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="30"
+                            x2="300"
+                            y2="30"
+                        />
+
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="75"
+                            x2="300"
+                            y2="75"
+                        />
+
+                        <line
+                            class="chart-grid-line"
+                            x1="0"
+                            y1="120"
+                            x2="300"
+                            y2="120"
+                        />
+
+                        <!--
+                            A linha será construída pelo JavaScript
+                            conforme os dados de commits.
+                        -->
+                        <path
+                            class="chart-line"
+                            id="commit-line"
+                            d="M 0 120"
+                        />
                     </svg>
+
                 </div>
+
             </article>
+
         </section>
 
-                <!-- Calendario de Atividades-->
-        <section class="calendar-graphics">
-            <article class="card-calendar">
-                <div class="title"><h3>Calendario</h3></div>
-                <div class="activity-calendar">
-                    <!-- Conteudo preenchido dinamicamente via JS-->
+
+        <!-- =====================================================
+             CALENDÁRIO
+             ===================================================== -->
+        <section class="dashboard-section calendar-section">
+
+            <article class="dashboard-card">
+
+                <header class="card-header">
+                    <h2>Calendário</h2>
+                </header>
+
+                <div
+                    class="activity-calendar"
+                    id="activity-calendar"
+                    aria-label="Calendário de atividades"
+                >
+                    <!--
+                        Calendário preenchido dinamicamente pelo JS.
+                    -->
                 </div>
+
             </article>
+
         </section>
-    </div>
+
+    </main>
+
 </body>
 </html>
-

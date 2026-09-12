@@ -1,81 +1,220 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects Manager</title>
-    <link rel='stylesheet' href='projects.css'>
-    <script src="projects.js"></script>
+    <!-- Estilos da página -->
+    <link rel="stylesheet" href="projects.css">
+    <!--
+        defer faz o JavaScript carregar sem bloquear a construção
+        do HTML e executar somente depois que o documento estiver disponível.
+    -->
+    <script src="projects.js" defer></script>
 </head>
+
 <body>
-    <div class="navbar">
-        <!--Preenchido Automaticamente com JS-->
-    </div>
+    <!--
+        Barra de navegação.
+        O conteúdo é inserido dinamicamente pelo projects.js.
+    -->
+    <nav class="navbar" aria-label="Navegação principal">
+        <!-- Preenchido automaticamente com JS -->
+    </nav>
+    <!--
+        Container principal da página.
 
-    <div class="container-inicial">
-        <section class="container-projects">
-                <!--Exibição Dos Projetos-->
-                <article class="list-commit">
-                    <div class="title-ci"><h3>Seus Commits</h3></div>
-                    <div class="activity-list-commits">
-                        <!--Preenchido automaticamente com JS-->
-                    </div>
-                </article>
+        A arquitetura original foi preservada:
+        container-inicial
+        ├── container-projects
+        │   ├── list-commit
+        │   └── calendar
+        │
+        └── container-graphics
+            ├── linguagens-utilizadas
+            ├── contribuicao-pessoa
+            └── progresso
+    -->
+    <main class="container-inicial">
+        <!-- =========================================================
+             PROJETOS / ATIVIDADES
+             ========================================================= -->
 
-                <article class="calendar">
-                    <div class="title-ci"><h3>Calendario</h3></div>
-                    <div class="calendar-activity">
-                        <!--Preenchido automaticamente com JS-->
-                    </div>
-                </article>
-        </section>
-
-            <!--Exibição de Três Graficos-->
-        <section class="container-graphics">
-            <article class="linguagens-utilizadas">
-                <div class="chart-header">
-                    <div class="title-cg"><h3>Linguagens Utilizadas</h3></div>
-                    <span class="metric-value" id="completion-ratio">-- / --</span>
-                </div>
-                <div class="chart-container-lenguage">
-                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
-                        <!-- Círculo de Fundo -->
-                        <circle class="donut-bg" cx="50" cy="50" r="40" />
-                        <!-- Círculo de Progresso -->
-                        <circle class="donut-segment" cx="50" cy="50" r="40" />
-                    </svg>
-                </div>
-            </article>
-
-            <article class="contribuicao-pessoa">
-                <div class="chart-header">
-                    <div class="title-cg"><h3>Contribuição Por Pessoa</h3></div>
-                    <span class="metric-value" id="completion-ratio">-- / --</span>
-                </div>
-                <div class="chart-container-pessoa">
-                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
-                        <!-- Círculo de Fundo -->
-                        <circle class="donut-bg" cx="50" cy="50" r="40" />
-                        <!-- Círculo de Progresso -->
-                        <circle class="donut-segment" cx="50" cy="50" r="40" />
-                    </svg>
+        <section class="container-projects" aria-label="Atividades do projeto">
+            <!-- Lista de commits -->
+            <article class="list-commit">
+                <header class="title-ci">
+                    <h2>Seus commits</h2>
+                </header>
+                <div
+                    class="activity-list-commits"
+                    id="activity-list-commits"
+                    aria-label="Lista de commits"
+                >
+                    <!-- Preenchido automaticamente com JS -->
                 </div>
             </article>
 
-            <article class="progresso">
-                <div class="chart-header">
-                    <div class="title-cg"><h3>Progresso</h3></div> 
-                    <span class="metric-value" id="completion-ratio">-- / --</span>
-                </div>
-                <div class="chart-container-progresso">
-                    <svg class="donut-chart-svg" viewBox="0 0 100 100">
-                        <!-- Círculo de Fundo -->
-                        <circle class="donut-bg" cx="50" cy="50" r="40" />
-                        <!-- Círculo de Progresso -->
-                        <circle class="donut-segment" cx="50" cy="50" r="40" />
-                    </svg>
+            <!-- Calendário -->
+            <article class="calendar">
+                <header class="title-ci">
+                    <h2>Calendário</h2>
+                </header>
+                <div
+                    class="calendar-activity"
+                    id="calendar-activity"
+                    aria-label="Calendário de atividades"
+                >
+                    <!-- Preenchido automaticamente com JS -->
                 </div>
             </article>
         </section>
-    </div>
+
+        <!-- =========================================================
+             GRÁFICOS
+             ========================================================= -->
+        <section
+            class="container-graphics"
+            aria-label="Estatísticas do projeto"
+        >
+            <!-- =====================================================
+                 GRÁFICO: LINGUAGENS UTILIZADAS
+                 ===================================================== -->
+
+            <article class="graphic-card linguagens-utilizadas">
+                <header class="chart-header">
+                    <div class="title-cg">
+                        <h2>Linguagens utilizadas</h2>
+                    </div>
+                    <!--
+                        ID exclusivo.
+                        IDs duplicados foram removidos para facilitar
+                        o controle pelo JavaScript.
+                    -->
+                    <span
+                        class="metric-value"
+                        id="language-ratio"
+                    >
+                        -- / --
+                    </span>
+                </header>
+
+                <div class="chart-container">
+                    <svg
+                        class="donut-chart-svg"
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Distribuição das linguagens utilizadas"
+                    >
+                        <!-- Círculo de fundo -->
+                        <circle
+                            class="donut-bg"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                        <!-- Círculo de progresso -->
+                        <circle
+                            class="donut-segment"
+                            id="language-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                    </svg>
+                </div>
+            </article>
+
+
+            <!-- =====================================================
+                 GRÁFICO: CONTRIBUIÇÃO POR PESSOA
+                 ===================================================== -->
+
+            <article class="graphic-card contribuicao-pessoa">
+                <header class="chart-header">
+                    <div class="title-cg">
+                        <h2>Contribuição por pessoa</h2>
+                    </div>
+
+                    <span
+                        class="metric-value"
+                        id="contribution-ratio"
+                    >
+                        -- / --
+                    </span>
+                </header>
+
+
+                <div class="chart-container">
+                    <svg
+                        class="donut-chart-svg"
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Contribuição por pessoa"
+                    >
+                        <!-- Círculo de fundo -->
+                        <circle
+                            class="donut-bg"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                        <!-- Círculo de progresso -->
+                        <circle
+                            class="donut-segment"
+                            id="contribution-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                    </svg>
+                </div>
+            </article>
+
+
+            <!-- =====================================================
+                 GRÁFICO: PROGRESSO
+                 ===================================================== -->
+
+            <article class="graphic-card progresso">
+                <header class="chart-header">
+                    <div class="title-cg">
+                        <h2>Progresso</h2>
+                    </div>
+                    <span
+                        class="metric-value"
+                        id="project-progress-ratio"
+                    >
+                        -- / --
+                    </span>
+                </header>
+
+                <div class="chart-container">
+                    <svg
+                        class="donut-chart-svg"
+                        viewBox="0 0 100 100"
+                        role="img"
+                        aria-label="Progresso do projeto"
+                    >
+                        <!-- Círculo de fundo -->
+                        <circle
+                            class="donut-bg"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                        <!-- Círculo de progresso -->
+                        <circle
+                            class="donut-segment"
+                            id="project-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        />
+                    </svg>
+                </div>
+            </article>
+        </section>
+    </main>
 </body>
 </html>

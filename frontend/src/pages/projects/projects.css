@@ -1,333 +1,808 @@
+/* ================================================================
+   RESET
+   ================================================================= */
+
+/*
+ * box-sizing: border-box evita que padding e border aumentem
+ * inesperadamente o tamanho dos elementos.
+ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Nexa", sans-serif;
-    font-weight: 300;
 }
+
+
+/* ================================================================
+   FONTES
+   ================================================================= */
 
 @font-face {
     font-family: "Nexa";
-    src: url("../../assets/fonts/nexa-light.otf");
+    src: url("../../assets/fonts/nexa-light.otf") format("opentype");
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Nexa";
-    src: url("../../assets/fonts/Nexa Bold.otf");
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Nexa";
-    src: url("../../assets/fonts/nexaregular.otf");
+    src: url("../../assets/fonts/nexaregular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
-
+    font-display: swap;
 }
+
+@font-face {
+    font-family: "Nexa";
+    src: url("../../assets/fonts/Nexa Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ================================================================
+   VARIÁVEIS GLOBAIS
+   ================================================================= */
 
 :root {
-    background-color: #0F1418;
+
+    /* Cores principais */
+    --color-background: #0F1418;
+    --color-surface: #161D22;
+    --color-card: #1D262D;
+
+    /* Bordas */
+    --color-border: #273139;
+
+    /* Texto */
     --color-text: #E8EEF0;
+    --color-text-muted: #8E9AA2;
+
+    /* Cores de estado */
+    --color-accent: #72D6A0;
+    --color-danger: #D66F72;
+
+    /* Raios */
+    --radius-large: 24px;
+    --radius-medium: 16px;
+    --radius-small: 10px;
+
+    /* Espaçamentos */
+    --spacing-small: 10px;
+    --spacing-medium: 16px;
+    --spacing-large: 20px;
+    --spacing-xlarge: 24px;
+
+    /* Transições */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+
 }
 
-    /*Cor de Texto*/
-h3{
-    color: var(--color-text);
+
+/* ================================================================
+   BASE
+   ================================================================= */
+
+html {
+    background-color: var(--color-background);
+    color-scheme: dark;
 }
 
 
-/*Configuração dos Containers*/
-    /*<-Configuração do Container Principal->*/
-.container-inicial {
-    width: 100%;
+body {
     min-height: 100dvh;
 
-    display: grid;
+    background-color: var(--color-background);
+    color: var(--color-text);
 
-    /*
-     * O Projects recebe mais espaço horizontal,
-     * enquanto o Graphics recebe uma área menor.
-     */
-    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    font-family: "Nexa", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.5;
 
-    gap: 20px;
-    padding: 20px;
+    overflow-x: hidden;
 }
 
-    /*Configuração do Container Projects*/
+
+/*
+ * Títulos utilizam a versão Bold da Nexa.
+ */
+h2,
+h3 {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+
+h2 {
+    font-size: 1rem;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* ================================================================
+   NAVBAR
+   ================================================================= */
+
+.navbar {
+
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 var(--spacing-xlarge);
+
+    background-color: var(--color-surface);
+
+    border-bottom: 1px solid var(--color-border);
+
+}
+
+
+/* ================================================================
+   CONTAINER PRINCIPAL
+   ================================================================= */
+
+/*
+ * A estrutura principal mantém a ideia original:
+
+       ┌──────────────────────┬───────────────────┐
+       │                      │                   │
+       │     PROJECTS         │     GRAPHICS      │
+       │                      │                   │
+       └──────────────────────┴───────────────────┘
+
+ * O lado de projetos recebe mais espaço horizontal.
+ */
+
+.container-inicial {
+
+    width: 100%;
+
+    min-height: calc(100dvh - 64px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(320px, 1fr);
+
+    gap: var(--spacing-large);
+
+    padding: var(--spacing-large);
+
+}
+
+
+/* ================================================================
+   CONTAINER DE PROJECTS
+   ================================================================= */
+
+/*
+ * Contém:
+ *
+ * ├── Seus Commits
+ * └── Calendário
+ */
+
 .container-projects {
-    width: 100%;
-    min-width: 0;
-    min-height: 0;
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-
-    gap: 20px;
-}
-
-    /*Configuração do Container Projects*/
-.container-graphics {
     width: 100%;
     min-width: 0;
     min-height: 0;
 
     display: grid;
 
-    /*
-     * Os três gráficos ocupam uma área compacta
-     * e ficam distribuídos igualmente.
-     */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
-    gap: 15px;
+    gap: var(--spacing-large);
+
+    padding: var(--spacing-large);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+
 }
 
 
-/*Personalização dos Containers (Principal e Graphics)*/
-.container-projects {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
+/* ================================================================
+   CARDS DE PROJECTS
+   ================================================================= */
 
-    min-width: 0;
-    min-height: 0;
-}
+/*
+ * Os dois cards possuem exatamente a mesma estrutura visual.
+ * Portanto, compartilhamos o máximo possível através de seletores.
+ */
 
-.container-graphics {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-
-    min-width: 0;
-    min-height: 0;
-}
-
-
-/*Personalização de cores, tamanho e subceções de containers-graphics*/
-.linguagens-utilizadas {
-    background-color: #1D262D;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #1D262D;
-
-    width: 100%;
-    min-width: 0;
-}
-
-.contribuicao-pessoa {
-    background-color: #1D262D;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #1D262D;
-
-    width: 100%;
-    min-width: 0;
-}
-
-.progresso {
-    background-color: #1D262D;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #1D262D;
-
-    width: 100%;
-    min-width: 0;
-}
-
-
-/*Personalização de cores, tamanho e subceções de containers-inicial*/
-
-.list-commit {
-    background-color: #1D262D;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #1D262D;
-
-    width: 100%;
-    min-width: 0;
-}
-
+.list-commit,
 .calendar {
-    background-color: #1D262D;
-    border-radius: 30px;
-    padding: 20px;
-    border: 12px solid #1D262D;
 
     width: 100%;
     min-width: 0;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-card);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
 }
 
 
-/*Personalização do titulo, tamanho e conteudo do container-incial*/
-    /*Titulos*/
+/* ================================================================
+   TÍTULOS
+   ================================================================= */
+
 .title-ci {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 54px;
+
+    padding: 0 var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+
 }
 
-    /*Conteudos*/
-.activity-list-commits {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
 
-    width: 100%;
-    min-width: 0;
-    min-height: 0;
-}
+/* ================================================================
+   CONTEÚDO DOS CARDS
+   ================================================================= */
 
+.activity-list-commits,
 .calendar-activity {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
 
     width: 100%;
     min-width: 0;
     min-height: 0;
+
+    flex: 1;
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+
+    overflow: auto;
+
 }
 
 
-/*Personalização do titulo, tamanho e conteudo do container-graphics*/
-    /*Titulos*/
+/* ================================================================
+   CONTAINER DOS GRÁFICOS
+   ================================================================= */
+
+/*
+ * O container mantém os três gráficos lado a lado em telas grandes.
+ */
+
+.container-graphics {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-large);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+
+}
+
+
+/* ================================================================
+   CARDS DOS GRÁFICOS
+   ================================================================= */
+
+/*
+ * Em vez de repetir a mesma configuração em:
+ *
+ * .linguagens-utilizadas
+ * .contribuicao-pessoa
+ * .progresso
+ *
+ * usamos uma classe comum: .graphic-card
+ *
+ * As classes individuais continuam existindo porque o JavaScript
+ * poderá precisar identificá-las posteriormente.
+ */
+
+.graphic-card {
+
+    width: 100%;
+    min-width: 0;
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-medium);
+
+    padding: var(--spacing-medium);
+
+    background-color: var(--color-card);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
+}
+
+
+/* ================================================================
+   CABEÇALHO DOS GRÁFICOS
+   ================================================================= */
+
+.chart-header {
+
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--spacing-small);
+
+}
+
+
+/*
+ * O título ocupa o espaço disponível.
+ */
 .title-cg {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
+
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 48px;
+
+    padding: 0 var(--spacing-medium);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+
+}
+
+
+.title-cg h2 {
+
+    /*
+     * Impede que títulos muito longos estourem o card.
+     */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+
+/* ================================================================
+   VALORES DOS GRÁFICOS
+   ================================================================= */
+
+.metric-value {
+
+    flex-shrink: 0;
+
+    color: var(--color-accent);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+/* ================================================================
+   ÁREA DOS GRÁFICOS
+   ================================================================= */
+
+/*
+ * Todos os gráficos utilizam o mesmo container.
+ *
+ * Antes havia:
+ *
+ * .chart-container-lenguage
+ * .chart-container-pessoa
+ * .chart-container-progresso
+ *
+ * Como os três tinham praticamente o mesmo comportamento,
+ * isso foi transformado em uma única classe.
+ */
+
+.chart-container {
 
     width: 100%;
     min-width: 0;
-}
 
-    /*Conteudos*/
-.chart-container-lenguage {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
+    flex: 1;
 
-    width: 100%;
-    min-width: 0;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.chart-container-pessoa {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
+    padding: var(--spacing-medium);
 
-    width: 100%;
-    min-width: 0;
-}
+    background-color: var(--color-surface);
 
-.chart-container-progresso {
-    background-color: #161D22;
-    border-radius: 30px;
-    padding: 20px;
-    border: 3px solid #1D262D;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
 
-    width: 100%;
-    min-width: 0;
 }
 
 
-/*<!--Configurações do grafico de Pizza-->*/
-
-.donut-container {
-    width: 100%;
-    max-width: 160px;
-    margin: 0 auto;
-}
+/* ================================================================
+   DONUT CHART
+   ================================================================= */
 
 .donut-chart-svg {
-    width: 100%;
+
+    width: min(100%, 180px);
     height: auto;
-    transform: rotate(-90deg); /* Faz o progresso iniciar do topo */
+
+    /*
+     * O SVG começa no lado direito.
+     * A rotação faz o progresso começar no topo.
+     */
+    transform: rotate(-90deg);
+
+    overflow: visible;
+
 }
 
+
+/*
+ * Círculo de fundo.
+ */
 .donut-bg {
+
     fill: none;
-    stroke: var(--border-color);
+
+    stroke: var(--color-border);
+
     stroke-width: 12;
+
 }
 
+
+/*
+ * Círculo de progresso.
+ *
+ * Circunferência aproximada:
+ *
+ * 2 × π × 40 = 251.2
+ */
 .donut-segment {
+
     fill: none;
-    stroke: var(--accent-green);
+
+    stroke: var(--color-accent);
+
     stroke-width: 12;
-    stroke-dasharray: 251.2; /* Circunferência de raio 40: 2 * PI * 40 */
-    stroke-dashoffset: 251.2; /* Inicialmente vazio (100% oculto) */
-    transition: stroke-dashoffset 0.5s ease;
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+
+    /*
+     * O JavaScript poderá alterar posteriormente:
+     *
+     * element.style.strokeDashoffset
+     *
+     * para representar a porcentagem.
+     */
+
+    transition:
+        stroke-dashoffset
+        var(--transition-normal);
+
 }
 
 
-/*Configuração para telas menores*/
-@media (max-width: 1000px) {
+/*
+ * Evita que o SVG aumente a espessura aparente da linha
+ * durante alterações de tamanho.
+ */
+.donut-bg,
+.donut-segment {
+
+    vector-effect: non-scaling-stroke;
+
+}
+
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================= */
+
+/*
+ * Scrollbars discretas para listas e calendários.
+ * O navegador continua controlando o comportamento.
+ */
+
+.activity-list-commits::-webkit-scrollbar,
+.calendar-activity::-webkit-scrollbar {
+
+    width: 6px;
+    height: 6px;
+
+}
+
+
+.activity-list-commits::-webkit-scrollbar-track,
+.calendar-activity::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.activity-list-commits::-webkit-scrollbar-thumb,
+.calendar-activity::-webkit-scrollbar-thumb {
+
+    background-color: var(--color-border);
+
+    border-radius: 999px;
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 1200px
+   ================================================================= */
+
+/*
+ * Em telas menores, os gráficos deixam de tentar ocupar
+ * três colunas extremamente estreitas.
+ */
+
+@media (max-width: 1200px) {
 
     .container-inicial {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            minmax(0, 1.4fr)
+            minmax(280px, 1fr);
+
     }
 
     .container-graphics {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
     }
 
 }
 
 
-/*Configuração para telas muito pequenas*/
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 900px
+   ================================================================= */
+
+@media (max-width: 900px) {
+
+    /*
+     * Os dois grandes containers passam a ocupar
+     * toda a largura disponível.
+     */
+
+    .container-inicial {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    /*
+     * Os três gráficos voltam a ficar em uma linha,
+     * agora que possuem toda a largura da tela.
+     */
+
+    .container-graphics {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 768px
+   ================================================================= */
+
 @media (max-width: 768px) {
 
     .container-inicial {
+
         padding: 15px;
+
         gap: 15px;
+
     }
+
+
+    /*
+     * Commits e calendário passam a ficar empilhados.
+     */
 
     .container-projects {
+
         grid-template-columns: 1fr;
+
     }
 
+
+    /*
+     * Os gráficos também ficam empilhados.
+     */
+
     .container-graphics {
+
         grid-template-columns: 1fr;
+
+    }
+
+
+    .list-commit,
+    .calendar {
+
+        min-height: 350px;
+
     }
 
 }
 
 
-/*Configuração para telas extremamente pequenas*/
+/* ================================================================
+   RESPONSIVIDADE — ATÉ 480px
+   ================================================================= */
+
 @media (max-width: 480px) {
 
-    .container-inicial {
-        padding: 10px;
-        gap: 10px;
+    .navbar {
+
+        min-height: 56px;
+
+        padding:
+            0 var(--spacing-medium);
+
     }
+
+
+    .container-inicial {
+
+        padding: var(--spacing-small);
+
+        gap: var(--spacing-small);
+
+    }
+
 
     .container-projects,
     .container-graphics {
-        padding: 10px;
-        gap: 10px;
-        border-radius: 20px;
+
+        padding: var(--spacing-small);
+
+        gap: var(--spacing-small);
+
+        border-radius: var(--radius-medium);
+
     }
+
 
     .list-commit,
     .calendar,
-    .linguagens-utilizadas,
-    .contribuicao-pessoa,
-    .progresso {
-        padding: 10px;
-        border-width: 8px;
-        border-radius: 20px;
+    .graphic-card {
+
+        padding: var(--spacing-small);
+
+        border-radius: var(--radius-medium);
+
+    }
+
+
+    .title-ci,
+    .title-cg {
+
+        min-height: 44px;
+
+        padding:
+            0 var(--spacing-small);
+
+    }
+
+
+    .activity-list-commits,
+    .calendar-activity,
+    .chart-container {
+
+        padding: var(--spacing-small);
+
+    }
+
+
+    .donut-chart-svg {
+
+        width: min(100%, 150px);
+
+    }
+
+}
+
+
+/* ================================================================
+   ACESSIBILIDADE
+   ================================================================= */
+
+/*
+ * Usuários que preferem menos movimento não recebem
+ * animações de transição.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
     }
 
 }
