@@ -2,17 +2,14 @@
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
-
         <!-- Responsividade em dispositivos móveis -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Projects Manager</title>
-
         <!-- Folha de estilos principal -->
         <link rel="stylesheet" href="home.css" />
-
+        <link rel="stylesheet" href="../../components/navbar/navbar.css" />
         <!-- defer garante que o HTML seja carregado antes do JavaScript -->
-        <script src="home.js" defer></script>
+        <script type="module" src="home.js"></script>
     </head>
 
     <body>
@@ -20,9 +17,9 @@
          NAVEGAÇÃO
          O conteúdo será inserido dinamicamente pelo JavaScript.
          ========================================================= -->
-        <nav class="navbar" aria-label="Navegação principal">
+        <div id="navbar">
             <!-- Preenchido automaticamente via JS -->
-        </nav>
+        </div>
 
         <!-- =========================================================
          CONTEÚDO PRINCIPAL

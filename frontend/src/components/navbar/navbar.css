@@ -1,150 +1,534 @@
+/* =========================================================
+   FONTE
+   ========================================================= */
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexa-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/nexaregular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('../../assets/fonts/Nexa Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================================
+   VARIÁVEIS GLOBAIS
+   ========================================================= */
+
+:root {
+    /* Cores principais */
+    --color-background: #0f1418;
+    --color-surface: #161d22;
+    --color-card: #1d262d;
+    --color-border: #273139;
+
+    /* Texto */
+    --color-text: #e8eef0;
+    --color-text-muted: #8e9aa2;
+
+    /* Ações */
+    --color-accent: #72d6a0;
+    --color-accent-hover: #8be2b2;
+
+    /* Estados */
+    --color-danger: #d66f72;
+
+    /* Dimensões */
+    --navbar-height: 56px;
+
+    --radius-small: 6px;
+    --radius-medium: 8px;
+    --radius-large: 10px;
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+
+    /* Transições */
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nexa';
-    font-weight: 300px;
 }
 
-@font-face {
-    font-family: 'Nexa';
-    src: url('../../assets/fonts/nexa-light.otf');
+html {
+    min-width: 320px;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Nexa', sans-serif;
     font-weight: 300;
-    font-style: normal;
-    background-color: white;
+
+    color: var(--color-text);
+    background-color: var(--color-background);
 }
 
-@font-face {
-    font-family: 'Nexa';
-    src: url('../../assets/fonts/Nexa\ Bold.otf');
-    font-weight: 400;
-    font-size: normal;
-    background-color: white;
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.header-menu {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: var(--navbar-height);
+
+    padding: 0 var(--spacing-lg);
+
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
 }
 
-@font-face {
-    font-family: 'Nexa';
-    src: url('../../assets/fonts/nexaregular.otf');
-    font-weight: 700;
-    font-size: normal;
-    background-color: white;
+/* =========================================================
+   MENU PRINCIPAL
+   ========================================================= */
+
+#menu-options {
+    width: 100%;
+
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
 }
 
-:root {
-    background-color: white;
-}
+/* =========================================================
+   CONTAINER DA NAVBAR
+   ========================================================= */
 
 .container-buttons {
-    background-color: #f9e58b;
-    height: 40px;
-    border-radius: 10px;
-    font-family: 'Nexa';
-}
-
-.menu-options {
+    display: flex;
     align-items: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    gap: var(--spacing-md);
+
+    padding: var(--spacing-sm) var(--spacing-lg);
+
+    background-color: var(--color-surface);
 }
 
-.icon-button {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
+/* =========================================================
+   ÁREA DE PESQUISA
+   ========================================================= */
+
+.text-area {
+    display: flex;
+    align-items: center;
+
+    gap: var(--spacing-sm);
+
+    flex: 1;
+    min-width: 0;
 }
 
-.icon-button img {
-    width: 24px;
-    height: 24px;
+/* ---------------------------------------------------------
+   Campos individuais
+   --------------------------------------------------------- */
+
+.text-pesquise,
+.text-gerir,
+.text-filtrar {
+    position: relative;
+
+    min-width: 0;
 }
+
+/* ---------------------------------------------------------
+   Inputs
+   --------------------------------------------------------- */
+
+.text-pesquise input,
+.text-gerir input,
+.text-filtrar input {
+    width: 100%;
+    height: 34px;
+
+    padding: 0 12px 0 38px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
+    outline: none;
+
+    color: var(--color-text);
+    background-color: var(--color-card);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 300;
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+/* Placeholder */
+
+.text-pesquise input::placeholder,
+.text-gerir input::placeholder,
+.text-filtrar input::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Foco */
+
+.text-pesquise input:focus,
+.text-gerir input:focus,
+.text-filtrar input:focus {
+    border-color: var(--color-accent);
+
+    box-shadow: 0 0 0 2px rgb(114 214 160 / 10%);
+}
+
+/* ---------------------------------------------------------
+   Ícones dos inputs
+   --------------------------------------------------------- */
+
+.text-pesquise img,
+.text-gerir img,
+.text-filtrar img {
+    position: absolute;
+
+    left: 12px;
+    top: 50%;
+
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+
+    transform: translateY(-50%);
+
+    opacity: 0.7;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   TAMANHOS DOS CAMPOS
+   ========================================================= */
+
+.text-pesquise {
+    flex: 1.2;
+}
+
+.text-gerir {
+    flex: 1;
+}
+
+.text-filtrar {
+    flex: 0.8;
+}
+
+/* =========================================================
+   BOTÕES DE GERENCIAMENTO
+   ========================================================= */
 
 .botões-de-gerenciamento {
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    gap: var(--spacing-xs);
+
+    flex-shrink: 0;
 }
 
-.container-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.text-area {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
+/* =========================================================
+   BOTÕES
+   ========================================================= */
 
 .botões-de-gerenciamento button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 34px;
+
+    gap: 7px;
+
+    padding: 0 10px;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-medium);
+
+    color: var(--color-text-muted);
+    background-color: transparent;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+
     cursor: pointer;
+
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
 }
 
-.text-filtrar {
-    position: relative;
+/* Ícones */
+
+.botões-de-gerenciamento button img {
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+
+    opacity: 0.75;
+
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
 }
 
-.text-filtrar {
-    padding-left: 40px;
+/* Hover */
+
+.botões-de-gerenciamento button:hover {
+    color: var(--color-text);
+
+    background-color: var(--color-card);
+    border-color: var(--color-border);
 }
 
-.text-filtrar img {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 18px;
-    height: 18px;
+.botões-de-gerenciamento button:hover img {
+    opacity: 1;
 }
 
-.text-pesquise {
-    position: relative;
+/* Clique */
+
+.botões-de-gerenciamento button:active {
+    transform: translateY(1px);
 }
 
-.text-pesquise {
-    padding-left: 40px;
+/* =========================================================
+   ESTADO ATIVO
+   ========================================================= */
+
+/*
+   Pode ser aplicado pelo JavaScript posteriormente:
+
+   button.active
+*/
+
+.botões-de-gerenciamento button.active {
+    color: var(--color-accent);
+
+    background-color: rgb(114 214 160 / 8%);
+    border-color: rgb(114 214 160 / 20%);
 }
 
-.text-pesquise img {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 18px;
-    height: 18px;
+.botões-de-gerenciamento button.active img {
+    opacity: 1;
 }
 
-.text-gerir {
-    position: relative;
+/* =========================================================
+   CONFIGURAÇÃO DO USUÁRIO
+   ========================================================= */
+
+.user-configuration {
+    display: flex;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin-left: auto;
+
+    padding-left: var(--spacing-sm);
+
+    border-left: 1px solid var(--color-border);
 }
 
-.text-gerir {
-    padding-left: 40px;
+/* =========================================================
+   BOTÃO DE PERFIL
+   ========================================================= */
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 7px;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    color: var(--color-text-muted);
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
 }
 
-.recentes-button img {
-    width: 18px;
+.icon-button:hover {
+    background-color: var(--color-card);
+    border-color: var(--color-border);
 }
 
-.pessoas-button img {
-    width: 18px;
+.icon-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
-.ordem-button img {
-    width: 18px;
+.icon-button img {
+    width: 20px;
+    height: 20px;
+
+    object-fit: contain;
+
+    opacity: 0.8;
+
+    transition: opacity var(--transition-fast);
 }
 
-.ocultar-button img {
-    width: 18px;
+.icon-button:hover img {
+    opacity: 1;
 }
 
-.text-gerir img {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
 
-    width: 18px;
-    height: 18px;
+@media (max-width: 1100px) {
+    .container-buttons {
+        flex-wrap: wrap;
+    }
+
+    .text-area {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    .botões-de-gerenciamento {
+        flex: 1;
+    }
+
+    .user-configuration {
+        margin-left: 0;
+    }
+}
+
+/* ---------------------------------------------------------
+   Tablets
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .container-buttons {
+        gap: var(--spacing-sm);
+
+        padding: var(--spacing-sm) 12px;
+    }
+
+    .text-area {
+        display: grid;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        width: 100%;
+    }
+
+    .text-pesquise,
+    .text-gerir,
+    .text-filtrar {
+        width: 100%;
+    }
+
+    .botões-de-gerenciamento {
+        width: 100%;
+
+        overflow-x: auto;
+
+        scrollbar-width: thin;
+    }
+
+    .botões-de-gerenciamento button {
+        flex-shrink: 0;
+    }
+
+    .user-configuration {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------
+   Smartphones
+   --------------------------------------------------------- */
+
+@media (max-width: 520px) {
+    .header-menu {
+        padding: 0 12px;
+    }
+
+    .text-area {
+        grid-template-columns: 1fr;
+    }
+
+    .text-pesquise input,
+    .text-gerir input,
+    .text-filtrar input {
+        height: 36px;
+    }
+
+    .botões-de-gerenciamento {
+        gap: 4px;
+    }
+
+    .botões-de-gerenciamento button {
+        padding: 0 9px;
+
+        font-size: 12px;
+    }
+
+    .botões-de-gerenciamento button img {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
 }

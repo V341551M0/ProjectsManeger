@@ -6,11 +6,12 @@
         <title>Projects Manager</title>
         <!-- Estilos da página -->
         <link rel="stylesheet" href="projects.css" />
+        <link rel="stylesheet" href="../../components/navbar/navbar.css" />
         <!--
         defer faz o JavaScript carregar sem bloquear a construção
         do HTML e executar somente depois que o documento estiver disponível.
     -->
-        <script src="projects.js" defer></script>
+        <script type="module" src="projects.js"></script>
     </head>
 
     <body>
@@ -18,9 +19,9 @@
         Barra de navegação.
         O conteúdo é inserido dinamicamente pelo projects.js.
     -->
-        <nav class="navbar" aria-label="Navegação principal">
-            <!-- Preenchido automaticamente com JS -->
-        </nav>
+        <div id="navbar">
+            <!-- Preenchido automaticamente via JS -->
+        </div>
         <!--
         Container principal da página.
 

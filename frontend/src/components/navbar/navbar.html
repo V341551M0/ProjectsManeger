@@ -1,82 +1,150 @@
-<!-- <!DOCTYPE html> -->
 <!doctype html>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
+
+        <!-- Responsividade -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Projects Manager</title>
+
+        <!-- Estilos da navbar -->
         <link rel="stylesheet" href="navbar.css" />
-        <script src="navbar.js"></script>
+
+        <!-- Carregado depois do HTML -->
+        <script src="navbar.js" defer></script>
     </head>
+
     <body>
+        <!-- Cabeçalho principal da aplicação -->
         <header class="header-menu">
-            <!--Icone Aplicação-->
+            <!-- Ícone/nome da aplicação preenchido pelo JavaScript -->
         </header>
 
-        <div id="menu-options">
+        <!-- Área principal de navegação -->
+        <nav id="menu-options" aria-label="Navegação principal">
             <section class="container-buttons">
+                <!--
+                    Área de pesquisa e gerenciamento.
+                    Os inputs podem futuramente ser conectados
+                    ao sistema de filtros da aplicação.
+                -->
                 <div class="text-area">
-                    <!--Botão de Pesquisa-->
+                    <!-- Pesquisa -->
                     <article class="text-pesquise">
-                        <img src="../../../src/assets/icons/pesquise.png" />
-                        <input type="text" placeholder="Pesquise..." />
+                        <img
+                            src="../../../src/assets/icons/pesquise.png"
+                            alt=""
+                            aria-hidden="true"
+                        />
+
+                        <input
+                            type="search"
+                            placeholder="Pesquise..."
+                            aria-label="Pesquisar projetos"
+                        />
                     </article>
 
-                    <!--Gerir todos os Projetos-->
+                    <!-- Gerenciamento de projetos -->
                     <article class="text-gerir">
-                        <img src="../../../src/assets/icons/gerir.png" />
-                        <input type="text" placeholder="Gerir Projetos..." />
+                        <img src="../../../src/assets/icons/gerir.png" alt="" aria-hidden="true" />
+
+                        <input
+                            type="search"
+                            placeholder="Gerir Projetos..."
+                            aria-label="Gerir projetos"
+                        />
                     </article>
 
-                    <!--Filtra informações de acordo com as necessidades do usuario-->
+                    <!-- Filtros -->
                     <article class="text-filtrar">
-                        <img src="../../../src/assets/icons/filtro.png" />
-                        <input type="text" placeholder="Filtrar..." />
+                        <img src="../../../src/assets/icons/filtro.png" alt="" aria-hidden="true" />
+
+                        <input
+                            type="search"
+                            placeholder="Filtrar..."
+                            aria-label="Filtrar projetos"
+                        />
                     </article>
                 </div>
 
+                <!--
+                    Ações de gerenciamento.
+                    Os IDs são mantidos para compatibilidade
+                    com o navbar.js.
+                -->
                 <div class="botões-de-gerenciamento">
-                    <!--Botão que Apresenta os projetos mais recentes do usuario-->
+                    <!-- Projetos recentes -->
                     <article class="recentes-button">
                         <button id="recentes" type="button">
-                            <img src="../../../src/assets/icons/recente.png" />
-                            Recentes
+                            <img
+                                src="../../../src/assets/icons/recente.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
+
+                            <span>Recentes</span>
                         </button>
                     </article>
 
-                    <!--Botão que exibe pessoas trabalhando nos projetos-->
+                    <!-- Pessoas envolvidas -->
                     <article class="pessoas-button">
                         <button id="pessoas" type="button">
-                            <img src="../../../src/assets/icons/do-utilizador.png" />
-                            Pessoas
+                            <img
+                                src="../../../src/assets/icons/do-utilizador.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
+
+                            <span>Pessoas</span>
                         </button>
                     </article>
 
-                    <!--Botão de ordenação de entidades-->
+                    <!-- Ordenação -->
                     <article class="ordem-button">
                         <button id="ordenar" type="button">
-                            <img src="../../../src/assets/icons/ordenar.png" />
-                            Ordenar
+                            <img
+                                src="../../../src/assets/icons/ordenar.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
+
+                            <span>Ordenar</span>
                         </button>
                     </article>
 
-                    <!--Botão de ocultar informações indesejadas pelo usuario-->
+                    <!-- Ocultar informações -->
                     <article class="ocultar-button">
                         <button id="ocultar" type="button">
-                            <img src="../../../src/assets/icons/ocultar.png" />
-                            Ocultar
+                            <img
+                                src="../../../src/assets/icons/ocultar.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
+
+                            <span>Ocultar</span>
                         </button>
                     </article>
                 </div>
 
+                <!-- Configuração do usuário -->
                 <div class="user-configuration">
                     <article class="perfil-usuario">
-                        <button id="user-perfil" type="button" class="icon-button">
-                            <img src="../../../src/assets/icons/pessoa.png" />
+                        <button
+                            id="user-perfil"
+                            type="button"
+                            class="icon-button"
+                            aria-label="Perfil do usuário"
+                        >
+                            <img
+                                src="../../../src/assets/icons/pessoa.png"
+                                alt=""
+                                aria-hidden="true"
+                            />
                         </button>
                     </article>
                 </div>
             </section>
-        </div>
+        </nav>
     </body>
 </html>
