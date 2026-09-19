@@ -84,5 +84,18 @@ class WebhookEventRepositoryTest {
         String json = "{\"action\":\"created\",\"repository\":\"projectsmaneger\"}";
 
         JsonNode payload = objectMapper.readTree(json);
+
+        WebhookEvent webhookEvent = new WebhookEvent(
+            savedRepository,
+            "delivery-001",
+            "pull_request",
+            "created",
+            payload,
+            WebhookEvent.ProcessingStatus.RECEIVED,
+            null
+        );
+
+        WebhookEvent savedWebhookEvent = 
+            webhookEventRepository.saveAndFlush(webhookEvent);
     }
 }
