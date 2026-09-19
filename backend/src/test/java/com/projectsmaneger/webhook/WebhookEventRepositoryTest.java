@@ -1,8 +1,11 @@
 package com.projectsmaneger.webhook;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -97,5 +100,12 @@ class WebhookEventRepositoryTest {
 
         WebhookEvent savedWebhookEvent = 
             webhookEventRepository.saveAndFlush(webhookEvent);
+
+        assertNotNull(savedWebhookEvent.getId());
+    
+        Optional<WebhookEvent> foundByDeliveryId =
+            webhookEventRepository.findByGithubDeliveryId("delivery-001");
+    
+        assertTrue(foundByDeliveryId.isPresent());
     }
 }
