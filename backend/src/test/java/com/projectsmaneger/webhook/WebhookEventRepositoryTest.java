@@ -1,9 +1,11 @@
 package com.projectsmaneger.webhook;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
@@ -107,5 +109,16 @@ class WebhookEventRepositoryTest {
             webhookEventRepository.findByGithubDeliveryId("delivery-001");
     
         assertTrue(foundByDeliveryId.isPresent());
+
+        WebhookEvent foundWebhookEvent = foundByDeliveryId.get();
+
+        assertEquals(savedWebhookEvent.getId(), foundWebhookEvent.getId());
+
+        List<WebhookEvent> eventsByRepository =
+            webhookEventRepository.findByRepositoryId(savedRepository.getId());
+
+        assertEquals(1, eventsByRepository.size());
+
+        assertEquals(payload, foundWebhookEvent.getPayload());
     }
 }
