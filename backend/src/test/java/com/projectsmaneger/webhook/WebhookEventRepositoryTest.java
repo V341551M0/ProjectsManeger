@@ -120,5 +120,10 @@ class WebhookEventRepositoryTest {
         assertEquals(1, eventsByRepository.size());
 
         assertEquals(payload, foundWebhookEvent.getPayload());
+
+        assertEquals(
+            WebhookEvent.ProcessingStatus.RECEIVED,
+            foundWebhookEvent.getProcessingStatus()
+        );
     }
 }
