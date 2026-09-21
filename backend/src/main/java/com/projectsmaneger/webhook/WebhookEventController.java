@@ -25,6 +25,21 @@ public class WebhookEventController {
             @RequestHeader("X-GitHub-Event") String eventType,
             @RequestBody JsonNode payload
     ) {
+        JsonNode repositoryNode = payload.path("repository");
+        long githubRepositoryId = repositoryNode.path("id").asLong();
+
+        String action = payload.path("action").isMissingNode()
+                ? null
+                : payload.path("action").asText();
+
+        webhookEventService.registerEvent(
+                githubRepositoryId,
+                githubDeliveryId,
+                eventType,
+                action,
+                payload
+        );
+
         return ResponseEntity.ok().build();
     }
 }
