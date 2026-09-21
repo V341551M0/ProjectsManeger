@@ -1,8 +1,6 @@
 package com.projectsmaneger.webhook;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -11,17 +9,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(WebhookEventController.class)
 class WebhookEventControllerTest {
 
-    @Autowired
+    @org.springframework.beans.factory.annotation.Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @MockBean
     private WebhookEventService webhookEventService;
@@ -40,6 +37,8 @@ class WebhookEventControllerTest {
 
         mockMvc.perform(
                 post("/api/webhooks/github")
+                        .with(csrf())
+                        .with(user("github-webhook"))
                         .header("X-GitHub-Delivery", "delivery-controller-001")
                         .header("X-GitHub-Event", "pull_request")
                         .contentType(MediaType.APPLICATION_JSON)
