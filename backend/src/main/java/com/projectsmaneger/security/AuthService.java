@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    public AuthService(AuthenticationManager authenticationManager) {
+    public AuthService(
+            AuthenticationManager authenticationManager,
+            JwtService jwtService
+    ) {
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
-    public Authentication authenticate(String username, String password) {
+    public String authenticate(String username, String password) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(
@@ -22,6 +27,11 @@ public class AuthService {
                         password
                 );
 
-        return authenticationManager.authenticate(authenticationToken);
+        Authentication authentication =
+                authenticationManager.authenticate(authenticationToken);
+
+        return jwtService.generateToken(
+                authentication.getName()
+        );
     }
 }

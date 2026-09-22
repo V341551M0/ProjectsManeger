@@ -47,9 +47,13 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .userDetailsService(userDetailsService)
+                
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/webhooks/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/webhooks/**"
+                                ).permitAll()
+                        .       anyRequest().authenticated()
                 );
 
         return http.build();
