@@ -1,10 +1,22 @@
 {
-    "name": "ProjectsManeger",
+    "name": "projectsmaneger",
     "verison": "1.0.0",
     "description": "",
-    "main": "",
+    "main": "index.js",
     "scripts": {},
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "version": "1.0.0",
+    "type": "commonjs",
+    "dependencies": {
+        "react-router-dom": "^7.18.4"
+    },
+    "devDependencies": {
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.1.1",
+        "typescript": "^7.0.2",
+        "vite": "^8.3.1"
+    }
 }
