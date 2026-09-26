@@ -2,9 +2,11 @@ package com.projectsmaneger.webhook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import com.projectsmaneger.security.UserDetailsServiceImpl;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import com.projectsmaneger.security.JwtService;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -22,6 +24,12 @@ class WebhookEventControllerTest {
 
     @MockBean
     private WebhookEventService webhookEventService;
+
+    @MockBean
+    private JwtService jwtService;
+    
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
     @Test
     void shouldReceiveGithubWebhook() throws Exception {

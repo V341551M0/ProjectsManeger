@@ -1,6 +1,8 @@
 package com.projectsmaneger.auth;
 
 import com.projectsmaneger.security.AuthService;
+import com.projectsmaneger.security.UserDetailsServiceImpl;
+import com.projectsmaneger.security.JwtService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,6 +25,12 @@ class AuthControllerTest {
 
     @MockBean
     private AuthService authService;
+
+    @MockBean
+    private JwtService jwtService;
+
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
     @Test
     void shouldLoginUser() throws Exception {
