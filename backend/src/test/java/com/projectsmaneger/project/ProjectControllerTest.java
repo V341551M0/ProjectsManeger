@@ -1,11 +1,11 @@
 package com.projectsmaneger.project;
 
+import com.projectsmaneger.security.JwtService;
+import com.projectsmaneger.security.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,15 +22,15 @@ class ProjectControllerTest {
     @MockBean
     private ProjectService projectService;
 
+    @MockBean
+    private JwtService jwtService;
+
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
+
     @Test
     @WithMockUser(username = "verissimo")
     void shouldReturnMyProject() throws Exception {
-
-        UserDetails user = User
-                .withUsername("verissimo")
-                .password("password")
-                .roles("USER")
-                .build();
 
         Project project = new Project(
                 null,

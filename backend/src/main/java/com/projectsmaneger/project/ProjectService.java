@@ -63,6 +63,26 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
+    public Project update(
+            String username,
+            Long projectId,
+            String name,
+            String description,
+            Project.Status status
+    ) {
+
+        Project project = findMyProject(
+                username,
+                projectId
+        );
+
+        project.setName(name);
+        project.setDescription(description);
+        project.setStatus(status);
+
+        return projectRepository.save(project);
+    }
+
     private User findUser(String username) {
 
         return userRepository.findByUsername(username)
