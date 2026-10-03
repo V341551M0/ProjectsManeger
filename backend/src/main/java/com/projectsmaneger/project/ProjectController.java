@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,21 @@ public class ProjectController {
         return ResponseEntity.ok(
                 projectService.findMyProjects(username)
         );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Project> findMyProject(
+            Authentication authentication,
+            @PathVariable Long id
+    ) {
+        String username = authentication.getName();
+
+        Project project = projectService.findMyProject(
+                username,
+                id
+        );
+
+        return ResponseEntity.ok(project);
     }
 
     @PostMapping

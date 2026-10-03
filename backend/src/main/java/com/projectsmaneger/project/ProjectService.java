@@ -23,14 +23,27 @@ public class ProjectService {
 
     public List<Project> findMyProjects(String username) {
 
-        User owner = userRepository.findByUsername(username)
-                .orElseThrow(() ->
-                        new IllegalArgumentException(
-                                "User not found: " + username
-                        )
-                );
+        User owner = findUser(username);
 
         return projectRepository.findByOwnerId(owner.getId());
+    }
+
+    public Project findMyProject(
+            String username,
+            Long projectId
+    ) {
+
+        User owner = findUser(username);
+
+        return projectRepository.findById(projectId)
+                .filter(project ->
+                        project.getOwner().getId().equals(owner.getId())
+                )
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Project not found"
+                        )
+                );
     }
 
     public Project create(
@@ -39,12 +52,7 @@ public class ProjectService {
             String description
     ) {
 
-        User owner = userRepository.findByUsername(username)
-                .orElseThrow(() ->
-                        new IllegalArgumentException(
-                                "User not found: " + username
-                        )
-                );
+        User owner = findUser(username);
 
         Project project = new Project(
                 owner,
@@ -53,5 +61,15 @@ public class ProjectService {
         );
 
         return projectRepository.save(project);
+    }
+
+    private User findUser(String username) {
+
+        return userRepository.findByUsername(username)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "User not found: " + username
+                        )
+                );
     }
 }
