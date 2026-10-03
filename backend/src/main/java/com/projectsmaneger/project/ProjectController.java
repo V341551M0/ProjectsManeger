@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,5 +64,24 @@ public class ProjectController {
         );
 
         return ResponseEntity.ok(project);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Project> update(
+            Authentication authentication,
+            @PathVariable Long id,
+            @Valid @RequestBody ProjectUpdateRequest request
+    ) {
+        String username = authentication.getName();
+
+        Project project = projectService.update(
+                username,
+                id,
+                request.name(),
+                request.description(),
+                request.status()
+        );  
+    
+    return ResponseEntity.ok(project);
     }
 }
