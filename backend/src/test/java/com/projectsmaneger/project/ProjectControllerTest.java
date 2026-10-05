@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.projectsmaneger.exception.ResourceNotFoundException;
 import com.projectsmaneger.security.JwtService;
 import com.projectsmaneger.security.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -144,5 +145,20 @@ class ProjectControllerTest {
 
     verify(projectService, never())
         .update(anyString(), anyLong(), anyString(), anyString(), any(Project.Status.class));
+  }
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldReturnNotFoundWhenProjectDoesNotExist() throws Exception {
+
+    when(projectService.findMyProject("verissimo", 1L))
+        .thenThrow(new ResourceNotFoundException("Project not found"));
+
+    mockMvc
+        .perform(get("/api/projects/1"))
+        .andExpect(status().isNotFound())
+        .andExpect(jsonPath("$.error").value("Project not found"));
+
+    verify(projectService).findMyProject("verissimo", 1L);
   }
 }

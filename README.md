@@ -10,64 +10,64 @@ O projeto está sendo desenvolvido como uma aplicação full-stack, com foco em 
 
 ### Backend
 
-* Java 21
-* Spring Boot 3.5
-* Spring Security
-* JWT
-* Spring Data JPA
-* PostgreSQL
-* Flyway
-* Maven
-* JUnit 5
-* Mockito
+- Java 21
+- Spring Boot 3.5
+- Spring Security
+- JWT
+- Spring Data JPA
+- PostgreSQL
+- Flyway
+- Maven
+- JUnit 5
+- Mockito
 
 ### Frontend
 
-* React
-* TypeScript
-* Vite
-* Tailwind CSS
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
 
 ### Infraestrutura
 
-* Docker
-* Docker Compose
-* Nginx
-* Terraform
+- Docker
+- Docker Compose
+- Nginx
+- Terraform
 
 ### Integrações
 
-* GitHub API
-* GitHub Webhooks
+- GitHub API
+- GitHub Webhooks
 
 ## Funcionalidades
 
 ### Projetos
 
-* Criar projetos
-* Listar projetos do usuário autenticado
-* Visualizar um projeto
-* Atualizar projetos
-* Excluir projetos
-* Controle de acesso por proprietário
+- Criar projetos
+- Listar projetos do usuário autenticado
+- Visualizar um projeto
+- Atualizar projetos
+- Excluir projetos
+- Controle de acesso por proprietário
 
 ### Autenticação
 
-* Login com usuário e senha
-* Senhas protegidas com BCrypt
-* Autenticação baseada em JWT
-* Rotas protegidas com Spring Security
+- Login com usuário e senha
+- Senhas protegidas com BCrypt
+- Autenticação baseada em JWT
+- Rotas protegidas com Spring Security
 
 ### GitHub
 
 A integração com o GitHub permitirá:
 
-* Vincular uma conta GitHub
-* Sincronizar repositórios
-* Consultar branches
-* Acompanhar commits
-* Acompanhar pull requests
-* Receber eventos através de webhooks
+- Vincular uma conta GitHub
+- Sincronizar repositórios
+- Consultar branches
+- Acompanhar commits
+- Acompanhar pull requests
+- Receber eventos através de webhooks
 
 ### Métricas
 
@@ -147,11 +147,11 @@ mvn test
 
 ### Pré-requisitos
 
-* Java 21
-* Maven
-* PostgreSQL
-* Node.js e npm
-* Git
+- Java 21
+- Maven
+- PostgreSQL
+- Node.js e npm
+- Git
 
 Configure as variáveis de ambiente necessárias para o backend:
 
@@ -179,39 +179,39 @@ http://localhost:8080
 
 O ProjectsManeger está sendo desenvolvido com os seguintes objetivos:
 
-* Praticar desenvolvimento backend com Java e Spring Boot
-* Aplicar conceitos de arquitetura e organização de software
-* Trabalhar com autenticação e autorização
-* Integrar uma aplicação com a API do GitHub
-* Trabalhar com PostgreSQL e migrations
-* Utilizar Docker para padronização do ambiente
-* Desenvolver uma interface web moderna em React
-* Criar uma aplicação que centralize informações relevantes sobre projetos de desenvolvimento
+- Praticar desenvolvimento backend com Java e Spring Boot
+- Aplicar conceitos de arquitetura e organização de software
+- Trabalhar com autenticação e autorização
+- Integrar uma aplicação com a API do GitHub
+- Trabalhar com PostgreSQL e migrations
+- Utilizar Docker para padronização do ambiente
+- Desenvolver uma interface web moderna em React
+- Criar uma aplicação que centralize informações relevantes sobre projetos de desenvolvimento
 
 ## Roadmap
 
-* [x] Estrutura inicial do projeto
-* [x] Configuração do Spring Boot
-* [x] PostgreSQL
-* [x] Flyway
-* [x] Modelagem inicial do banco
-* [x] Autenticação JWT
-* [x] CRUD de projetos
-* [x] Controle de ownership dos projetos
-* [x] Testes automatizados do CRUD
-* [ ] Tratamento global de exceções
-* [ ] DTOs de resposta
-* [ ] Integração completa com GitHub
-* [ ] Sincronização de repositórios
-* [ ] Commits e branches
-* [ ] Pull requests
-* [ ] Processamento de webhooks
-* [ ] Dashboard
-* [ ] Frontend completo
-* [ ] Dockerização completa
-* [ ] Nginx
-* [ ] Terraform
-* [ ] Deploy
+- [x] Estrutura inicial do projeto
+- [x] Configuração do Spring Boot
+- [x] PostgreSQL
+- [x] Flyway
+- [x] Modelagem inicial do banco
+- [x] Autenticação JWT
+- [x] CRUD de projetos
+- [x] Controle de ownership dos projetos
+- [x] Testes automatizados do CRUD
+- [ ] Tratamento global de exceções
+- [ ] DTOs de resposta
+- [ ] Integração completa com GitHub
+- [ ] Sincronização de repositórios
+- [ ] Commits e branches
+- [ ] Pull requests
+- [ ] Processamento de webhooks
+- [ ] Dashboard
+- [ ] Frontend completo
+- [ ] Dockerização completa
+- [ ] Nginx
+- [ ] Terraform
+- [ ] Deploy
 
 ## Licença
 

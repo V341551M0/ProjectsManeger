@@ -1,5 +1,6 @@
 package com.projectsmaneger.project;
 
+import com.projectsmaneger.exception.ResourceNotFoundException;
 import com.projectsmaneger.user.User;
 import com.projectsmaneger.user.UserRepository;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ProjectService {
     return projectRepository
         .findById(projectId)
         .filter(project -> project.getOwner().getId().equals(owner.getId()))
-        .orElseThrow(() -> new IllegalArgumentException("Project not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("Project not found"));
   }
 
   public Project create(String username, String name, String description) {
@@ -58,7 +59,7 @@ public class ProjectService {
 
     return userRepository
         .findByUsername(username)
-        .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
+        .orElseThrow(() -> new ResourceNotFoundException("User not found: " + username));
   }
 
   public void delete(String username, Long projectId) {

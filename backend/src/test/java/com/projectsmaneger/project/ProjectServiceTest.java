@@ -8,6 +8,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.projectsmaneger.exception.ResourceNotFoundException;
 import com.projectsmaneger.user.User;
 import com.projectsmaneger.user.UserRepository;
 import java.util.Optional;
@@ -71,9 +72,9 @@ class ProjectServiceTest {
 
     when(projectRepository.findById(1L)).thenReturn(Optional.of(project));
 
-    IllegalArgumentException exception =
+    ResourceNotFoundException exception =
         assertThrows(
-            IllegalArgumentException.class, () -> projectService.findMyProject("verissimo", 1L));
+            ResourceNotFoundException.class, () -> projectService.findMyProject("verissimo", 1L));
 
     assertEquals("Project not found", exception.getMessage());
 
@@ -88,9 +89,9 @@ class ProjectServiceTest {
 
     when(projectRepository.findById(1L)).thenReturn(Optional.empty());
 
-    IllegalArgumentException exception =
+    ResourceNotFoundException exception =
         assertThrows(
-            IllegalArgumentException.class, () -> projectService.findMyProject("verissimo", 1L));
+            ResourceNotFoundException.class, () -> projectService.findMyProject("verissimo", 1L));
 
     assertEquals("Project not found", exception.getMessage());
 
@@ -139,9 +140,9 @@ class ProjectServiceTest {
 
     when(projectRepository.findById(1L)).thenReturn(Optional.of(project));
 
-    IllegalArgumentException exception =
+    ResourceNotFoundException exception =
         assertThrows(
-            IllegalArgumentException.class,
+            ResourceNotFoundException.class,
             () ->
                 projectService.update(
                     "verissimo",
@@ -184,8 +185,8 @@ class ProjectServiceTest {
 
     when(projectRepository.findById(1L)).thenReturn(Optional.of(project));
 
-    IllegalArgumentException exception =
-        assertThrows(IllegalArgumentException.class, () -> projectService.delete("verissimo", 1L));
+    ResourceNotFoundException exception =
+        assertThrows(ResourceNotFoundException.class, () -> projectService.delete("verissimo", 1L));
 
     assertEquals("Project not found", exception.getMessage());
 
