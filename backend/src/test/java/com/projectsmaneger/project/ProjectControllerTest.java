@@ -2,6 +2,7 @@ package com.projectsmaneger.project;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -84,5 +85,16 @@ class ProjectControllerTest {
             "ProjectsManeger Updated",
             "Updated project description",
             Project.Status.ACTIVE);
+  }
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldDeleteMyProject() throws Exception {
+
+    doNothing().when(projectService).delete("verissimo", 1L);
+
+    mockMvc.perform(delete("/api/projects/1").with(csrf())).andExpect(status().isNoContent());
+
+    verify(projectService).delete("verissimo", 1L);
   }
 }
