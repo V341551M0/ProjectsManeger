@@ -131,4 +131,77 @@ class ProjectServiceTest {
         verify(userRepository).findByUsername("verissimo");
         verify(projectRepository).findById(1L);
     }
+
+    @Test
+    void shouldUpdateProjectWhenItBelongsToAuthenticatedUser() {
+
+        when(owner.getId()).thenReturn(1L);
+
+        when(userRepository.findByUsername("verissimo"))
+                    .thenReturn(Optional.of(owner));
+
+        when(projectRepository.findById(1L))
+                .thenReturn(Optional.of(project));
+
+        when(projectRepository.save(project))
+                .thenReturn(project);
+
+        Project result = projectService.update(
+                "verissimo",
+                1L,
+                "ProjectsManeger Updated",
+                "Updated project description",
+                Project.Status.ACTIVE
+        );
+
+        assertNotNull(result);
+        assertEquals("ProjectsManeger Updated", result.getName());
+        assertEquals(
+                    "Updated project description",
+                result.getDescription()
+        );
+        assertEquals(
+                    Project.Status.ACTIVE,
+                result.getStatus()
+        );
+
+        verify(userRepository).findByUsername("verissimo");
+        verify(projectRepository).findById(1L);
+        verify(projectRepository).save(project);
+        }
+
+     @Test
+     void shouldRejectUpdateWhenProjectBelongsToAnotherUser() {
+
+                when(owner.getId()).thenReturn(1L);
+                when(anotherUser.getId()).thenReturn(2L);
+
+                project.setOwner(anotherUser);
+
+        when(userRepository.findByUsername("verissimo"))
+                    .thenReturn(Optional.of(owner));
+
+        when(projectRepository.findById(1L))
+                    .thenReturn(Optional.of(project));
+
+        IllegalArgumentException exception =
+                    assertThrows(
+                            IllegalArgumentException.class,
+                        () -> projectService.update(
+                                    "verissimo",
+                                    1L,
+                                    "ProjectsManeger Updated",
+                                    "Updated project description",
+                                    Project.Status.ACTIVE
+                            )
+                    );
+
+        assertEquals(
+                    "Project not found",
+                exception.getMessage()
+        );
+
+        verify(userRepository).findByUsername("verissimo");
+        verify(projectRepository).findById(1L);
+     }
 }

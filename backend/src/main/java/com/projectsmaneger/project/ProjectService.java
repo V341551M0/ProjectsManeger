@@ -92,4 +92,12 @@ public class ProjectService {
                         )
                 );
     }
+
+    public void delete( String username, Long projectId) {
+        Project project = findMyProject(
+                username,
+                projectId
+        );
+        projectRepository.delete(project);
+    }
 }
