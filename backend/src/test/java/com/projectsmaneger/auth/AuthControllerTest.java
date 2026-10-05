@@ -1,14 +1,5 @@
 package com.projectsmaneger.auth;
 
-import com.projectsmaneger.security.AuthService;
-import com.projectsmaneger.security.UserDetailsServiceImpl;
-import com.projectsmaneger.security.JwtService;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -17,40 +8,45 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.projectsmaneger.security.AuthService;
+import com.projectsmaneger.security.JwtService;
+import com.projectsmaneger.security.UserDetailsServiceImpl;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
 @WebMvcTest(AuthController.class)
 class AuthControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-    @MockBean
-    private AuthService authService;
+  @MockBean private AuthService authService;
 
-    @MockBean
-    private JwtService jwtService;
+  @MockBean private JwtService jwtService;
 
-    @MockBean
-    private UserDetailsServiceImpl userDetailsService;
+  @MockBean private UserDetailsServiceImpl userDetailsService;
 
-    @Test
-    void shouldLoginUser() throws Exception {
+  @Test
+  void shouldLoginUser() throws Exception {
 
-        when(authService.authenticate(any(String.class), any(String.class)))
-                .thenReturn("jwt-token");
+    when(authService.authenticate(any(String.class), any(String.class))).thenReturn("jwt-token");
 
-        mockMvc.perform(
-                post("/api/auth/login")
-                        .with(csrf())
-                        .with(user("verissimo"))
-                        .contentType("application/json")
-                        .content("""
+    mockMvc
+        .perform(
+            post("/api/auth/login")
+                .with(csrf())
+                .with(user("verissimo"))
+                .contentType("application/json")
+                .content(
+                    """
                                 {
                                     "username": "verissimo",
                                     "password": "senha"
                                 }
-                                """)
-        )
+                                """))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.token").value("jwt-token"));
-    }
+  }
 }

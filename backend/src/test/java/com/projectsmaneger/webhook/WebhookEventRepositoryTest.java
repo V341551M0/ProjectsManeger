@@ -1,17 +1,8 @@
 package com.projectsmaneger.webhook;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,109 +12,105 @@ import com.projectsmaneger.repository.Repository;
 import com.projectsmaneger.repository.RepositoryRepository;
 import com.projectsmaneger.user.User;
 import com.projectsmaneger.user.UserRepository;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class WebhookEventRepositoryTest {
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
-    @Autowired
-    private GitHubAccountRepository githubAccountRepository;
+  @Autowired private GitHubAccountRepository githubAccountRepository;
 
-    @Autowired
-    private RepositoryRepository repositoryRepository;
+  @Autowired private RepositoryRepository repositoryRepository;
 
-    @Autowired
-    private WebhookEventRepository webhookEventRepository;
+  @Autowired private WebhookEventRepository webhookEventRepository;
 
-    @Test
-    void shouldPersistAndFindWebhookEvents() throws Exception {
-        String suffix = UUID.randomUUID()
-            .toString()
-            .substring(0, 8);
+  @Test
+  void shouldPersistAndFindWebhookEvents() throws Exception {
+    String suffix = UUID.randomUUID().toString().substring(0, 8);
 
-        User user = new User(
+    User user =
+        new User(
             "test-webhook-user-" + suffix,
             "test-webhook-user-" + suffix + "@example.com",
-            "hashed-password"
-        );
+            "hashed-password");
 
-        User savedUser = userRepository.saveAndFlush(user);
+    User savedUser = userRepository.saveAndFlush(user);
 
-        GitHubAccount githubAccount = new GitHubAccount(
-                savedUser,
-                987654321L,
-                "test-repository-user",
-                "Test Repository User",
-                "https://github.com/images/test.png",
-                "test-access-token"
-        );
+    GitHubAccount githubAccount =
+        new GitHubAccount(
+            savedUser,
+            987654321L,
+            "test-repository-user",
+            "Test Repository User",
+            "https://github.com/images/test.png",
+            "test-access-token");
 
-        GitHubAccount savedAccount =
-            githubAccountRepository.saveAndFlush(githubAccount);
+    GitHubAccount savedAccount = githubAccountRepository.saveAndFlush(githubAccount);
 
-        Instant repositoryCreatedAt = Instant.now().minusSeconds(7200);
-        Instant repositoryUpdatedAt = Instant.now().minusSeconds(3600);
+    Instant repositoryCreatedAt = Instant.now().minusSeconds(7200);
+    Instant repositoryUpdatedAt = Instant.now().minusSeconds(3600);
 
-        Repository repository = new Repository(
+    Repository repository =
+        new Repository(
             savedAccount,
-                100000001L,
-                "projectsmaneger",
-                "test-repository-user/projectsmaneger",
-                "Test project",
-                "https://github.com/test-repository-user/projectsmaneger",
-                "main",
-                false,
-                false,
-                repositoryCreatedAt,
-                repositoryUpdatedAt,
-                repositoryUpdatedAt
-        );
+            100000001L,
+            "projectsmaneger",
+            "test-repository-user/projectsmaneger",
+            "Test project",
+            "https://github.com/test-repository-user/projectsmaneger",
+            "main",
+            false,
+            false,
+            repositoryCreatedAt,
+            repositoryUpdatedAt,
+            repositoryUpdatedAt);
 
-        Repository savedRepository =
-            repositoryRepository.saveAndFlush(repository);
+    Repository savedRepository = repositoryRepository.saveAndFlush(repository);
 
-        ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = "{\"action\":\"created\",\"repository\":\"projectsmaneger\"}";
+    String json = "{\"action\":\"created\",\"repository\":\"projectsmaneger\"}";
 
-        JsonNode payload = objectMapper.readTree(json);
+    JsonNode payload = objectMapper.readTree(json);
 
-        WebhookEvent webhookEvent = new WebhookEvent(
+    WebhookEvent webhookEvent =
+        new WebhookEvent(
             savedRepository,
             "delivery-001",
             "pull_request",
             "created",
             payload,
             WebhookEvent.ProcessingStatus.RECEIVED,
-            null
-        );
+            null);
 
-        WebhookEvent savedWebhookEvent = 
-            webhookEventRepository.saveAndFlush(webhookEvent);
+    WebhookEvent savedWebhookEvent = webhookEventRepository.saveAndFlush(webhookEvent);
 
-        assertNotNull(savedWebhookEvent.getId());
-    
-        Optional<WebhookEvent> foundByDeliveryId =
-            webhookEventRepository.findByGithubDeliveryId("delivery-001");
-    
-        assertTrue(foundByDeliveryId.isPresent());
+    assertNotNull(savedWebhookEvent.getId());
 
-        WebhookEvent foundWebhookEvent = foundByDeliveryId.get();
+    Optional<WebhookEvent> foundByDeliveryId =
+        webhookEventRepository.findByGithubDeliveryId("delivery-001");
 
-        assertEquals(savedWebhookEvent.getId(), foundWebhookEvent.getId());
+    assertTrue(foundByDeliveryId.isPresent());
 
-        List<WebhookEvent> eventsByRepository =
-            webhookEventRepository.findByRepositoryId(savedRepository.getId());
+    WebhookEvent foundWebhookEvent = foundByDeliveryId.get();
 
-        assertEquals(1, eventsByRepository.size());
+    assertEquals(savedWebhookEvent.getId(), foundWebhookEvent.getId());
 
-        assertEquals(payload, foundWebhookEvent.getPayload());
+    List<WebhookEvent> eventsByRepository =
+        webhookEventRepository.findByRepositoryId(savedRepository.getId());
 
-        assertEquals(
-            WebhookEvent.ProcessingStatus.RECEIVED,
-            foundWebhookEvent.getProcessingStatus()
-        );
-    }
+    assertEquals(1, eventsByRepository.size());
+
+    assertEquals(payload, foundWebhookEvent.getPayload());
+
+    assertEquals(WebhookEvent.ProcessingStatus.RECEIVED, foundWebhookEvent.getProcessingStatus());
+  }
 }

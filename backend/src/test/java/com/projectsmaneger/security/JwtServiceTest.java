@@ -4,74 +4,56 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 class JwtServiceTest {
 
-    @Test
-    void shouldGenerateValidToken() {
+  @Test
+  void shouldGenerateValidToken() {
 
-        String secret =
-                "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
+    String secret = "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
 
-        JwtService jwtService =
-                new JwtService(secret);
+    JwtService jwtService = new JwtService(secret);
 
-        String token =
-                jwtService.generateToken("verissimo");
+    String token = jwtService.generateToken("verissimo");
 
-        assertNotNull(token);
-        assertFalse(token.isBlank());
+    assertNotNull(token);
+    assertFalse(token.isBlank());
 
-        String[] parts =
-                token.split("\\.");
+    String[] parts = token.split("\\.");
 
-        assertEquals(3, parts.length);
-    }
+    assertEquals(3, parts.length);
+  }
 
-    @Test
-    void shouldExtractUsernameFromToken() {
+  @Test
+  void shouldExtractUsernameFromToken() {
 
-        String secret =
-                "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
+    String secret = "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
 
-        JwtService jwtService =
-                new JwtService(secret);
+    JwtService jwtService = new JwtService(secret);
 
-        String token =
-                jwtService.generateToken("verissimo");
+    String token = jwtService.generateToken("verissimo");
 
-        String username =
-                jwtService.extractUsername(token);
+    String username = jwtService.extractUsername(token);
 
-        assertEquals("verissimo", username);
-    }
+    assertEquals("verissimo", username);
+  }
 
-    @Test
-    void shouldValidateToken() {
+  @Test
+  void shouldValidateToken() {
 
-        String secret =
-                "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
+    String secret = "ajbsajBAKSnkjsBJABSjkcbaBKJASBKJABSKKJKJ";
 
-        JwtService jwtService =
-                new JwtService(secret);
+    JwtService jwtService = new JwtService(secret);
 
-        String token =
-                jwtService.generateToken("verissimo");
+    String token = jwtService.generateToken("verissimo");
 
-        UserDetails userDetails =
-                User.withUsername("verissimo")
-                        .password("senha")
-                        .roles("USER")
-                        .build();
+    UserDetails userDetails =
+        User.withUsername("verissimo").password("senha").roles("USER").build();
 
-        assertTrue(
-                jwtService.isTokenValid(
-                        token,
-                        userDetails
-                )
-        );
-    }
+    assertTrue(jwtService.isTokenValid(token, userDetails));
+  }
 }

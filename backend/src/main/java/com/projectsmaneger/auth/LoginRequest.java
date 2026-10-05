@@ -1,8 +1,3 @@
 package com.projectsmaneger.auth;
 
-public record LoginRequest (
-    String username,
-    String password
-) {
-    
-}
+public record LoginRequest(String username, String password) {}

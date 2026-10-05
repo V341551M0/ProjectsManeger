@@ -3,7 +3,7 @@
         "prettier": "^3.9.6"
     },
     "scripts": {
-        "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format": "prettier --write . && mvn -f backend/pom.xml spotless:apply",
+        "format:check": "prettier --check . && mvn -f backend/pom.xml spotless:check"
     }
 }
