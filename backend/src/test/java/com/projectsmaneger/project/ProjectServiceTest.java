@@ -3,6 +3,7 @@ package com.projectsmaneger.project;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -153,5 +154,43 @@ class ProjectServiceTest {
 
     verify(userRepository).findByUsername("verissimo");
     verify(projectRepository).findById(1L);
+  }
+
+  @Test
+  void shouldDeleteProjectWhenItBelongsToAuthenticatedUser() {
+
+    when(owner.getId()).thenReturn(1L);
+
+    when(userRepository.findByUsername("verissimo")).thenReturn(Optional.of(owner));
+
+    when(projectRepository.findById(1L)).thenReturn(Optional.of(project));
+
+    projectService.delete("verissimo", 1L);
+
+    verify(userRepository).findByUsername("verissimo");
+    verify(projectRepository).findById(1L);
+    verify(projectRepository).delete(project);
+  }
+
+  @Test
+  void shouldRejectDeleteWhenProjectBelongsToAnotherUser() {
+
+    when(owner.getId()).thenReturn(1L);
+    when(anotherUser.getId()).thenReturn(2L);
+
+    project.setOwner(anotherUser);
+
+    when(userRepository.findByUsername("verissimo")).thenReturn(Optional.of(owner));
+
+    when(projectRepository.findById(1L)).thenReturn(Optional.of(project));
+
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> projectService.delete("verissimo", 1L));
+
+    assertEquals("Project not found", exception.getMessage());
+
+    verify(userRepository).findByUsername("verissimo");
+    verify(projectRepository).findById(1L);
+    verify(projectRepository, never()).delete(project);
   }
 }

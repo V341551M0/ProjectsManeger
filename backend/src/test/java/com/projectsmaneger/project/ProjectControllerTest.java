@@ -1,9 +1,13 @@
 package com.projectsmaneger.project;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -96,5 +100,49 @@ class ProjectControllerTest {
     mockMvc.perform(delete("/api/projects/1").with(csrf())).andExpect(status().isNoContent());
 
     verify(projectService).delete("verissimo", 1L);
+  }
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldRejectProjectCreationWhenNameIsBlank() throws Exception {
+
+    mockMvc
+        .perform(
+            post("/api/projects")
+                .with(csrf())
+                .contentType("application/json")
+                .content(
+                    """
+                            {
+                                "name": "",
+                                "description": "Invalid project"
+                            }
+                            """))
+        .andExpect(status().isBadRequest());
+
+    verify(projectService, never()).create(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldRejectProjectUpdateWhenNameIsBlank() throws Exception {
+
+    mockMvc
+        .perform(
+            put("/api/projects/1")
+                .with(csrf())
+                .contentType("application/json")
+                .content(
+                    """
+                            {
+                                "name": "",
+                                "description": "Invalid project",
+                                "status": "ACTIVE"
+                            }
+                            """))
+        .andExpect(status().isBadRequest());
+
+    verify(projectService, never())
+        .update(anyString(), anyLong(), anyString(), anyString(), any(Project.Status.class));
   }
 }
