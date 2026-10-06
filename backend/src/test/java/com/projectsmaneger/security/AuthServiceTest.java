@@ -1,70 +1,45 @@
 package com.projectsmaneger.security;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.projectsmaneger.user.UserRepository;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
-import com.projectsmaneger.user.UserRepository;
 
 class AuthServiceTest {
 
   @Test
   void shouldAuthenticateUserAndGenerateToken() {
 
-    AuthenticationManager authenticationManager =
-        mock(AuthenticationManager.class);
+    AuthenticationManager authenticationManager = mock(AuthenticationManager.class);
 
-    Authentication authentication =
-        mock(Authentication.class);
+    Authentication authentication = mock(Authentication.class);
 
-    JwtService jwtService =
-        mock(JwtService.class);
+    JwtService jwtService = mock(JwtService.class);
 
-    UserRepository userRepository =
-        mock(UserRepository.class);
+    UserRepository userRepository = mock(UserRepository.class);
 
-    when(
-        authenticationManager.authenticate(
-            any(UsernamePasswordAuthenticationToken.class)
-        )
-    ).thenReturn(authentication);
+    when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+        .thenReturn(authentication);
 
-    when(authentication.getName())
-        .thenReturn("verissimo");
+    when(authentication.getName()).thenReturn("verissimo");
 
-    when(jwtService.generateToken("verissimo"))
-        .thenReturn("jwt-token");
+    when(jwtService.generateToken("verissimo")).thenReturn("jwt-token");
 
-    AuthService authService =
-        new AuthService(
-            authenticationManager,
-            jwtService,
-            userRepository
-        );
+    AuthService authService = new AuthService(authenticationManager, jwtService, userRepository);
 
-    String result =
-        authService.authenticate(
-            "verissimo",
-            "senha"
-        );
+    String result = authService.authenticate("verissimo", "senha");
 
-    assertEquals(
-        "jwt-token",
-        result
-    );
+    assertEquals("jwt-token", result);
 
-    verify(authenticationManager)
-        .authenticate(
-            any(UsernamePasswordAuthenticationToken.class)
-        );
+    verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
 
-    verify(jwtService)
-        .generateToken("verissimo");
+    verify(jwtService).generateToken("verissimo");
   }
 }
