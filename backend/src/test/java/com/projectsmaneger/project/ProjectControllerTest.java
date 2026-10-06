@@ -1,164 +1,229 @@
 package com.projectsmaneger.project;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import com.projectsmaneger.exception.ResourceNotFoundException;
 import com.projectsmaneger.security.JwtService;
 import com.projectsmaneger.security.UserDetailsServiceImpl;
+
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.Instant;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @WebMvcTest(ProjectController.class)
 class ProjectControllerTest {
 
-  @Autowired private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-  @MockBean private ProjectService projectService;
+    @MockBean
+    private ProjectService projectService;
 
-  @MockBean private JwtService jwtService;
+    @MockBean
+    private JwtService jwtService;
 
-  @MockBean private UserDetailsServiceImpl userDetailsService;
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldReturnMyProject() throws Exception {
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldReturnMyProject() throws Exception {
 
-    Project project = new Project(null, "ProjectsManeger", "Personal project manager");
+        ProjectResponse project = new ProjectResponse(
+                1L,
+                "ProjectsManeger",
+                "Personal project manager",
+                Project.Status.ACTIVE,
+                Instant.now(),
+                Instant.now()
+        );
 
-    when(projectService.findMyProject("verissimo", 1L)).thenReturn(project);
+        when(projectService.findMyProject(
+                "verissimo",
+                1L
+        )).thenReturn(project);
 
-    mockMvc
-        .perform(get("/api/projects/1"))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name").value("ProjectsManeger"))
-        .andExpect(jsonPath("$.description").value("Personal project manager"));
+        mockMvc.perform(
+                get("/api/projects/1")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name")
+                        .value("ProjectsManeger"))
+                .andExpect(jsonPath("$.description")
+                        .value("Personal project manager"))
+                .andExpect(jsonPath("$.status")
+                        .value("ACTIVE"));
 
-    verify(projectService).findMyProject("verissimo", 1L);
-  }
+        verify(projectService).findMyProject(
+                "verissimo",
+                1L
+        );
+    }
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldUpdateMyProject() throws Exception {
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldUpdateMyProject() throws Exception {
 
-    Project project = new Project(null, "ProjectsManeger Updated", "Updated project description");
+        ProjectResponse project = new ProjectResponse(
+                1L,
+                "ProjectsManeger Updated",
+                "Updated project description",
+                Project.Status.ACTIVE,
+                Instant.now(),
+                Instant.now()
+        );
 
-    project.setStatus(Project.Status.ACTIVE);
+        when(projectService.update(
+                "verissimo",
+                1L,
+                "ProjectsManeger Updated",
+                "Updated project description",
+                Project.Status.ACTIVE
+        )).thenReturn(project);
 
-    when(projectService.update(
-            "verissimo",
-            1L,
-            "ProjectsManeger Updated",
-            "Updated project description",
-            Project.Status.ACTIVE))
-        .thenReturn(project);
-
-    mockMvc
-        .perform(
-            put("/api/projects/1")
-                .with(csrf())
-                .contentType("application/json")
-                .content(
-                    """
+        mockMvc.perform(
+                put("/api/projects/1")
+                        .with(csrf())
+                        .contentType("application/json")
+                        .content("""
                                 {
-                                        "name": "ProjectsManeger Updated",
-                                        "description": "Updated project description",
-                                        "status": "ACTIVE"
-                                    }
-                                    """))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name").value("ProjectsManeger Updated"))
-        .andExpect(jsonPath("$.description").value("Updated project description"))
-        .andExpect(jsonPath("$.status").value("ACTIVE"));
+                                    "name": "ProjectsManeger Updated",
+                                    "description": "Updated project description",
+                                    "status": "ACTIVE"
+                                }
+                                """)
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name")
+                        .value("ProjectsManeger Updated"))
+                .andExpect(jsonPath("$.description")
+                        .value("Updated project description"))
+                .andExpect(jsonPath("$.status")
+                        .value("ACTIVE"));
 
-    verify(projectService)
-        .update(
-            "verissimo",
-            1L,
-            "ProjectsManeger Updated",
-            "Updated project description",
-            Project.Status.ACTIVE);
-  }
+        verify(projectService).update(
+                "verissimo",
+                1L,
+                "ProjectsManeger Updated",
+                "Updated project description",
+                Project.Status.ACTIVE
+        );
+    }
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldDeleteMyProject() throws Exception {
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldRejectProjectCreationWhenNameIsBlank() throws Exception {
 
-    doNothing().when(projectService).delete("verissimo", 1L);
+        mockMvc.perform(
+                post("/api/projects")
+                        .with(csrf())
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                    "name": "",
+                                    "description": "Invalid project"
+                                }
+                                """)
+        )
+                .andExpect(status().isBadRequest());
 
-    mockMvc.perform(delete("/api/projects/1").with(csrf())).andExpect(status().isNoContent());
+        verify(projectService, never()).create(
+                anyString(),
+                anyString(),
+                anyString()
+        );
+    }
 
-    verify(projectService).delete("verissimo", 1L);
-  }
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldRejectProjectUpdateWhenNameIsBlank() throws Exception {
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldRejectProjectCreationWhenNameIsBlank() throws Exception {
+        mockMvc.perform(
+                put("/api/projects/1")
+                        .with(csrf())
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                    "name": "",
+                                    "description": "Invalid project",
+                                    "status": "ACTIVE"
+                                }
+                                """)
+        )
+                .andExpect(status().isBadRequest());
 
-    mockMvc
-        .perform(
-            post("/api/projects")
-                .with(csrf())
-                .contentType("application/json")
-                .content(
-                    """
-                            {
-                                "name": "",
-                                "description": "Invalid project"
-                            }
-                            """))
-        .andExpect(status().isBadRequest());
+        verify(projectService, never()).update(
+                anyString(),
+                anyLong(),
+                anyString(),
+                anyString(),
+                any(Project.Status.class)
+        );
+    }
 
-    verify(projectService, never()).create(anyString(), anyString(), anyString());
-  }
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldDeleteMyProject() throws Exception {
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldRejectProjectUpdateWhenNameIsBlank() throws Exception {
+        doNothing().when(projectService)
+                .delete("verissimo", 1L);
 
-    mockMvc
-        .perform(
-            put("/api/projects/1")
-                .with(csrf())
-                .contentType("application/json")
-                .content(
-                    """
-                            {
-                                "name": "",
-                                "description": "Invalid project",
-                                "status": "ACTIVE"
-                            }
-                            """))
-        .andExpect(status().isBadRequest());
+        mockMvc.perform(
+                delete("/api/projects/1")
+                        .with(csrf())
+        )
+                .andExpect(status().isNoContent());
 
-    verify(projectService, never())
-        .update(anyString(), anyLong(), anyString(), anyString(), any(Project.Status.class));
-  }
+        verify(projectService)
+                .delete("verissimo", 1L);
+    }
 
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldReturnNotFoundWhenProjectDoesNotExist() throws Exception {
+    @Test
+    @WithMockUser(username = "verissimo")
+    void shouldReturnNotFoundWhenProjectDoesNotExist() throws Exception {
 
-    when(projectService.findMyProject("verissimo", 1L))
-        .thenThrow(new ResourceNotFoundException("Project not found"));
+        when(projectService.findMyProject(
+                "verissimo",
+                1L
+        )).thenThrow(
+                new ResourceNotFoundException(
+                        "Project not found"
+                )
+        );
 
-    mockMvc
-        .perform(get("/api/projects/1"))
-        .andExpect(status().isNotFound())
-        .andExpect(jsonPath("$.error").value("Project not found"));
+        mockMvc.perform(
+                get("/api/projects/1")
+        )
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error")
+                        .value("Project not found"));
 
-    verify(projectService).findMyProject("verissimo", 1L);
-  }
+        verify(projectService).findMyProject(
+                "verissimo",
+                1L
+        );
+    }
 }
