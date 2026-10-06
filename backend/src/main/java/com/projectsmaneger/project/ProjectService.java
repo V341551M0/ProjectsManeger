@@ -17,14 +17,19 @@ public class ProjectService {
     this.userRepository = userRepository;
   }
 
-  public List<Project> findMyProjects(String username) {
+  public List<ProjectResponse> findMyProjects(String username) {
 
     User owner = findUser(username);
 
-    return projectRepository.findByOwnerId(owner.getId());
+    return projectRepository.findByOwnerId(owner.getId()).stream().map(this::toResponse).toList();
   }
 
-  public Project findMyProject(String username, Long projectId) {
+  public ProjectResponse findMyProject(String username, Long projectId) {
+
+    return toResponse(findProject(username, projectId));
+  }
+
+  private Project findProject(String username, Long projectId) {
 
     User owner = findUser(username);
 
@@ -34,25 +39,43 @@ public class ProjectService {
         .orElseThrow(() -> new ResourceNotFoundException("Project not found"));
   }
 
-  public Project create(String username, String name, String description) {
+  public ProjectResponse create(String username, String name, String description) {
 
     User owner = findUser(username);
 
     Project project = new Project(owner, name, description);
 
-    return projectRepository.save(project);
+    return toResponse(projectRepository.save(project));
   }
 
-  public Project update(
+  public ProjectResponse update(
       String username, Long projectId, String name, String description, Project.Status status) {
 
-    Project project = findMyProject(username, projectId);
+    Project project = findProject(username, projectId);
 
     project.setName(name);
     project.setDescription(description);
     project.setStatus(status);
 
-    return projectRepository.save(project);
+    return toResponse(projectRepository.save(project));
+  }
+
+  public void delete(String username, Long projectId) {
+
+    Project project = findProject(username, projectId);
+
+    projectRepository.delete(project);
+  }
+
+  private ProjectResponse toResponse(Project project) {
+
+    return new ProjectResponse(
+        project.getId(),
+        project.getName(),
+        project.getDescription(),
+        project.getStatus(),
+        project.getCreatedAt(),
+        project.getUpdatedAt());
   }
 
   private User findUser(String username) {
@@ -60,10 +83,5 @@ public class ProjectService {
     return userRepository
         .findByUsername(username)
         .orElseThrow(() -> new ResourceNotFoundException("User not found: " + username));
-  }
-
-  public void delete(String username, Long projectId) {
-    Project project = findMyProject(username, projectId);
-    projectRepository.delete(project);
   }
 }

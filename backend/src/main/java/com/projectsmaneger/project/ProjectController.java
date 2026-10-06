@@ -24,40 +24,41 @@ public class ProjectController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Project>> findMyProjects(Authentication authentication) {
+  public ResponseEntity<List<ProjectResponse>> findMyProjects(Authentication authentication) {
     String username = authentication.getName();
 
     return ResponseEntity.ok(projectService.findMyProjects(username));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Project> findMyProject(
+  public ResponseEntity<ProjectResponse> findMyProject(
       Authentication authentication, @PathVariable Long id) {
     String username = authentication.getName();
 
-    Project project = projectService.findMyProject(username, id);
+    ProjectResponse project = projectService.findMyProject(username, id);
 
     return ResponseEntity.ok(project);
   }
 
   @PostMapping
-  public ResponseEntity<Project> create(
+  public ResponseEntity<ProjectResponse> create(
       Authentication authentication, @Valid @RequestBody ProjectCreateRequest request) {
     String username = authentication.getName();
 
-    Project project = projectService.create(username, request.name(), request.description());
+    ProjectResponse project =
+        projectService.create(username, request.name(), request.description());
 
     return ResponseEntity.ok(project);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Project> update(
+  public ResponseEntity<ProjectResponse> update(
       Authentication authentication,
       @PathVariable Long id,
       @Valid @RequestBody ProjectUpdateRequest request) {
     String username = authentication.getName();
 
-    Project project =
+    ProjectResponse project =
         projectService.update(
             username, id, request.name(), request.description(), request.status());
 
