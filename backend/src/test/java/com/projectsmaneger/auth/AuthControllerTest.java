@@ -97,7 +97,8 @@ class AuthControllerTest {
                     }
                     """))
         .andExpect(status().isUnauthorized())
-        .andExpect(jsonPath("$.error").value("Invalid username or password"));
+        .andExpect(jsonPath("$.error").value("Unauthorized"))
+        .andExpect(jsonPath("$.message").value("Invalid username or password"));
 
     verify(authService).authenticate("verissimo", "senha");
   }

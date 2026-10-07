@@ -57,7 +57,8 @@ class ProjectControllerTest {
                     }
                     """))
         .andExpect(status().isBadRequest())
-        .andExpect(jsonPath("$.error").value("Validation failed"))
+        .andExpect(jsonPath("$.error").value("Bad Request"))
+        .andExpect(jsonPath("$.message").value("Validation failed"))
         .andExpect(jsonPath("$.fields.name").value("must not be blank"));
 
     verify(projectService, never()).create(anyString(), anyString(), anyString());
@@ -81,7 +82,8 @@ class ProjectControllerTest {
                     }
                     """))
         .andExpect(status().isBadRequest())
-        .andExpect(jsonPath("$.error").value("Validation failed"))
+        .andExpect(jsonPath("$.error").value("Bad Request"))
+        .andExpect(jsonPath("$.message").value("Validation failed"))
         .andExpect(jsonPath("$.fields.name").value("must not be blank"));
 
     verify(projectService, never())
@@ -182,7 +184,8 @@ class ProjectControllerTest {
     mockMvc
         .perform(get("/api/projects/1"))
         .andExpect(status().isNotFound())
-        .andExpect(jsonPath("$.error").value("Project not found"));
+        .andExpect(jsonPath("$.error").value("Resource not found"))
+        .andExpect(jsonPath("$.message").value("Project not found"));
 
     verify(projectService).findMyProject("verissimo", 1L);
   }
