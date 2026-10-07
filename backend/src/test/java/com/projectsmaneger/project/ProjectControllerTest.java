@@ -26,7 +26,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(ProjectController.class)
+@WebMvcTest(value = ProjectController.class, properties = "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration")
 class ProjectControllerTest {
 
   @Autowired private MockMvc mockMvc;
@@ -36,6 +36,54 @@ class ProjectControllerTest {
   @MockBean private JwtService jwtService;
 
   @MockBean private UserDetailsServiceImpl userDetailsService;
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldRejectProjectCreationWhenNameIsBlank() throws Exception {
+
+    mockMvc
+        .perform(
+            post("/api/projects")
+                .with(csrf())
+                .contentType("application/json")
+                .content(
+                    """
+                    {
+                        "name": "",
+                        "description": "Invalid project"
+                    }
+                    """))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error").value("Validation failed"))
+        .andExpect(jsonPath("$.fields.name").value("must not be blank"));
+
+    verify(projectService, never()).create(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  @WithMockUser(username = "verissimo")
+  void shouldRejectProjectUpdateWhenNameIsBlank() throws Exception {
+
+    mockMvc
+        .perform(
+            put("/api/projects/1")
+                .with(csrf())
+                .contentType("application/json")
+                .content(
+                    """
+                    {
+                        "name": "",
+                        "description": "Invalid project",
+                        "status": "ACTIVE"
+                    }
+                    """))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.error").value("Validation failed"))
+        .andExpect(jsonPath("$.fields.name").value("must not be blank"));
+
+    verify(projectService, never())
+        .update(anyString(), anyLong(), anyString(), anyString(), any(Project.Status.class));
+  }
 
   @Test
   @WithMockUser(username = "verissimo")
@@ -90,12 +138,12 @@ class ProjectControllerTest {
                 .contentType("application/json")
                 .content(
                     """
-                                {
-                                    "name": "ProjectsManeger Updated",
-                                    "description": "Updated project description",
-                                    "status": "ACTIVE"
-                                }
-                                """))
+                    {
+                        "name": "ProjectsManeger Updated",
+                        "description": "Updated project description",
+                        "status": "ACTIVE"
+                    }
+                    """))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.name").value("ProjectsManeger Updated"))
         .andExpect(jsonPath("$.description").value("Updated project description"))
@@ -108,50 +156,6 @@ class ProjectControllerTest {
             "ProjectsManeger Updated",
             "Updated project description",
             Project.Status.ACTIVE);
-  }
-
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldRejectProjectCreationWhenNameIsBlank() throws Exception {
-
-    mockMvc
-        .perform(
-            post("/api/projects")
-                .with(csrf())
-                .contentType("application/json")
-                .content(
-                    """
-                                {
-                                    "name": "",
-                                    "description": "Invalid project"
-                                }
-                                """))
-        .andExpect(status().isBadRequest());
-
-    verify(projectService, never()).create(anyString(), anyString(), anyString());
-  }
-
-  @Test
-  @WithMockUser(username = "verissimo")
-  void shouldRejectProjectUpdateWhenNameIsBlank() throws Exception {
-
-    mockMvc
-        .perform(
-            put("/api/projects/1")
-                .with(csrf())
-                .contentType("application/json")
-                .content(
-                    """
-                                {
-                                    "name": "",
-                                    "description": "Invalid project",
-                                    "status": "ACTIVE"
-                                }
-                                """))
-        .andExpect(status().isBadRequest());
-
-    verify(projectService, never())
-        .update(anyString(), anyLong(), anyString(), anyString(), any(Project.Status.class));
   }
 
   @Test
@@ -178,5 +182,13 @@ class ProjectControllerTest {
         .andExpect(jsonPath("$.error").value("Project not found"));
 
     verify(projectService).findMyProject("verissimo", 1L);
+  }
+
+  @Test
+  void shouldReturnUnauthorizedWhenUserIsNotAuthenticated() throws Exception {
+
+    mockMvc.perform(get("/api/projects")).andExpect(status().isUnauthorized());
+
+    verify(projectService, never()).findMyProjects(anyString());
   }
 }

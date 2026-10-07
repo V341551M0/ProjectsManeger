@@ -20,7 +20,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(AuthController.class)
+@WebMvcTest(
+    value = AuthController.class,
+    properties =
+        "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration")
 class AuthControllerTest {
 
   @Autowired private MockMvc mockMvc;
@@ -70,5 +73,32 @@ class AuthControllerTest {
         .andExpect(jsonPath("$.enabled").value(true));
 
     verify(authService).findAuthenticatedUser("verissimo");
+  }
+
+  @Test
+  void shouldReturnUnauthorizedWhenCredentialsAreInvalid() throws Exception {
+
+    when(authService.authenticate("verissimo", "senha"))
+        .thenThrow(
+            new org.springframework.security.authentication.BadCredentialsException(
+                "Invalid credentials"));
+
+    mockMvc
+        .perform(
+            post("/api/auth/login")
+                .with(csrf())
+                .with(user("verissimo"))
+                .contentType("application/json")
+                .content(
+                    """
+                    {
+                        "username": "verissimo",
+                        "password": "senha"
+                    }
+                    """))
+        .andExpect(status().isUnauthorized())
+        .andExpect(jsonPath("$.error").value("Invalid username or password"));
+
+    verify(authService).authenticate("verissimo", "senha");
   }
 }
