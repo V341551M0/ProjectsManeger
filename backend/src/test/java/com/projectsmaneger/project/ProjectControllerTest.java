@@ -8,6 +8,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -62,6 +63,29 @@ class ProjectControllerTest {
         .andExpect(jsonPath("$.fields.name").value("must not be blank"));
 
     verify(projectService, never()).create(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  void shouldRejectMalformedJson() throws Exception {
+    mockMvc
+        .perform(
+            post("/api/projects")
+                .with(csrf())
+                .with(user("verissimo"))
+                .contentType("application/json")
+                .content(
+                    """
+                                    {
+                                        "name": "Projeto inválido",
+                                        "description":
+                                    }
+                                    """))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.status").value(400))
+        .andExpect(jsonPath("$.error").value("Bad Request"))
+        .andExpect(jsonPath("$.message").value("Malformed JSON request"))
+        .andExpect(jsonPath("$.path").value("/api/projects"))
+        .andExpect(jsonPath("$.fields").doesNotExist());
   }
 
   @Test
