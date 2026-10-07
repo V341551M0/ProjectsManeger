@@ -1,10 +1,10 @@
 package com.projectsmaneger.config;
 
 import com.projectsmaneger.security.JwtAuthenticationFilter;
+import com.projectsmaneger.security.SecurityExceptionHandler;
 import com.projectsmaneger.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -22,19 +21,21 @@ public class SecurityConfig {
   private final UserDetailsServiceImpl userDetailsService;
   private final PasswordEncoder passwordEncoder;
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final SecurityExceptionHandler securityExceptionHandler;
 
   public SecurityConfig(
       UserDetailsServiceImpl userDetailsService,
       PasswordEncoder passwordEncoder,
-      JwtAuthenticationFilter jwtAuthenticationFilter) {
+      JwtAuthenticationFilter jwtAuthenticationFilter,
+      SecurityExceptionHandler securityExceptionHandler) {
     this.userDetailsService = userDetailsService;
     this.passwordEncoder = passwordEncoder;
     this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    this.securityExceptionHandler = securityExceptionHandler;
   }
 
   @Bean
   public AuthenticationManager authenticationManager() {
-
     DaoAuthenticationProvider authenticationProvider =
         new DaoAuthenticationProvider(userDetailsService);
 
@@ -52,11 +53,12 @@ public class SecurityConfig {
         .userDetailsService(userDetailsService)
         .exceptionHandling(
             exception ->
-                exception.authenticationEntryPoint(
-                    new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                exception
+                    .authenticationEntryPoint(securityExceptionHandler)
+                    .accessDeniedHandler(securityExceptionHandler))
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/api/auth/**", "/api/webhooks/**")
+                auth.requestMatchers("/api/auth/login", "/api/webhooks/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated())

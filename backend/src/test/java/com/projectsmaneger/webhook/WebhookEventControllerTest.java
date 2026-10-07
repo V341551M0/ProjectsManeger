@@ -16,7 +16,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(value = WebhookEventController.class, properties = "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration")
+@WebMvcTest(
+    value = WebhookEventController.class,
+    properties =
+        "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration")
 class WebhookEventControllerTest {
 
   @org.springframework.beans.factory.annotation.Autowired private MockMvc mockMvc;
