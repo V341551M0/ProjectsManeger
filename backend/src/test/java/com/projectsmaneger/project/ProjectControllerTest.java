@@ -11,6 +11,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -215,10 +216,44 @@ class ProjectControllerTest {
   }
 
   @Test
+  void shouldRejectInvalidProjectId() throws Exception {
+    mockMvc
+        .perform(get("/api/projects/abc").with(csrf()).with(user("verissimo")))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.status").value(400))
+        .andExpect(jsonPath("$.error").value("Bad Request"))
+        .andExpect(jsonPath("$.message").value("Invalid value for parameter: id"))
+        .andExpect(jsonPath("$.path").value("/api/projects/abc"))
+        .andExpect(jsonPath("$.fields").doesNotExist());
+  }
+
+  @Test
   void shouldReturnUnauthorizedWhenUserIsNotAuthenticated() throws Exception {
 
     mockMvc.perform(get("/api/projects")).andExpect(status().isUnauthorized());
 
     verify(projectService, never()).findMyProjects(anyString());
+  }
+
+  @Test
+  void shouldRejectUnsupportedHttpMethod() throws Exception {
+    mockMvc
+        .perform(
+            patch("/api/projects/1")
+                .with(csrf())
+                .with(user("verissimo"))
+                .contentType("application/json")
+                .content(
+                    """
+                                    {
+                                        "name": "Projeto"
+                                    }
+                                    """))
+        .andExpect(status().isMethodNotAllowed())
+        .andExpect(jsonPath("$.status").value(405))
+        .andExpect(jsonPath("$.error").value("Method Not Allowed"))
+        .andExpect(jsonPath("$.message").value("HTTP method not supported for this endpoint"))
+        .andExpect(jsonPath("$.path").value("/api/projects/1"))
+        .andExpect(jsonPath("$.fields").doesNotExist());
   }
 }
