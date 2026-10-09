@@ -58,7 +58,8 @@ public class SecurityConfig {
                     .accessDeniedHandler(securityExceptionHandler))
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/api/auth/login", "/api/webhooks/**")
+                auth.requestMatchers(
+                        "/api/auth/login", "/api/webhooks/**", "/api/github/oauth/callback")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
