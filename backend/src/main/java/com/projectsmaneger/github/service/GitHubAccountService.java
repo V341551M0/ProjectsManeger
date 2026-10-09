@@ -23,10 +23,19 @@ public class GitHubAccountService {
   @Transactional
   public GitHubAccount linkAccount(
       String username, GitHubUserResponse githubUser, String accessToken) {
+
     User user =
         userRepository
             .findByUsername(username)
             .orElseThrow(() -> new IllegalStateException("ProjectsManeger user not found"));
+
+    GitHubAccount existingGitHubAccount =
+        gitHubAccountRepository.findByGithubUserId(githubUser.id()).orElse(null);
+
+    if (existingGitHubAccount != null
+        && !existingGitHubAccount.getUser().getId().equals(user.getId())) {
+      throw new IllegalStateException("This GitHub account is already linked to another user");
+    }
 
     GitHubAccount account =
         gitHubAccountRepository
