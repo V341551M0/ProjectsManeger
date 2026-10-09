@@ -1,0 +1,42 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: projectsmaneger-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: projectsmaneger
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo .env}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: projectsmaneger-backend
+    restart: unless-stopped
+    environment:
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo .env}
+      JWT_SECRET: ${JWT_SECRET:?Defina JWT_SECRET no arquivo .env}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:?Defina GITHUB_CLIENT_ID no arquivo .env}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:?Defina GITHUB_CLIENT_SECRET no arquivo .env}
+      GITHUB_OAUTH_REDIRECT_URI: ${GITHUB_OAUTH_REDIRECT_URI:-http://localhost:8080/api/github/oauth/callback}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/projectsmaneger
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
