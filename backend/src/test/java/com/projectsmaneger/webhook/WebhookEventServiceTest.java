@@ -33,6 +33,9 @@ class WebhookEventServiceTest {
     JsonNode payload =
         objectMapper.readTree("{\"action\":\"created\",\"repository\":\"projectsmaneger\"}");
 
+    when(webhookEventRepository.findByGithubDeliveryId("delivery-service-001"))
+        .thenReturn(Optional.empty());
+
     Repository repository = org.mockito.Mockito.mock(Repository.class);
 
     when(repositoryRepository.findByGithubRepositoryId(12345L)).thenReturn(Optional.of(repository));
@@ -62,5 +65,30 @@ class WebhookEventServiceTest {
     verify(repositoryRepository).findByGithubRepositoryId(12345L);
 
     verify(webhookEventRepository).save(any(WebhookEvent.class));
+  }
+
+  @Test
+  void shouldReturnExistingEventForDuplicateDelivery() throws Exception {
+    JsonNode payload = new ObjectMapper().readTree("{\"action\":\"created\"}");
+    WebhookEvent existing =
+        new WebhookEvent(
+            null,
+            "delivery-service-duplicate",
+            "pull_request",
+            "created",
+            payload,
+            WebhookEvent.ProcessingStatus.RECEIVED,
+            null);
+    when(webhookEventRepository.findByGithubDeliveryId("delivery-service-duplicate"))
+        .thenReturn(Optional.of(existing));
+
+    WebhookEvent result =
+        webhookEventService.registerEvent(
+            12345L, "delivery-service-duplicate", "pull_request", "created", payload);
+
+    assertEquals(existing, result);
+    org.mockito.Mockito.verifyNoInteractions(repositoryRepository);
+    org.mockito.Mockito.verify(webhookEventRepository, org.mockito.Mockito.never())
+        .save(any(WebhookEvent.class));
   }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.projectsmaneger.repository.Repository;
 import com.projectsmaneger.repository.RepositoryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class WebhookEventService {
@@ -17,12 +18,18 @@ public class WebhookEventService {
     this.repositoryRepository = repositoryRepository;
   }
 
+  @Transactional
   public WebhookEvent registerEvent(
       Long githubRepositoryId,
       String githubDeliveryId,
       String eventType,
       String action,
       JsonNode payload) {
+    var existingEvent = webhookEventRepository.findByGithubDeliveryId(githubDeliveryId);
+    if (existingEvent.isPresent()) {
+      return existingEvent.get();
+    }
+
     Repository repository =
         repositoryRepository.findByGithubRepositoryId(githubRepositoryId).orElse(null);
 

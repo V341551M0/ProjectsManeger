@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -231,6 +232,19 @@ class ProjectControllerTest {
   void shouldReturnUnauthorizedWhenUserIsNotAuthenticated() throws Exception {
 
     mockMvc.perform(get("/api/projects")).andExpect(status().isUnauthorized());
+
+    verify(projectService, never()).findMyProjects(anyString());
+  }
+
+  @Test
+  void shouldRejectInvalidBearerTokenOnProtectedRoute() throws Exception {
+    doThrow(new io.jsonwebtoken.MalformedJwtException("invalid token"))
+        .when(jwtService)
+        .extractUsername("invalid-token");
+
+    mockMvc
+        .perform(get("/api/projects").header("Authorization", "Bearer invalid-token"))
+        .andExpect(status().isUnauthorized());
 
     verify(projectService, never()).findMyProjects(anyString());
   }
